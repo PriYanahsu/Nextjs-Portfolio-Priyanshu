@@ -85,7 +85,7 @@ const Hero = () => {
           <Image
             src={HeroImage}
             alt="Priyanshu"
-            className="rounded-2xl shadow-lg object-contain w-64 sm:w-80 md:w-full lg:w-[500px] h-auto"
+            className="rounded-2xl shadow-lg object-contain w-52 sm:w-72 md:w-4/5 lg:w-[450px] h-auto"
             priority
           />
         </div>
