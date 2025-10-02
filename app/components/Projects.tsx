@@ -9,6 +9,8 @@ import spam from '../assets/portfolio/spam.png';
 import weather from '../assets/portfolio/weather.png';
 import fileShare from '../assets/portfolio/fileShare.png';
 import smartCompaint from '../assets/portfolio/smartcomplaint.png';
+import Silk from '../assets/portfolio/SilkBusiness.png';
+import Gym from '../assets/portfolio/Gym.png'
 
 const containerStagger = {
   visible: {
@@ -18,6 +20,33 @@ const containerStagger = {
 
 const Projects = () => {
   const additionalProjects = [
+    {
+      title: "INNFOODIE",
+      description: "A React-based food-ordering platform with a dynamic menu and order tracking.",
+      image: INNFOODIE,
+      technologies: ["React", "Food Ordering"],
+      achievements: ["Dynamic menu system", "Order tracking feature"],
+      Live: "https://innfoodie-food-order-site-24-7.vercel.app/",
+      codeLink: "https://github.com/PriYanahsu/INNFOODIE-Food-order-Site-24-7",
+    },
+    {
+      title: "Skill B2C Bussiness Website",
+      description: "A Whatsapp integrated reactjs webapi website to delivery goods",
+      image: Silk,
+      technologies: ["Reactjs", "Javascript"],
+      achievements: ["Delivery Goods", "Fully customer optimize"],
+      Live: "https://silk-bussines.onrender.com/",
+      codeLink: "https://github.com/PriYanahsu/silk-bussiness",
+    },
+    {
+      title: "Gym Manangement System",
+      description: "A fully automated gym mangement system easily track the record through date aand time",
+      image: Gym,
+      technologies: ["Reactjs", "Supabase", "Postgresql"],
+      achievements: ["Manage member record with pending and more status", "Same for product that have been sale"],
+      Live: "https://arhamgym.vercel.app/",
+      codeLink: "https://github.com/PriYanahsu/gym-data-management",
+    },
     {
       title: "Weather Forecast Site",
       description: "A futuristic 5-day weather forecasting site using advanced prediction algorithms.",
@@ -32,15 +61,6 @@ const Projects = () => {
       codeLink: "https://github.com/PriYanahsu/Weather-forecaste-site----predict-5-futurestic-days",
     },
     {
-      title: "INNFOODIE",
-      description: "A React-based food-ordering platform with a dynamic menu and order tracking.",
-      image: INNFOODIE,
-      technologies: ["React", "Food Ordering"],
-      achievements: ["Dynamic menu system", "Order tracking feature"],
-      Live: "https://innfoodie-food-order-site-24-7.vercel.app/",
-      codeLink: "https://github.com/PriYanahsu/INNFOODIE-Food-order-Site-24-7",
-    },
-    {
       title: "Disease Detection and Drug Recommendation",
       description: "A Machine Learning project to detect diseases and recommend appropriate drugs.",
       image: Disease,
@@ -53,7 +73,7 @@ const Projects = () => {
       title: "Personal Website",
       description: "A personal portfolio website showcasing my projects and skills.",
       image: personal,
-      technologies: ["Next.js", "React", "CSS"],
+      technologies: ["Next.js", "TailwindCss", "TypeScript"],
       achievements: ["Portfolio design", "Responsive UI"],
       Live: "https://personal-website-priyanshu.vercel.app/",
       codeLink: "https://github.com/PriYanahsu/Personal-Website-Priyanshu-",
@@ -62,7 +82,7 @@ const Projects = () => {
       title: "File Share App",
       description: "A secure application to share files with ease.",
       image: fileShare,
-      technologies: ["Node.js", "Express.js", "React"],
+      technologies: ["Spring boot", "MySql", "React"],
       achievements: ["Secure file sharing", "Responsive UI"],
       Live: "https://github.com/PriYanahsu/file-share-app",
       codeLink: "https://github.com/PriYanahsu/file-share-app",
@@ -80,7 +100,7 @@ const Projects = () => {
       title: "Smart Complaint Management System",
       description: "A full-stack platform for complaint management with tracking features.",
       image: smartCompaint,
-      technologies: ["React", "Node.js", "MongoDB"],
+      technologies: ["React", "Spring boot", "MongoDB"],
       achievements: ["Complaint tracking", "Responsive UI"],
       Live: "https://online-complaint-mangement-system.vercel.app/",
       codeLink: "https://github.com/PriYanahsu/-Smart-Complaint-Management-System-Full-Stack-",
