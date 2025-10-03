@@ -2,15 +2,15 @@
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 
-import INNFOODIE from '../assets/portfolio/INNFOODIE.png';
-import Disease from '../assets/portfolio/disease.png';
-import personal from '../assets/portfolio/personal.png';
-import spam from '../assets/portfolio/spam.png';
-import weather from '../assets/portfolio/weather.png';
-import fileShare from '../assets/portfolio/fileShare.png';
-import smartCompaint from '../assets/portfolio/smartcomplaint.png';
-import Silk from '../assets/portfolio/SilkBusiness.png';
-import Gym from '../assets/portfolio/Gym.png'
+import INNFOODIE from "../assets/portfolio/INNFOODIE.png";
+import Disease from "../assets/portfolio/disease.png";
+import personal from "../assets/portfolio/personal.png";
+import spam from "../assets/portfolio/spam.png";
+import weather from "../assets/portfolio/weather.png";
+import fileShare from "../assets/portfolio/fileShare.png";
+import smartCompaint from "../assets/portfolio/smartcomplaint.png";
+import Silk from "../assets/portfolio/SilkBusiness.png";
+import Gym from "../assets/portfolio/Gym.png";
 
 const containerStagger = {
   visible: {
@@ -22,7 +22,8 @@ const Projects = () => {
   const additionalProjects = [
     {
       title: "INNFOODIE",
-      description: "A React-based food-ordering platform with a dynamic menu and order tracking.",
+      description:
+        "A React-based food-ordering platform with a dynamic menu and order tracking.",
       image: INNFOODIE,
       technologies: ["React", "Food Ordering"],
       achievements: ["Dynamic menu system", "Order tracking feature"],
@@ -31,50 +32,60 @@ const Projects = () => {
     },
     {
       title: "Skill B2C Bussiness Website",
-      description: "A Whatsapp integrated reactjs webapi website to delivery goods",
+      description:
+        "A Whatsapp integrated React.js web API website for delivering goods.",
       image: Silk,
       technologies: ["Reactjs", "Javascript"],
-      achievements: ["Delivery Goods", "Fully customer optimize"],
+      achievements: ["Delivery Goods", "Customer optimized"],
       Live: "https://silk-bussines.onrender.com/",
       codeLink: "https://github.com/PriYanahsu/silk-bussiness",
     },
     {
-      title: "Gym Manangement System",
-      description: "A fully automated gym mangement system easily track the record through date aand time",
+      title: "Gym Management System",
+      description:
+        "An automated gym management system to track records by date and time.",
       image: Gym,
-      technologies: ["Reactjs", "Supabase", "Postgresql"],
-      achievements: ["Manage member record with pending and more status", "Same for product that have been sale"],
+      technologies: ["Reactjs", "Supabase", "PostgreSQL"],
+      achievements: [
+        "Manage member records with statuses",
+        "Track product sales and pending records",
+      ],
       Live: "https://arhamgym.vercel.app/",
       codeLink: "https://github.com/PriYanahsu/gym-data-management",
     },
     {
       title: "Weather Forecast Site",
-      description: "A futuristic 5-day weather forecasting site using advanced prediction algorithms.",
+      description:
+        "A futuristic 5-day weather forecasting site using advanced prediction algorithms.",
       image: weather,
       technologies: ["Next.js", "API Integration", "CSS"],
       achievements: [
-        "Built a futuristic weather forecast system",
-        "Integrated accurate prediction algorithms",
-        "Responsive UI for mobile and desktop",
+        "Futuristic weather forecast",
+        "Accurate prediction algorithms",
+        "Responsive UI",
       ],
       Live: "https://weatherapp-iota-ecru.vercel.app/",
-      codeLink: "https://github.com/PriYanahsu/Weather-forecaste-site----predict-5-futurestic-days",
+      codeLink:
+        "https://github.com/PriYanahsu/Weather-forecaste-site----predict-5-futurestic-days",
     },
     {
       title: "Disease Detection and Drug Recommendation",
-      description: "A Machine Learning project to detect diseases and recommend appropriate drugs.",
+      description:
+        "A Machine Learning project to detect diseases and recommend appropriate drugs.",
       image: Disease,
       technologies: ["Machine Learning", "Python"],
       achievements: ["Disease detection", "Drug recommendation"],
       Live: "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
-      codeLink: "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
+      codeLink:
+        "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
     },
     {
       title: "Personal Website",
-      description: "A personal portfolio website showcasing my projects and skills.",
+      description:
+        "A personal portfolio website showcasing my projects and skills.",
       image: personal,
       technologies: ["Next.js", "TailwindCss", "TypeScript"],
-      achievements: ["Portfolio design", "Responsive UI"],
+      achievements: ["Modern portfolio design", "Responsive UI"],
       Live: "https://personal-website-priyanshu.vercel.app/",
       codeLink: "https://github.com/PriYanahsu/Personal-Website-Priyanshu-",
     },
@@ -82,7 +93,7 @@ const Projects = () => {
       title: "File Share App",
       description: "A secure application to share files with ease.",
       image: fileShare,
-      technologies: ["Spring boot", "MySql", "React"],
+      technologies: ["Spring Boot", "MySQL", "React"],
       achievements: ["Secure file sharing", "Responsive UI"],
       Live: "https://github.com/PriYanahsu/file-share-app",
       codeLink: "https://github.com/PriYanahsu/file-share-app",
@@ -98,17 +109,18 @@ const Projects = () => {
     },
     {
       title: "Smart Complaint Management System",
-      description: "A full-stack platform for complaint management with tracking features.",
+      description:
+        "A full-stack platform for complaint management with tracking features.",
       image: smartCompaint,
-      technologies: ["React", "Spring boot", "MongoDB"],
+      technologies: ["React", "Spring Boot", "MongoDB"],
       achievements: ["Complaint tracking", "Responsive UI"],
       Live: "https://online-complaint-mangement-system.vercel.app/",
-      codeLink: "https://github.com/PriYanahsu/-Smart-Complaint-Management-System-Full-Stack-",
+      codeLink:
+        "https://github.com/PriYanahsu/-Smart-Complaint-Management-System-Full-Stack-",
     },
   ];
 
   const renderProjectSection = (
-    title: string,
     projects: {
       title: string;
       image?: string | StaticImageData;
@@ -119,99 +131,91 @@ const Projects = () => {
       codeLink?: string;
     }[]
   ) => (
-    <>
-      <motion.h3
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="text-2xl text-white lg:mx-32 font-semibold mb-6 mt-12"
-      >
-        {title}
-      </motion.h3>
-
-      <motion.div
-        variants={containerStagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="grid sm:grid-cols-1 mx-8 md:grid-cols-2 lg:mx-32 lg:grid-cols-3 gap-8"
-      >
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="bg-[#0A1929]/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl transition-transform duration-300"
-          >
-            {project.image && (
-              <div className="relative h-54 overflow-hidden bg-gray-800">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-contain hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  priority={index === 0}
-                />
-              </div>
-            )}
-
-            <div className="p-5">
-              <h3 className="text-xl font-semibold text-white mb-2">
-                {project.title}
-              </h3>
-              <p className="text-gray-300 mb-3 text-sm">{project.description}</p>
-
-              <div className="mb-3">
-                <h4 className="text-sm font-semibold text-blue-400 mb-1">
-                  Highlights:
-                </h4>
-                <ul className="list-disc list-inside text-gray-300 text-xs space-y-1">
-                  {project.achievements.map((item, idx) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mb-3">
-                {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex gap-4 mt-2 text-sm">
-                {project.Live && project.Live !== "#" && (
-                  <a
-                    href={project.Live}
-                    className="text-blue-400 hover:text-blue-300 font-medium underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live
-                  </a>
-                )}
-                {project.codeLink && (
-                  <a
-                    href={project.codeLink}
-                    className="text-blue-400 hover:text-blue-300 font-medium underline"
-                  >
-                    Source Code
-                  </a>
-                )}
-              </div>
+    <motion.div
+      variants={containerStagger}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="grid sm:grid-cols-1 mx-4 md:grid-cols-2 lg:mx-28 lg:grid-cols-3 gap-8"
+    >
+      {projects.map((project, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="bg-[#0A1929]/70 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:-translate-y-1 hover:scale-105 hover:shadow-blue-500/30 transition-all duration-300"
+        >
+          {project.image && (
+            <div className="relative h-44 overflow-hidden bg-gray-800">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-contain hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={index === 0}
+              />
             </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    </>
+          )}
+
+          <div className="p-5">
+            <h3 className="text-lg font-semibold text-blue-400 mb-2">
+              {project.title}
+            </h3>
+            <p className="text-gray-300 mb-3 text-sm">
+              {project.description}
+            </p>
+
+            <div className="mb-3">
+              <h4 className="text-sm font-semibold text-blue-400 mb-1">
+                Highlights:
+              </h4>
+              <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+                {project.achievements.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-3">
+              {project.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-md text-xs font-medium"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex gap-4 mt-2 text-sm">
+              {project.Live && project.Live !== "#" && (
+                <a
+                  href={project.Live}
+                  className="text-cyan-400 hover:text-cyan-300 font-medium underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live
+                </a>
+              )}
+              {project.codeLink && (
+                <a
+                  href={project.codeLink}
+                  className="text-cyan-400 hover:text-cyan-300 font-medium underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Source Code
+                </a>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
   );
 
   return (
@@ -230,7 +234,7 @@ const Projects = () => {
           Projects
         </motion.h2>
 
-        {renderProjectSection("Portfolio Projects", additionalProjects)}
+        {renderProjectSection(additionalProjects)}
       </div>
     </section>
   );

@@ -15,19 +15,19 @@ const About = () => {
         <section className="max-w-3xl md:text-lg text-center mx-auto text-gray-300 p-4">
           {/* Introduction Paragraph */}
           <p className="mb-6">
-            I'm an <strong>MCA graduate</strong> and <strong>Frontend Engineer</strong> at Cognivac,
+            I'm an <strong>MCA graduate</strong> and <strong>Software Engineer</strong> at Cognivac,
             specializing in building responsive and scalable applications using
-            <strong>React.js</strong>, <strong>Next.js</strong>, <strong>React Native</strong>,
+            <strong> React.js</strong>, <strong>Next.js</strong>, <strong>React Native</strong>,
             and <strong>Tailwind CSS</strong>. I also have strong backend expertise
             with <strong>Java Spring Boot</strong>.
           </p>
           {/* Skills & Achievements Paragraph */}
           <p className="mb-6">
             I bring hands-on experience in full-stack development with both
-            <strong>SQL</strong> (PostgreSQL, MySQL) and <strong>NoSQL</strong> (MongoDB) databases.
+            <strong> SQL</strong> (PostgreSQL, MySQL) and <strong>NoSQL</strong> (MongoDB) databases.
             I enjoy solving complex problems with clean, efficient code.
             With <strong>400+ problems solved on LeetCode</strong> and a
-            <strong>5⭐ rating in Java & MySQL on HackerRank</strong>,
+            <strong> 5⭐ rating in Java & MySQL on HackerRank</strong>,
             I continuously sharpen my coding and problem-solving skills.
             I’m passionate about tackling challenges and delivering impactful digital solutions
             that combine performance, scalability, and user experience.
