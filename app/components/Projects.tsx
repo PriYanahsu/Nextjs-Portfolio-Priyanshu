@@ -125,7 +125,7 @@ const Projects = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="text-2xl text-white font-semibold mb-6 mt-12"
+        className="text-2xl text-white lg:mx-32 font-semibold mb-6 mt-12"
       >
         {title}
       </motion.h3>
@@ -135,7 +135,7 @@ const Projects = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid sm:grid-cols-1 mx-8 md:grid-cols-2 lg:mx-32 lg:grid-cols-3 gap-8"
       >
         {projects.map((project, index) => (
           <motion.div
@@ -147,7 +147,7 @@ const Projects = () => {
             className="bg-[#0A1929]/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl transition-transform duration-300"
           >
             {project.image && (
-              <div className="relative h-64 overflow-hidden bg-gray-800">
+              <div className="relative h-54 overflow-hidden bg-gray-800">
                 <Image
                   src={project.image}
                   alt={project.title}
