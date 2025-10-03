@@ -12,7 +12,7 @@ const About = () => {
           About Me
         </h2>
 
-        <section className="max-w-3xl text-lg text-center mx-auto text-gray-300 p-4">
+        <section className="max-w-3xl md:text-lg text-center mx-auto text-gray-300 p-4">
           {/* Introduction Paragraph */}
           <p className="mb-6">
             I'm an <strong>MCA graduate</strong> and <strong>Frontend Engineer</strong> at Cognivac,
