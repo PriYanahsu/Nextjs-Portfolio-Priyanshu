@@ -33,7 +33,7 @@ const Projects = () => {
     {
       title: "Skill B2C Bussiness Website",
       description:
-        "A Whatsapp integrated React.js web API website for delivering goods.",
+        "A Whatsapp integrated React.js tailwindCSS web API website for delivering goods.",
       image: Silk,
       technologies: ["Reactjs", "Javascript"],
       achievements: ["Delivery Goods", "Customer optimized"],
