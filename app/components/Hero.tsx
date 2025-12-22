@@ -21,13 +21,13 @@ const Hero = () => {
 
           {/* Tagline */}
           <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-3">
-            Software Engineer | Full Stack Developer | React | Next.js | Spring Boot
+            Software Engineer | Full Stack Developer | React | Next.js | FASTAPI | Spring Boot
           </p>
 
           {/* Bio */}
           <p className="text-gray-400 max-w-md mb-5 leading-relaxed mx-auto md:mx-0 text-sm sm:text-base">
             I am a passionate Full Stack Developer with hands-on experience in
-            React, Next.js, React Native, and Spring Boot. Solved 400+ LeetCode
+            React, Next.js, React Native, FASTAPI and Spring Boot. Solved 450+ LeetCode
             problems, earned 5⭐️ in Java & MySQL on HackerRank, and explore AI
             integration for innovative solutions. Proficient in SQL (PostgreSQL)
             and NoSQL (MongoDB).
@@ -39,9 +39,10 @@ const Hero = () => {
               "React.js",
               "Next.js",
               "React Native",
+              "FASTAPI",
               "Spring Boot",
               "PostgreSQL",
-              "MongoDB",
+              "MYSQL",
               "AI Integration",
             ].map((skill) => (
               <div
