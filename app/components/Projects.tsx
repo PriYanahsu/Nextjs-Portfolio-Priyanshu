@@ -136,7 +136,7 @@ const Projects = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="grid sm:grid-cols-1 mx-4 md:grid-cols-2 lg:mx-28 lg:grid-cols-3 gap-8"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
     >
       {projects.map((project, index) => (
         <motion.div
@@ -223,7 +223,7 @@ const Projects = () => {
       id="projects"
       className="py-20 bg-gradient-to-b from-[#0A1929] to-[#040D12]"
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}

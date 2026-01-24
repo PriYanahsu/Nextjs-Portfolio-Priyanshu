@@ -13,7 +13,7 @@ import {
   SiHtml5,
   SiCss3,
   SiBootstrap,
-  SiPostgresql, 
+  SiPostgresql,
   SiSupabase,
   SiFastapi
 } from "react-icons/si";
@@ -55,7 +55,7 @@ export default function Skills() {
       id="skills"
       className="py-20 bg-gradient-to-b from-[#040D12] to-[#0A1929]"
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center mb-12 text-white">
           Skills
         </h2>

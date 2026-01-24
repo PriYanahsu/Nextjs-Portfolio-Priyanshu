@@ -1,7 +1,7 @@
 "use client"; // Next.js 13+ app directory
 
 import Image from "next/image";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { MdOutlineKeyboardArrowRight, MdFileDownload } from "react-icons/md";
 import { Link as ScrollLink } from "react-scroll";
 import HeroImage from "../assets/HeroImg.jpg";
 
@@ -9,9 +9,9 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-[60vh] md:min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#040D12] to-[#0A1929] text-white px-6 py-4"
+      className="min-h-[60vh] md:min-h-[85vh] w-full flex items-center justify-center bg-gradient-to-b from-[#040D12] to-[#0A1929] text-white px-4 py-12 md:py-20"
     >
-      <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-center text-center md:text-left">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center text-center md:text-left">
         {/* Text Section */}
         <div className="flex flex-col justify-center md:w-1/2">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3">
@@ -79,6 +79,17 @@ const Hero = () => {
                 <MdOutlineKeyboardArrowRight size={20} />
               </span>
             </ScrollLink>
+
+            <a
+              href="/resume.pdf"
+              download="Priyanshu_Resume.pdf"
+              className="group w-full sm:w-auto px-5 py-2 flex items-center justify-center rounded-md bg-gradient-to-r from-yellow-500 to-green-700 text-white font-semibold shadow-md hover:scale-105 transform transition duration-300 text-sm sm:text-base"
+            >
+              Resume
+              <span className="ml-2">
+                <MdFileDownload size={22} />
+              </span>
+            </a>
           </div>
         </div>
 

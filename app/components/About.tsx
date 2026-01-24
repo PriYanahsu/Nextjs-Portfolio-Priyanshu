@@ -8,7 +8,7 @@ const About = () => {
       id="about"
       className="min-h-[60vh] md:min-h-[70vh] w-full flex items-center justify-center bg-gradient-to-b from-[#0A1929] to-[#040D12] text-white px-4"
     >
-      <div className="container mx-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <h2 className="text-4xl font-bold text-center mb-12 text-white">
           About Me
         </h2>
