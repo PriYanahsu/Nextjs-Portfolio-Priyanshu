@@ -1,58 +1,109 @@
-'use client';
-
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+"use client";
+import React from "react";
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
-  return (
-    <footer className="bg-gradient-to-t from-[#040D12] to-[#0A1929] text-gray-300 py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+  const currentYear = new Date().getFullYear();
 
-          {/* Left Section: Contact Information */}
-          <div className="space-y-2">
-            <h3 className="text-xl font-bold text-white mb-4">Contact</h3>
-            <p>Email: <a href="mailto:priyanshu1265656@gmail.com" className="hover:text-blue-400 transition">priyanshu1265656@gmail.com</a></p>
-            <p>Phone: <a href="tel:+9170078836367" className="hover:text-blue-400 transition">+91 70078836367</a></p>
+  const socialLinks = [
+    { icon: FaGithub, href: "https://github.com/PriYanahsu", label: "GitHub" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/in/priyanshukumar1265/", label: "LinkedIn" },
+    { icon: FaEnvelope, href: "mailto:priyanshu1265656@gmail.com", label: "Email" },
+    { icon: FaWhatsapp, href: "https://wa.me/917007836367", label: "WhatsApp" },
+  ];
+
+  return (
+    <footer className="relative bg-[#040D12] pt-16 pb-8 overflow-hidden">
+      {/* Top Border with Gradient glow effect */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+
+          {/* Column 1: Branding */}
+          <div className="md:col-span-5 space-y-6">
+            <div>
+              <h2 className="text-2xl font-black text-white tracking-tighter mb-2">
+                <span className="bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+                  Priyanshu Kumar
+                </span>
+              </h2>
+              <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
+                Software Engineer & Full Stack Product Engineer focused on building high-performance
+                digital solutions with a premium design aesthetic.
+              </p>
+            </div>
+
+            {/* Social Links - Glassmorphic Style */}
+            <div className="flex flex-wrap gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-white/5 border border-white/10 rounded-xl text-gray-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-300 shadow-lg"
+                  aria-label={social.label}
+                >
+                  <social.icon size={18} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Middle Section: Navigation Links */}
-          <div className="space-y-2">
-            <h3 className="text-xl font-bold text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-blue-400 transition">Home</a></li>
-              <li><a href="#about" className="hover:text-blue-400 transition">About</a></li>
-              <li><a href="#projects" className="hover:text-blue-400 transition">Projects</a></li>
-              <li><a href="#contact" className="hover:text-blue-400 transition">Contact</a></li>
+          {/* Column 2: Navigation */}
+          <div className="md:col-span-3 space-y-6">
+            <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+              Quick Navigation
+            </h3>
+            <ul className="grid grid-cols-2 md:grid-cols-1 gap-3">
+              {["Home", "About", "Projects", "Skills", "Contact"].map((item) => (
+                <li key={item}>
+                  <a
+                    href={item === "Home" ? "#" : `#${item.toLowerCase()}`}
+                    className="text-sm text-gray-400 hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-indigo-400 transition-colors" />
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Right Section: Social Media Links */}
-          <div>
-            <h3 className="text-xl font-bold text-white mb-4">Follow Me</h3>
-            <div className="flex space-x-4">
-              {/* Example: Uncomment if you want Twitter */}
-              {/* <a href="https://x.com/deepakchandra41" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
-                <FaXTwitter className="w-6 h-6" />
-              </a> */}
-              <a href="https://github.com/PriYanahsu" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
-                <FaGithub className="w-6 h-6" />
+          {/* Column 3: Contact Info */}
+          <div className="md:col-span-4 space-y-6">
+            <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+              Get in touch
+            </h3>
+            <div className="space-y-4">
+              <a
+                href="mailto:priyanshu1265656@gmail.com"
+                className="block group"
+              >
+                <p className="text-[9px] text-gray-600 uppercase font-bold tracking-tighter mb-0.5">Email</p>
+                <p className="text-sm text-gray-300 group-hover:text-white transition-colors">priyanshu1265656@gmail.com</p>
               </a>
-              <a href="https://www.linkedin.com/in/priyanshukumar1265/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
-                <FaLinkedin className="w-6 h-6" />
-              </a>
-              <a href="mailto:priyanshu1265656@gmail.com" className="hover:text-blue-400 transition">
-                <FaEnvelope className="w-6 h-6" />
-              </a>
-              <a href="https://wa.me/917007836367" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
-                <FaWhatsapp className="w-6 h-6" />
+              <a
+                href="tel:+917007836367"
+                className="block group"
+              >
+                <p className="text-[9px] text-gray-600 uppercase font-bold tracking-tighter mb-0.5">Phone</p>
+                <p className="text-sm text-gray-300 group-hover:text-white transition-colors">+91 7007836367</p>
               </a>
             </div>
           </div>
         </div>
 
-        {/* Footer Bottom Section: Copyright */}
-        <div className="mt-8 text-center text-gray-400 text-sm">
-          &copy; {new Date().getFullYear()} Priyanshu Kumar. All rights reserved.
+        {/* Footer Bottom */}
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[11px] text-gray-600 font-medium">
+            &copy; {currentYear} Priyanshu Kumar. Architected with passion.
+          </p>
+          <div className="flex gap-6 text-[11px] text-gray-600 font-medium">
+            <span className="hover:text-gray-400 transition-colors cursor-default">Privacy Policy</span>
+            <span className="hover:text-gray-400 transition-colors cursor-default">Terms of Service</span>
+          </div>
         </div>
       </div>
     </footer>
