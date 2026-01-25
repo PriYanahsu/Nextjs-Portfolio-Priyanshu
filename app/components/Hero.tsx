@@ -88,7 +88,7 @@ const Hero = () => {
               to="contact"
               smooth
               duration={500}
-              className="group relative w-full sm:w-auto px-6 py-3 flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 text-white font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 transform transition-all duration-300 text-sm sm:text-base overflow-hidden cursor-pointer"
+              className="group relative w-full sm:w-auto px-6 py-2 flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 text-white font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 transform transition-all duration-300 text-sm sm:text-base overflow-hidden cursor-pointer"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-green-500 via-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
               <span className="relative flex items-center gap-2">
@@ -101,7 +101,7 @@ const Hero = () => {
               to="projects"
               smooth
               duration={500}
-              className="group relative w-full sm:w-auto px-6 py-3 flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white font-semibold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-105 transform transition-all duration-300 text-sm sm:text-base overflow-hidden cursor-pointer"
+              className="group relative w-full sm:w-auto px-6 py-2 flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white font-semibold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-105 transform transition-all duration-300 text-sm sm:text-base overflow-hidden cursor-pointer"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-red-500 via-pink-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
               <span className="relative flex items-center gap-2">
@@ -113,7 +113,7 @@ const Hero = () => {
             <a
               href="/resume.pdf"
               download="Priyanshu_Resume.pdf"
-              className="group relative w-full sm:w-auto px-6 py-3 flex items-center justify-center rounded-lg border-2 border-gray-600 text-white font-semibold hover:border-cyan-400 hover:bg-cyan-400/10 transform transition-all duration-300 text-sm sm:text-base"
+              className="group relative w-full sm:w-auto px-6 py-2 flex items-center justify-center rounded-lg border-2 border-gray-600 text-white font-semibold hover:border-cyan-400 hover:bg-cyan-400/10 transform transition-all duration-300 text-sm sm:text-base"
             >
               <span className="flex items-center gap-2">
                 Resume

@@ -121,9 +121,6 @@ const About = () => {
 
           {/* Expertise Areas */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold text-center mb-8 text-white">
-              Technical Expertise
-            </h3>
             <div className="grid md:grid-cols-3 gap-6">
               {expertise.map((area, index) => (
                 <div
