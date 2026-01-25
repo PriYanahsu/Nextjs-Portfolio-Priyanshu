@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 import INNFOODIE from "../assets/portfolio/INNFOODIE.png";
 import Disease from "../assets/portfolio/disease.png";
@@ -14,7 +15,7 @@ import Gym from "../assets/portfolio/Gym.png";
 
 const containerStagger = {
   visible: {
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
@@ -22,219 +23,165 @@ const Projects = () => {
   const additionalProjects = [
     {
       title: "INNFOODIE",
-      description:
-        "A React-based food-ordering platform with a dynamic menu and order tracking.",
+      description: "React-based food-ordering platform with dynamic menu & real-time order tracking.",
       image: INNFOODIE,
-      technologies: ["React", "Food Ordering"],
-      achievements: ["Dynamic menu system", "Order tracking feature"],
+      technologies: ["React", "State Management"],
+      achievements: ["Dynamic Menu", "Live Tracking"],
       Live: "https://innfoodie-food-order-site-24-7.vercel.app/",
       codeLink: "https://github.com/PriYanahsu/INNFOODIE-Food-order-Site-24-7",
     },
     {
-      title: "Skill B2C Bussiness Website",
-      description:
-        "A Whatsapp integrated React.js tailwindCSS web API website for delivering goods.",
+      title: "Skill B2C Website",
+      description: "WhatsApp-integrated React/Tailwind commerce platform for optimized goods delivery.",
       image: Silk,
-      technologies: ["Reactjs", "Javascript"],
-      achievements: ["Delivery Goods", "Customer optimized"],
+      technologies: ["React", "Tailwind CSS"],
+      achievements: ["B2C Integrated", "WhatsApp API"],
       Live: "https://silk-bussines.onrender.com/",
       codeLink: "https://github.com/PriYanahsu/silk-bussiness",
     },
     {
-      title: "Gym Management System",
-      description:
-        "An automated gym management system to track records by date and time.",
+      title: "Gym Management",
+      description: "Automated management system for tracking member records, sales, and analytics.",
       image: Gym,
-      technologies: ["Reactjs", "Supabase", "PostgreSQL"],
-      achievements: [
-        "Manage member records with statuses",
-        "Track product sales and pending records",
-      ],
+      technologies: ["React", "Supabase", "PostgreSQL"],
+      achievements: ["Automated Records", "Sales Analytics"],
       Live: "https://arhamgym.vercel.app/",
       codeLink: "https://github.com/PriYanahsu/gym-data-management",
     },
     {
-      title: "Weather Forecast Site",
-      description:
-        "A futuristic 5-day weather forecasting site using advanced prediction algorithms.",
+      title: "Weather Forecast",
+      description: "Futuristic 5-day predictive weather forecasting built with advanced API algorithms.",
       image: weather,
-      technologies: ["Next.js", "API Integration", "CSS"],
-      achievements: [
-        "Futuristic weather forecast",
-        "Accurate prediction algorithms",
-        "Responsive UI",
-      ],
+      technologies: ["Next.js", "Weather API"],
+      achievements: ["Predictive Analysis", "Futuristic UI"],
       Live: "https://weatherapp-iota-ecru.vercel.app/",
-      codeLink:
-        "https://github.com/PriYanahsu/Weather-forecaste-site----predict-5-futurestic-days",
+      codeLink: "https://github.com/PriYanahsu/Weather-forecaste-site----predict-5-futurestic-days",
     },
     {
-      title: "Disease Detection and Drug Recommendation",
-      description:
-        "A Machine Learning project to detect diseases and recommend appropriate drugs.",
+      title: "ML Disease Detection",
+      description: "Medical diagnosis and drug recommendation system powered by Machine Learning.",
       image: Disease,
-      technologies: ["Machine Learning", "Python"],
-      achievements: ["Disease detection", "Drug recommendation"],
+      technologies: ["Python", "Machine Learning"],
+      achievements: ["Disease Prediction", "Drug AI"],
       Live: "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
-      codeLink:
-        "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
+      codeLink: "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
     },
     {
-      title: "Personal Website",
-      description:
-        "A personal portfolio website showcasing my projects and skills.",
+      title: "Personal Portfolio",
+      description: "Modern, high-performance portfolio showcasing full-stack skills and project history.",
       image: personal,
-      technologies: ["Next.js", "TailwindCss", "TypeScript"],
-      achievements: ["Modern portfolio design", "Responsive UI"],
+      technologies: ["Next.js", "TypeScript"],
+      achievements: ["SEO Optimized", "Premium Design"],
       Live: "https://personal-website-priyanshu.vercel.app/",
       codeLink: "https://github.com/PriYanahsu/Personal-Website-Priyanshu-",
     },
-    {
-      title: "File Share App",
-      description: "A secure application to share files with ease.",
-      image: fileShare,
-      technologies: ["Spring Boot", "MySQL", "React"],
-      achievements: ["Secure file sharing", "Responsive UI"],
-      Live: "https://github.com/PriYanahsu/file-share-app",
-      codeLink: "https://github.com/PriYanahsu/file-share-app",
-    },
-    {
-      title: "Spam Message Detector",
-      description: "A Machine Learning tool to detect spam messages.",
-      image: spam,
-      technologies: ["Machine Learning", "Python"],
-      achievements: ["Spam detection", "Accuracy optimization"],
-      Live: "https://github.com/PriYanahsu/Spam-Message-Detector",
-      codeLink: "https://github.com/PriYanahsu/Spam-Message-Detector",
-    },
-    {
-      title: "Smart Complaint Management System",
-      description:
-        "A full-stack platform for complaint management with tracking features.",
-      image: smartCompaint,
-      technologies: ["React", "Spring Boot", "MongoDB"],
-      achievements: ["Complaint tracking", "Responsive UI"],
-      Live: "https://online-complaint-mangement-system.vercel.app/",
-      codeLink:
-        "https://github.com/PriYanahsu/-Smart-Complaint-Management-System-Full-Stack-",
-    },
   ];
 
-  const renderProjectSection = (
-    projects: {
-      title: string;
-      image?: string | StaticImageData;
-      description: string;
-      technologies: string[];
-      achievements: string[];
-      Live?: string;
-      codeLink?: string;
-    }[]
-  ) => (
+  const renderProjectCard = (project: any, index: number) => (
     <motion.div
-      variants={containerStagger}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      key={index}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.1 }}
+      className="group relative flex flex-col h-full bg-[#0A1929]/40 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-indigo-500/30 transition-all duration-500"
     >
-      {projects.map((project, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.2 }}
-          className="bg-[#0A1929]/70 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:-translate-y-1 hover:scale-105 hover:shadow-blue-500/30 transition-all duration-300"
-        >
-          {project.image && (
-            <div className="relative h-44 overflow-hidden bg-gray-800">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-contain hover:scale-105 transition-transform duration-300"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority={index === 0}
-              />
-            </div>
+      {/* Image Container */}
+      <div className="relative h-56 overflow-hidden">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-[#040D12]/60 transition-opacity duration-500 group-hover:opacity-30" />
+
+        {/* Floating Icons */}
+        <div className="absolute top-4 right-4 flex gap-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+          {project.codeLink && (
+            <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-[#040D12]/80 backdrop-blur-md rounded-full text-gray-300 hover:text-white border border-white/10 transition">
+              <FaGithub size={18} />
+            </a>
           )}
+          {project.Live && project.Live !== "#" && (
+            <a href={project.Live} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-[#040D12]/80 backdrop-blur-md rounded-full text-gray-300 hover:text-white border border-white/10 transition">
+              <FaExternalLinkAlt size={16} />
+            </a>
+          )}
+        </div>
+      </div>
 
-          <div className="p-5">
-            <h3 className="text-lg font-semibold text-blue-400 mb-2">
-              {project.title}
-            </h3>
-            <p className="text-gray-300 mb-3 text-sm">
-              {project.description}
-            </p>
+      {/* Content */}
+      <div className="flex flex-col flex-grow p-6">
+        <div className="flex justify-between items-start mb-3">
+          <h3 className="text-xl font-bold text-gray-100 group-hover:text-white transition-colors">
+            {project.title}
+          </h3>
+        </div>
 
-            <div className="mb-3">
-              <h4 className="text-sm font-semibold text-blue-400 mb-1">
-                Highlights:
-              </h4>
-              <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-                {project.achievements.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                ))}
-              </ul>
-            </div>
+        <p className="text-gray-400 text-sm leading-relaxed mb-5 flex-grow">
+          {project.description}
+        </p>
 
-            <div className="flex flex-wrap gap-2 mb-3">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-md text-xs font-medium"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+        {/* Technologies */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.technologies.slice(0, 3).map((tech: string) => (
+            <span key={tech} className="px-2.5 py-1 bg-white/5 text-gray-300 border border-white/10 rounded-md text-[10px] uppercase tracking-wider font-semibold">
+              {tech}
+            </span>
+          ))}
+        </div>
 
-            <div className="flex gap-4 mt-2 text-sm">
-              {project.Live && project.Live !== "#" && (
-                <a
-                  href={project.Live}
-                  className="text-cyan-400 hover:text-cyan-300 font-medium underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Live
-                </a>
-              )}
-              {project.codeLink && (
-                <a
-                  href={project.codeLink}
-                  className="text-cyan-400 hover:text-cyan-300 font-medium underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Source Code
-                </a>
-              )}
-            </div>
+        {/* Highlights */}
+        <div className="pt-4 border-t border-white/5">
+          <div className="flex items-center gap-2 text-gray-400 font-bold text-[11px] uppercase tracking-widest mb-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-gray-600" />
+            Core Highlights
           </div>
-        </motion.div>
-      ))}
+          <ul className="flex flex-col gap-1.5">
+            {project.achievements.map((item: string, idx: number) => (
+              <li key={idx} className="text-xs text-gray-500 flex items-center gap-2">
+                <span className="w-1 h-1 rounded-full bg-gray-700" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </motion.div>
   );
 
   return (
-    <section
-      id="projects"
-      className="py-20 bg-gradient-to-b from-[#0A1929] to-[#040D12]"
-    >
+    <section id="projects" className="py-24 bg-gradient-to-b from-[#0A1929] to-[#040D12]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-4xl font-bold text-center text-white mb-12"
-        >
-          Projects
-        </motion.h2>
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight"
+          >
+            Featured <span className="bg-gradient-to-r from-violet-400 to-indigo-500 bg-clip-text text-transparent">Projects</span>
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="h-1 w-24 bg-gradient-to-r from-violet-600 to-indigo-600 mx-auto rounded-full"
+          />
+        </div>
 
-        {renderProjectSection(additionalProjects)}
+        <motion.div
+          variants={containerStagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {additionalProjects.map((project, index) => renderProjectCard(project, index))}
+        </motion.div>
       </div>
     </section>
   );
