@@ -24,7 +24,7 @@ const Footer = () => {
           <div className="md:col-span-5 space-y-6">
             <div>
               <h2 className="text-2xl font-black text-white tracking-tighter mb-2">
-                <span className="bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-violet-400 to-indigo-500 bg-clip-text text-transparent">
                   Priyanshu Kumar
                 </span>
               </h2>

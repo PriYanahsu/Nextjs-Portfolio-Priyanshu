@@ -79,7 +79,7 @@ const Contact = () => {
             <motion.div variants={itemVariants} className="lg:col-span-12 xl:col-span-5 space-y-4">
               <div className="bg-[#0A1929]/40 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl shadow-xl group">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-6">
-                  Let's <span className="text-indigo-400">Connect</span>
+                  Let's <span className="bg-gradient-to-r from-violet-400 to-indigo-500 bg-clip-text text-transparent">Connect</span>
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-6">
