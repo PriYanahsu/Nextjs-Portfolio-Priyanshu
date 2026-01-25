@@ -82,22 +82,45 @@ const Projects = () => {
       key={index}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover="active"
+      whileTap="active"
       transition={{ duration: 0.7, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.1 }}
       className="group relative flex flex-col h-full bg-[#0A1929]/40 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-indigo-500/30 transition-all duration-500"
     >
       {/* Image Container */}
       <div className="relative h-56 overflow-hidden">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-[#040D12]/60 transition-opacity duration-500 group-hover:opacity-30" />
+        <motion.div
+          variants={{
+            active: { scale: 1.1 }
+          }}
+          transition={{ duration: 0.7 }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover"
+          />
+          <motion.div
+            variants={{
+              active: { opacity: 0.3 }
+            }}
+            initial={{ opacity: 0.6 }}
+            className="absolute inset-0 bg-[#040D12] transition-opacity duration-500"
+          />
+        </motion.div>
 
         {/* Floating Icons */}
-        <div className="absolute top-4 right-4 flex gap-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+        <motion.div
+          variants={{
+            active: { translateY: 0, opacity: 1 }
+          }}
+          initial={{ translateY: 8, opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="absolute top-4 right-4 flex gap-3 z-20"
+        >
           {project.codeLink && (
             <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-[#040D12]/80 backdrop-blur-md rounded-full text-gray-300 hover:text-white border border-white/10 transition">
               <FaGithub size={18} />
@@ -108,7 +131,7 @@ const Projects = () => {
               <FaExternalLinkAlt size={16} />
             </a>
           )}
-        </div>
+        </motion.div>
       </div>
 
       {/* Content */}

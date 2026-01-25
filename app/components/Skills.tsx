@@ -84,19 +84,40 @@ export default function Skills() {
               key={skill.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover="active"
+              whileTap="active"
               transition={{ delay: idx * 0.03, duration: 0.4 }}
               viewport={{ once: true }}
-              className="group relative bg-[#0A1929]/40 backdrop-blur-md p-6 rounded-2xl text-center border border-white/5 hover:border-white/20 shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+              className="group relative bg-[#0A1929]/40 backdrop-blur-md p-6 rounded-2xl text-center border border-white/5 shadow-lg transition-all duration-300 overflow-hidden"
             >
-              <div className="relative z-10 mb-4 flex justify-center transform group-hover:scale-110 transition-all duration-300">
+              <motion.div
+                variants={{
+                  active: { scale: 1.1, y: -4 }
+                }}
+                className="relative z-10 mb-4 flex justify-center transition-all duration-300"
+              >
                 {React.cloneElement(skill.icon, {
                   className: `${skill.icon.props.className || ''} text-4xl sm:text-5xl opacity-80 group-hover:opacity-100 transition-opacity`
                 })}
-              </div>
+              </motion.div>
 
-              <h3 className="relative z-10 font-bold text-gray-400 text-xs sm:text-sm tracking-wide group-hover:text-white transition-colors">
+              <motion.h3
+                variants={{
+                  active: { color: "#fff" }
+                }}
+                className="relative z-10 font-bold text-gray-400 text-xs sm:text-sm tracking-wide transition-colors"
+              >
                 {skill.name}
-              </h3>
+              </motion.h3>
+
+              {/* Background Glow on Active */}
+              <motion.div
+                variants={{
+                  active: { opacity: 1, scale: 1 }
+                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                className="absolute inset-0 bg-indigo-500/5 pointer-events-none"
+              />
             </motion.div>
           ))}
         </div>

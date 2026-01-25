@@ -61,26 +61,49 @@ const Certificate = () => {
               key={cert.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover="active"
+              whileTap="active"
               transition={{ delay: idx * 0.05, duration: 0.5 }}
               viewport={{ once: true }}
-              className="group relative bg-[#0A1929]/40 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-violet-500/20 hover:-translate-y-1 transition-all duration-500 cursor-pointer"
+              className="group relative bg-[#0A1929]/40 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-violet-500/20 transition-all duration-500 cursor-pointer"
               onClick={() => setSelectedCert(cert)}
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={cert.image}
-                  alt={cert.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-[#040D12]/40 transition-opacity duration-500 group-hover:opacity-20" />
+                <motion.div
+                  variants={{
+                    active: { scale: 1.1 }
+                  }}
+                  transition={{ duration: 0.7 }}
+                  className="relative w-full h-full"
+                >
+                  <Image
+                    src={cert.image}
+                    alt={cert.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <motion.div
+                    variants={{
+                      active: { opacity: 0.2 }
+                    }}
+                    initial={{ opacity: 0.4 }}
+                    className="absolute inset-0 bg-[#040D12] transition-opacity duration-500"
+                  />
+                </motion.div>
 
                 {/* Overlay Action */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <motion.div
+                  variants={{
+                    active: { opacity: 1, scale: 1 }
+                  }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.4 }}
+                  className="absolute inset-0 flex items-center justify-center z-20"
+                >
                   <span className="p-3 bg-[#040D12]/80 backdrop-blur-md rounded-full text-gray-200 border border-white/10">
                     <FaExternalLinkAlt size={18} />
                   </span>
-                </div>
+                </motion.div>
               </div>
 
               <div className="p-6 text-center">
