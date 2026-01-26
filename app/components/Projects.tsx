@@ -200,10 +200,10 @@ const Projects = () => {
       className="group relative flex flex-col h-full bg-[#0A1929]/40 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-indigo-500/30 transition-all duration-500 cursor-pointer"
     >
       {/* Image Container */}
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative h-56 overflow-hidden bg-white/5 flex items-center justify-center p-2">
         <motion.div
           variants={{
-            active: { scale: 1.1 }
+            active: { scale: 1.05 }
           }}
           transition={{ duration: 0.7 }}
           className="relative w-full h-full"
@@ -212,14 +212,7 @@ const Projects = () => {
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover"
-          />
-          <motion.div
-            variants={{
-              active: { opacity: 0.3 }
-            }}
-            initial={{ opacity: 0.6 }}
-            className="absolute inset-0 bg-[#040D12] transition-opacity duration-500"
+            className="object-contain transition-transform duration-700"
           />
         </motion.div>
 
