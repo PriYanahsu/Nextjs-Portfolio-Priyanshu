@@ -12,6 +12,8 @@ import fileShare from "../assets/portfolio/fileShare.png";
 import smartCompaint from "../assets/portfolio/smartcomplaint.png";
 import Silk from "../assets/portfolio/SilkBusiness.png";
 import Gym from "../assets/portfolio/Gym.png";
+import FoodCal from "../assets/portfolio/FoodCal.png";
+import FileForge from "../assets/portfolio/FileForge.png";
 
 const containerStagger = {
   visible: {
@@ -20,60 +22,124 @@ const containerStagger = {
 };
 
 const Projects = () => {
+  // ================== Project Data ==================
   const additionalProjects = [
     {
+      title: "FoodCal",
+      description:
+        "AI-powered fitness and calorie tracking platform using computer vision to analyze food, calculate calories, macros, BMI, and personalized fitness goals.",
+      image: FoodCal,
+      technologies: [
+        "Next.js",
+        "Supabase",
+        "Python",
+        "OpenCV",
+        "AI / Computer Vision",
+      ],
+      achievements: [
+        "Food Calorie Detection via Camera",
+        "Protein, Fat & Carbohydrate Analysis",
+        "BMI Calculation",
+        "AI-based Daily Calorie Recommendation",
+        "Step Counter & Activity Tracking",
+        "Health Notifications & Fitness Insights",
+      ],
+      Live: "https://food-cal-fe-fp6i.vercel.app/login?redirectedFrom=%2F",
+      codeLink: "https://github.com/krixen-org/foodCal_fe",
+    },
+
+    {
+      title: "File Forge",
+      description:
+        "All-in-one document processing web platform for file conversion, PDF generation, compression, and cloud-based document management.",
+      image: FileForge,
+      technologies: [
+        "Next.js",
+        "Supabase",
+        "PDF Processing",
+        "File Conversion",
+        "Cloud Storage",
+      ],
+      achievements: [
+        "PDF to Word / Excel Conversion",
+        "Document to PDF Generator",
+        "PDF Compression & Image Optimization",
+        "Merge, Split & Extend PDFs",
+        "Fast Cloud-based File Processing",
+      ],
+      Live: "https://converter-website-5mix.vercel.app/",
+      codeLink: "https://github.com/krixen-org/Converter-Website",
+    },
+
+    {
       title: "INNFOODIE",
-      description: "React-based food-ordering platform with dynamic menu & real-time order tracking.",
+      description:
+        "React-based food ordering platform featuring a dynamic menu system and real-time order tracking.",
       image: INNFOODIE,
       technologies: ["React", "State Management"],
-      achievements: ["Dynamic Menu", "Live Tracking"],
+      achievements: ["Dynamic Menu System", "Live Order Tracking"],
       Live: "https://innfoodie-food-order-site-24-7.vercel.app/",
-      codeLink: "https://github.com/PriYanahsu/INNFOODIE-Food-order-Site-24-7",
+      codeLink:
+        "https://github.com/PriYanahsu/INNFOODIE-Food-order-Site-24-7",
     },
+
     {
       title: "Skill B2C Website",
-      description: "WhatsApp-integrated React/Tailwind commerce platform for optimized goods delivery.",
+      description:
+        "Commerce-focused B2C platform integrated with WhatsApp for optimized customer communication and delivery.",
       image: Silk,
       technologies: ["React", "Tailwind CSS"],
-      achievements: ["B2C Integrated", "WhatsApp API"],
+      achievements: ["B2C Workflow Integration", "WhatsApp API Integration"],
       Live: "https://silk-bussines.onrender.com/",
       codeLink: "https://github.com/PriYanahsu/silk-bussiness",
     },
+
     {
-      title: "Gym Management",
-      description: "Automated management system for tracking member records, sales, and analytics.",
+      title: "Gym Management System",
+      description:
+        "Automated gym management solution for handling member records, payments, and sales analytics.",
       image: Gym,
       technologies: ["React", "Supabase", "PostgreSQL"],
-      achievements: ["Automated Records", "Sales Analytics"],
+      achievements: ["Automated Member Records", "Sales & Performance Analytics"],
       Live: "https://arhamgym.vercel.app/",
       codeLink: "https://github.com/PriYanahsu/gym-data-management",
     },
+
     {
-      title: "Weather Forecast",
-      description: "Futuristic 5-day predictive weather forecasting built with advanced API algorithms.",
+      title: "Weather Forecast App",
+      description:
+        "Futuristic weather forecasting application providing accurate 5-day predictions using advanced APIs.",
       image: weather,
       technologies: ["Next.js", "Weather API"],
-      achievements: ["Predictive Analysis", "Futuristic UI"],
+      achievements: ["5-Day Predictive Forecasting", "Futuristic UI Design"],
       Live: "https://weatherapp-iota-ecru.vercel.app/",
-      codeLink: "https://github.com/PriYanahsu/Weather-forecaste-site----predict-5-futurestic-days",
+      codeLink:
+        "https://github.com/PriYanahsu/Weather-forecaste-site----predict-5-futurestic-days",
     },
+
     {
       title: "ML Disease Detection",
-      description: "Medical diagnosis and drug recommendation system powered by Machine Learning.",
+      description:
+        "Machine learning-based medical diagnosis system with disease prediction and drug recommendation.",
       image: Disease,
       technologies: ["Python", "Machine Learning"],
-      achievements: ["Disease Prediction", "Drug AI"],
-      Live: "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
-      codeLink: "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
+      achievements: ["Disease Prediction", "AI-Based Drug Recommendation"],
+      Live:
+        "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
+      codeLink:
+        "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
     },
+
     {
       title: "Personal Portfolio",
-      description: "Modern, high-performance portfolio showcasing full-stack skills and project history.",
+      description:
+        "Modern, high-performance personal portfolio showcasing full-stack projects and technical expertise.",
       image: personal,
       technologies: ["Next.js", "TypeScript"],
-      achievements: ["SEO Optimized", "Premium Design"],
+      achievements: ["SEO Optimized", "Premium UI/UX Design"],
       Live: "https://personal-website-priyanshu.vercel.app/",
-      codeLink: "https://github.com/PriYanahsu/Personal-Website-Priyanshu-",
+      codeLink:
+        "https://github.com/PriYanahsu/Personal-Website-Priyanshu-",
     },
   ];
 
