@@ -6,13 +6,33 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import ProjectDetail, { Project } from "./ProjectDetail";
 
 import INNFOODIE from "../assets/portfolio/INNFOODIE.png";
+import INNFOODIE1 from "../assets/portfolio/INNFOODIE1.png";
+import INNFOODIE2 from "../assets/portfolio/INNFOODIE2.png";
+import INNFOODIE3 from "../assets/portfolio/INNFOODIE3.png";
+import INNFOODIE4 from "../assets/portfolio/INNFOODIE4.png";
+
 import Disease from "../assets/portfolio/disease.png";
 import personal from "../assets/portfolio/personal.png";
 import weather from "../assets/portfolio/weather.png";
 import Silk from "../assets/portfolio/SilkBusiness.png";
 import Gym from "../assets/portfolio/Gym.png";
 import FoodCal from "../assets/portfolio/FoodCal.png";
-import FileForge from "../assets/portfolio/FileForge.png";
+import FoodCal1 from "../assets/portfolio/FoodCal1.png";
+import FoodCal2 from "../assets/portfolio/FoodCal2.png";
+import FoodCal3 from "../assets/portfolio/FoodCal3.png";
+import FoodCal4 from "../assets/portfolio/FoodCal4.png";
+import FoodCal5 from "../assets/portfolio/FoodCal5.png";
+import FoodCal6 from "../assets/portfolio/FoodCal6.png";
+import FoodCal7 from "../assets/portfolio/FoodCal7.png";
+import FoodCal8 from "../assets/portfolio/FoodCal8.png";
+import FoodCal9 from "../assets/portfolio/FoodCal9.png";
+
+import FileForge1 from "../assets/portfolio/FileForge1.png";
+import FileForge2 from "../assets/portfolio/FileForge2.png";
+import FileForge3 from "../assets/portfolio/FileForge3.png";
+import FileForge4 from "../assets/portfolio/FileForge4.png";
+import FileForge5 from "../assets/portfolio/FileForge5.png";
+
 import fileShare from "../assets/portfolio/fileShare.png";
 import smartCompaint from "../assets/portfolio/smartcomplaint.png";
 
@@ -33,7 +53,7 @@ const Projects = () => {
         "AI-powered fitness and calorie tracking platform using computer vision to analyze food, calculate calories, macros, BMI, and personalized fitness goals.",
       longDescription: "FoodCal is a cutting-edge health and fitness application that leverages Artificial Intelligence and Computer Vision to revolutionize how users track their nutrition. By simply taking a photo or using a live camera feed, the app identifies food items, estimates portion sizes, and calculates nutritional values in real-time. It features a robust backend for persistent data tracking, a personalized recommendation engine based on BMI and activity levels, and a seamless integration with mobile step counting APIs. Built with a focus on high-performance and user experience, it uses Next.js for a lightning-fast frontend and Supabase for real-time data management.",
       image: FoodCal,
-      gallery: [FoodCal, FoodCal, FoodCal], // Placeholder for multiple images
+      gallery: [FoodCal1, FoodCal2, FoodCal3, FoodCal4, FoodCal5, FoodCal6, FoodCal7, FoodCal8, FoodCal9], // Placeholder for multiple images
       technologies: [
         "Next.js",
         "Supabase",
@@ -58,8 +78,8 @@ const Projects = () => {
       description:
         "All-in-one document processing web platform for file conversion, PDF generation, compression, and cloud-based document management.",
       longDescription: "File Forge is a heavy-duty document management suite designed for professional use. It provides a comprehensive set of tools for manipulating digital documents, including high-fidelity conversion between PDF, Word, Excel, and various image formats. The platform prioritizes security and speed, utilizing serverless functions for horizontal scaling and cloud storage integration for persistent access. Users can merge multiple documents, split large PDFs, compress files without losing quality, and even generate professional PDFs from plain text or Markdown. The intuitive interface ensures that complex file operations are just a click away.",
-      image: FileForge,
-      gallery: [FileForge, fileShare, FileForge],
+      image: FileForge1,
+      gallery: [FileForge2, FileForge3, FileForge4, FileForge5],
       technologies: [
         "Next.js",
         "Supabase",
@@ -74,7 +94,7 @@ const Projects = () => {
         "Advanced Merge, Split & Extend PDFs",
         "Super-fast Cloud-based File Processing Engines",
       ],
-      Live: "https://converter-website-5mix.vercel.app/",
+      Live: "https://fileforge.online/",
       codeLink: "https://github.com/krixen-org/Converter-Website",
     },
 
@@ -84,7 +104,7 @@ const Projects = () => {
         "React-based food ordering platform featuring a dynamic menu system and real-time order tracking.",
       longDescription: "INNFOODIE is a sophisticated food delivery and management system built to handle high-traffic operations. It features a custom-built dynamic menu system that allows restaurant owners to update their offerings in real-time. The customer-facing frontend is optimized for speed and conversion, featuring a smooth checkout flow, responsive cart management, and a live tracking interface that uses WebSockets to provide real-time updates on order preparation and delivery status. The project showcases advanced state management and high-performance React patterns.",
       image: INNFOODIE,
-      gallery: [INNFOODIE, INNFOODIE],
+      gallery: [INNFOODIE1, INNFOODIE2, INNFOODIE3, INNFOODIE4],
       technologies: ["React", "State Management", "Framer Motion", "Styled Components"],
       achievements: [
         "Highly Interactive Dynamic Menu System",
