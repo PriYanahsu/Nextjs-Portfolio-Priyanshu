@@ -39,10 +39,24 @@ const Hero = () => {
                 Priyanshu
               </span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-xl text-gray-300 font-semibold mb-2">
-              Software Engineer @
-              <span className="text-cyan-400"> Cognivac</span>
-            </p>
+            <div className="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-lg sm:text-xl text-gray-300 font-semibold mb-2">
+              <p>
+                Software Engineer @
+                <span className="text-cyan-400"> Cognivac</span>
+              </p>
+              <span className="hidden sm:block text-gray-500">•</span>
+              <p>
+                Founder @
+                <a
+                  href="https://krixen.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
+                >
+                  {" krixen.com"}
+                </a>
+              </p>
+            </div>
             <p className="text-sm sm:text-base text-gray-400">
               Full Stack Developer | Freelancer | Problem Solver
             </p>
