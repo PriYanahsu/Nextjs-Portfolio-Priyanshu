@@ -69,7 +69,7 @@ const Projects = () => {
         "Cross-platform Step Counter & Activity Tracking",
         "Dynamic Health Notifications & Fitness Insights",
       ],
-      Live: "https://food-cal-fe-fp6i.vercel.app/login?redirectedFrom=%2F",
+      Live: "https://food-cal-fe-ewy4.vercel.app/login?redirectedFrom=%2F",
       codeLink: "https://github.com/krixen-org/foodCal_fe",
     },
 
