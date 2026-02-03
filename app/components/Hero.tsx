@@ -31,13 +31,13 @@ const Hero = () => {
 
           {/* Main Heading */}
           <div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 leading-tight">
               {"Hi, I'm "}
               <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-500 text-transparent bg-clip-text animate-gradient">
                 Priyanshu
               </span>
             </h1>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-lg sm:text-xl text-gray-300 font-semibold mb-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-lg sm:text-2xl text-gray-300 font-semibold mb-2">
               <p>
                 Software Engineer @
                 <span className="text-cyan-400"> Cognivac</span>
@@ -55,7 +55,7 @@ const Hero = () => {
                 </a>
               </p>
             </div>
-            <p className="text-sm sm:text-base text-gray-400">
+            <p className="text-sm sm:text-xl text-gray-400">
               Full Stack Developer | Freelancer | Problem Solver
             </p>
           </div>
