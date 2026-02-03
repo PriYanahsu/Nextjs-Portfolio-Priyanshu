@@ -1,11 +1,9 @@
 "use client"; // Next.js 13+ app directory
 
-import Image from "next/image";
 import { MdOutlineKeyboardArrowRight, MdFileDownload } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiLeetcode, SiHackerrank } from "react-icons/si";
 import { Link as ScrollLink } from "react-scroll";
-import HeroImage from "../assets/HeroImg.jpg";
 
 const Hero = () => {
   return (
@@ -19,11 +17,11 @@ const Hero = () => {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between text-center lg:text-left relative z-10 gap-8">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center relative z-10 gap-8">
         {/* Text Section */}
-        <div className="flex flex-col justify-center lg:w-1/2 space-y-6">
+        <div className="flex flex-col justify-center items-center space-y-6 max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 self-center lg:self-start px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-full border border-blue-500/30">
+          <div className="inline-flex items-center gap-2 self-center px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-full border border-blue-500/30">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -39,7 +37,7 @@ const Hero = () => {
                 Priyanshu
               </span>
             </h1>
-            <div className="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-lg sm:text-xl text-gray-300 font-semibold mb-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-lg sm:text-xl text-gray-300 font-semibold mb-2">
               <p>
                 Software Engineer @
                 <span className="text-cyan-400"> Cognivac</span>
@@ -63,7 +61,7 @@ const Hero = () => {
           </div>
 
           {/* Bio */}
-          <p className="text-gray-400 max-w-lg leading-relaxed mx-auto lg:mx-0 text-sm sm:text-base">
+          <p className="text-gray-400 max-w-lg leading-relaxed mx-auto text-sm sm:text-base">
             Crafting scalable web & mobile applications with{" "}
             <span className="text-blue-400 font-semibold">React</span>,{" "}
             <span className="text-blue-400 font-semibold">Next.js</span>,{" "}
@@ -75,7 +73,7 @@ const Hero = () => {
           </p>
 
           {/* Skill Tags */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-2">
+          <div className="flex flex-wrap justify-center gap-2">
             {[
               { name: "React.js", color: "from-cyan-400 to-blue-500" },
               { name: "Next.js", color: "from-gray-300 to-gray-500" },
@@ -97,7 +95,7 @@ const Hero = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2 w-full sm:w-auto">
             <ScrollLink
               to="contact"
               smooth
@@ -137,7 +135,7 @@ const Hero = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex gap-4 justify-center lg:justify-start pt-2">
+          <div className="flex gap-4 justify-center pt-2">
             {[
               { href: "https://github.com/PriYanahsu", icon: FaGithub, label: "GitHub" },
               { href: "https://www.linkedin.com/in/priyanshukumar1265/", icon: FaLinkedin, label: "LinkedIn" },
@@ -155,35 +153,6 @@ const Hero = () => {
                 <social.icon size={20} />
               </a>
             ))}
-          </div>
-        </div>
-
-        {/* Image Section - Only visible on md and lg screens */}
-        <div className="hidden md:flex lg:w-1/2 justify-center lg:justify-end items-center">
-          <div className="relative group">
-            {/* Glow Effect - Only on large screens */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 rounded-2xl blur-lg opacity-25 group-hover:opacity-40 transition duration-500 animate-pulse hidden lg:block"></div>
-
-            {/* Image Container */}
-            <div className="relative">
-              <Image
-                src={HeroImage}
-                alt="Priyanshu Kumar"
-                className="rounded-2xl shadow-2xl object-contain w-64 md:w-72 lg:w-[420px] h-auto border-2 border-gray-700/50 group-hover:border-cyan-400/50 transition-all duration-500"
-                priority
-              />
-
-              {/* Floating Badge - Only on large screens */}
-              <div className="hidden lg:block absolute -bottom-4 -right-4 bg-gradient-to-r from-green-400 to-cyan-500 text-white px-4 py-2 rounded-lg shadow-lg font-semibold text-sm animate-bounce">
-                <span className="flex items-center gap-2">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-                  </span>
-                  Open to Work
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
