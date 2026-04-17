@@ -25,13 +25,19 @@ interface ProjectDetailProps {
 const ProjectDetail = ({ project, isOpen, onClose }: ProjectDetailProps) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+    const isValidImage = (img: unknown): img is StaticImageData => {
+        return (
+            typeof img === "object" &&
+            img !== null &&
+            "src" in img &&
+            typeof (img as { src?: unknown }).src === "string" &&
+            (img as { src: string }).src.length > 0
+        );
+    };
+
     // Combine and sanitize images so Next/Image never receives invalid src values.
     const allImages = project
-        ? [project.image, ...(project.gallery || [])].filter((img) => {
-            if (!img) return false;
-            if (typeof img === "string") return img.trim().length > 0;
-            return true;
-        })
+        ? [project.image, ...(project.gallery || [])].filter(isValidImage)
         : [];
 
     useEffect(() => {
