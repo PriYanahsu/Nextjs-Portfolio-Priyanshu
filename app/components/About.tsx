@@ -58,9 +58,13 @@ const About = () => {
   ];
 
   return (
-    <section
+    <motion.section
       id="about"
       className="min-h-[60vh] md:min-h-[70vh] w-full flex items-center justify-center bg-gradient-to-b from-[#0A1929] to-[#040D12] text-white px-4 py-16"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={containerVariants}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Section Title */}
@@ -81,41 +85,43 @@ const About = () => {
         <div className="max-w-5xl mx-auto">
           {/* Introduction */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-[#0A1929]/50 backdrop-blur-sm rounded-full border border-gray-700">
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-[#0A1929]/50 backdrop-blur-sm rounded-full border border-gray-700">
               <FaLaptopCode className="text-cyan-400" size={20} />
               <span className="text-gray-300 text-sm">Software Engineer @ Cognivac</span>
-            </div>
+            </motion.div>
 
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-4">
+            <motion.p variants={itemVariants} className="text-gray-300 text-base md:text-lg leading-relaxed mb-4">
               I'm an <span className="text-white font-semibold">MCA graduate</span> and{" "}
               <span className="text-white font-semibold">Full Stack Developer</span> specializing in building
               scalable, production-grade web and mobile applications. Currently working at{" "}
               <span className="text-cyan-400 font-semibold">Cognivac</span>, I also collaborate with clients
               as a <span className="text-white font-semibold">freelance developer</span>, delivering reliable,
               business-driven software solutions.
-            </p>
+            </motion.p>
 
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+            <motion.p variants={itemVariants} className="text-gray-300 text-base md:text-lg leading-relaxed">
               I'm passionate about solving complex problems with clean, efficient code and delivering
               impactful digital solutions that combine <span className="text-white font-semibold">performance</span>,{" "}
               <span className="text-white font-semibold">scalability</span>, and exceptional{" "}
               <span className="text-white font-semibold">user experience</span>.
-            </p>
+            </motion.p>
           </div>
 
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
             {stats.map((stat, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="bg-[#0A1929]/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:scale-105"
+                variants={itemVariants}
+                whileHover={{ y: -4 }}
               >
                 <div className="flex justify-center mb-3">{stat.icon}</div>
                 <p className="text-2xl md:text-3xl font-bold text-white text-center mb-1">
                   {stat.value}
                 </p>
                 <p className="text-xs md:text-sm text-gray-400 text-center">{stat.label}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -123,9 +129,11 @@ const About = () => {
           <div className="mb-12">
             <div className="grid md:grid-cols-3 gap-6">
               {expertise.map((area, index) => (
-                <div
+                <motion.div
                   key={index}
                   className="bg-[#0A1929]/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all duration-300"
+                  variants={itemVariants}
+                  whileHover={{ y: -4 }}
                 >
                   <div className={`inline-block px-4 py-2 rounded-lg bg-gradient-to-r ${area.color} mb-4`}>
                     <h4 className="text-white font-semibold text-sm">{area.title}</h4>
@@ -140,13 +148,13 @@ const About = () => {
                       </span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
           {/* Engineering Practices */}
-          <div className="bg-gradient-to-r from-[#0A1929]/80 to-[#040D12]/80 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-gray-700 mb-12">
+          <motion.div variants={itemVariants} className="bg-gradient-to-r from-[#0A1929]/80 to-[#040D12]/80 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-gray-700 mb-12">
             <h3 className="text-xl md:text-2xl font-bold text-center mb-4 text-white">
               Engineering Practices
             </h3>
@@ -158,29 +166,31 @@ const About = () => {
               <span className="text-cyan-400 font-semibold">Clean Code Standards</span>.
               I collaborate in Agile environments using Jira, ClickUp, and Slack, managing codebases with Git, GitHub, and GitLab.
             </p>
-          </div>
+          </motion.div>
 
           {/* Social Links */}
           <div className="text-center">
             <h3 className="text-xl font-semibold mb-6 text-white">Connect With Me</h3>
             <div className="flex flex-wrap justify-center gap-4">
               {socialLinks.map((link, index) => (
-                <a
+                <motion.a
                   key={index}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`flex items-center gap-2 px-5 py-3 bg-[#0A1929]/50 backdrop-blur-sm rounded-lg border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:scale-105 ${link.color}`}
+                  variants={itemVariants}
+                  whileHover={{ y: -2 }}
                 >
                   {link.icon}
                   <span className="font-medium text-sm">{link.label}</span>
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

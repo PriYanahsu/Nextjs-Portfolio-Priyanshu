@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,7 +14,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-[#040D12] pt-16 pb-8 overflow-hidden">
+    <motion.footer
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="relative bg-[#040D12] pt-16 pb-8 overflow-hidden"
+    >
       {/* Top Border with Gradient glow effect */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5" />
 
@@ -37,16 +44,18 @@ const Footer = () => {
             {/* Social Links - Glassmorphic Style */}
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((social) => (
-                <a
+                <motion.a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-white/5 border border-white/10 rounded-xl text-gray-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-300 shadow-lg"
                   aria-label={social.label}
+                  whileHover={{ y: -3, scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <social.icon size={18} />
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
@@ -106,7 +115,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

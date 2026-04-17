@@ -25,8 +25,14 @@ interface ProjectDetailProps {
 const ProjectDetail = ({ project, isOpen, onClose }: ProjectDetailProps) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    // Combine main image and gallery for the slider
-    const allImages = project ? [project.image, ...(project.gallery || [])] : [];
+    // Combine and sanitize images so Next/Image never receives invalid src values.
+    const allImages = project
+        ? [project.image, ...(project.gallery || [])].filter((img) => {
+            if (!img) return false;
+            if (typeof img === "string") return img.trim().length > 0;
+            return true;
+        })
+        : [];
 
     useEffect(() => {
         if (isOpen) {
@@ -42,13 +48,17 @@ const ProjectDetail = ({ project, isOpen, onClose }: ProjectDetailProps) => {
 
     const nextImage = useCallback((e?: React.MouseEvent) => {
         e?.stopPropagation();
+        if (!allImages.length) return;
         setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
     }, [allImages.length]);
 
     const prevImage = useCallback((e?: React.MouseEvent) => {
         e?.stopPropagation();
+        if (!allImages.length) return;
         setCurrentImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
     }, [allImages.length]);
+
+    const activeImage = allImages[currentImageIndex] ?? allImages[0] ?? null;
 
     if (!project) return null;
 
@@ -100,13 +110,15 @@ const ProjectDetail = ({ project, isOpen, onClose }: ProjectDetailProps) => {
                                             transition={{ duration: 0.4, ease: "easeOut" }}
                                             className="relative w-full h-full shadow-2xl rounded-2xl lg:rounded-3xl overflow-hidden"
                                         >
-                                            <Image
-                                                src={allImages[currentImageIndex]}
-                                                alt={`${project.title} - Preview ${currentImageIndex + 1}`}
-                                                fill
-                                                className="object-cover lg:object-contain"
-                                                priority
-                                            />
+                                            {activeImage ? (
+                                                <Image
+                                                    src={activeImage}
+                                                    alt={`${project.title} - Preview ${currentImageIndex + 1}`}
+                                                    fill
+                                                    className="object-cover lg:object-contain"
+                                                    priority
+                                                />
+                                            ) : null}
                                             <div className="absolute inset-0 bg-gradient-to-t from-[#0A1929]/20 to-transparent pointer-events-none" />
                                         </motion.div>
                                     </AnimatePresence>
@@ -132,7 +144,7 @@ const ProjectDetail = ({ project, isOpen, onClose }: ProjectDetailProps) => {
 
                                 {/* Thumbnail Bar - Hidden on small mobile for space */}
                                 {allImages.length > 1 && (
-                                    <div className="hidden sm:flex h-20 px-6 pb-6 flex items-center justify-center gap-3 z-10">
+                                    <div className="hidden sm:flex h-20 px-6 pb-6 items-center justify-center gap-3 z-10">
                                         {allImages.map((img, idx) => (
                                             <button
                                                 key={idx}

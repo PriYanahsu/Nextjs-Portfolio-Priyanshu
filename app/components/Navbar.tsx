@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { Link as ScrollLink } from 'react-scroll';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import { MdFileDownload } from 'react-icons/md';
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,13 +22,18 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', to: 'hero' },
     { name: 'About', to: 'about' },
+    { name: 'Experience', to: 'experience' },
+    { name: 'Services', to: 'services' },
     { name: 'Projects', to: 'projects' },
     { name: 'Certificates', to: 'certificates' },
     { name: 'Contact', to: 'contact' },
   ];
 
   return (
-    <nav
+    <motion.nav
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
       className={`fixed w-full z-50 transition-all duration-300 ${scrolled
         ? 'bg-[#040D12]/95 backdrop-blur-md shadow-lg border-b border-gray-800'
         : 'bg-[#040D12]'
@@ -88,31 +93,38 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
-      >
-        <div className="px-4 pt-2 pb-4 space-y-1 bg-[#0A1929]/95 backdrop-blur-lg border-t border-gray-800">
+      <AnimatePresence initial={false}>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden"
+          >
+            <div className="px-4 pt-2 pb-4 space-y-1 bg-[#0A1929]/95 backdrop-blur-lg border-t border-gray-800">
           {navLinks.map((link, index) => (
-            <ScrollLink
+            <motion.div
               key={link.name}
-              to={link.to}
-              smooth
-              duration={500}
-              spy={true}
-              offset={-64}
-              onClick={() => setIsMenuOpen(false)}
-              className={`block px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 transition-all duration-200 cursor-pointer transform ${isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
-                }`}
-              style={{
-                transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms',
-              }}
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2, delay: index * 0.04 }}
             >
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                {link.name}
-              </span>
-            </ScrollLink>
+              <ScrollLink
+                to={link.to}
+                smooth
+                duration={500}
+                spy={true}
+                offset={-64}
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 transition-all duration-200 cursor-pointer transform"
+              >
+                <span className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  {link.name}
+                </span>
+              </ScrollLink>
+            </motion.div>
           ))}
 
           {/* Mobile Resume Button */}
@@ -127,9 +139,11 @@ const Navbar = () => {
               <MdFileDownload size={20} />
             </span>
           </a>
-        </div>
-      </div>
-    </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 
