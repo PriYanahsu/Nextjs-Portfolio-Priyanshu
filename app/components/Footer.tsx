@@ -2,6 +2,7 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { SiHackerrank, SiLeetcode } from "react-icons/si";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,7 +11,9 @@ const Footer = () => {
     { icon: FaGithub, href: "https://github.com/PriYanahsu", label: "GitHub" },
     { icon: FaLinkedin, href: "https://www.linkedin.com/in/priyanshukumar1265/", label: "LinkedIn" },
     { icon: FaEnvelope, href: "mailto:priyanshu1265656@gmail.com", label: "Email" },
-    { icon: FaWhatsapp, href: "https://wa.me/917007836367", label: "WhatsApp" },
+    { icon: FaWhatsapp, href: "https://wa.me/916006935523", label: "WhatsApp" },
+    { icon: SiLeetcode, href: "https://leetcode.com/u/PriyAnshu1265/", label: "LeetCode" },
+    { icon: SiHackerrank, href: "https://www.hackerrank.com/profile/priyanshukuma120", label: "HackerRank" },
   ];
 
   return (
@@ -94,11 +97,11 @@ const Footer = () => {
                 <p className="text-sm text-gray-300 group-hover:text-white transition-colors">priyanshu1265656@gmail.com</p>
               </a>
               <a
-                href="tel:+917007836367"
+                href="tel:+916006935523"
                 className="block group"
               >
                 <p className="text-[9px] text-gray-600 uppercase font-bold tracking-tighter mb-0.5">Phone</p>
-                <p className="text-sm text-gray-300 group-hover:text-white transition-colors">+91 7007836367</p>
+                <p className="text-sm text-gray-300 group-hover:text-white transition-colors">+91 6006935523</p>
               </a>
             </div>
           </div>

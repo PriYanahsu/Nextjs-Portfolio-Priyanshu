@@ -1,7 +1,7 @@
 "use client"; // Next.js 13+ app directory
 
 import { MdOutlineKeyboardArrowRight, MdFileDownload } from "react-icons/md";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { SiLeetcode, SiHackerrank } from "react-icons/si";
 import { Link as ScrollLink } from "react-scroll";
 import { motion } from "framer-motion";
@@ -20,167 +20,184 @@ const Hero = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
 
+  const skills = ["React.js", "Next.js", "Spring Boot", "FastAPI", "PostgreSQL", "MongoDB"];
+  const socials = [
+    { href: "https://github.com/PriYanahsu", icon: FaGithub, label: "GitHub" },
+    { href: "https://www.linkedin.com/in/priyanshukumar1265/", icon: FaLinkedin, label: "LinkedIn" },
+    { href: "https://leetcode.com/u/PriyAnshu1265/", icon: SiLeetcode, label: "LeetCode" },
+    { href: "https://www.hackerrank.com/profile/priyanshukuma120", icon: SiHackerrank, label: "HackerRank" },
+    { href: "https://wa.me/916006935523", icon: FaWhatsapp, label: "WhatsApp" },
+    { href: "mailto:priyanshu1265656@gmail.com", icon: FaEnvelope, label: "Email" },
+  ];
+
   return (
     <motion.section
       id="hero"
-      className="min-h-[60vh] md:min-h-[70vh] w-full flex items-center justify-center bg-gradient-to-b from-[#040D12] to-[#0A1929] text-white px-4 py-16 relative"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#020817] px-4 py-20 text-white"
       initial="hidden"
       animate="visible"
       variants={container}
     >
-      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.14),_transparent_48%),radial-gradient(circle_at_75%_75%,_rgba(168,85,247,0.14),_transparent_40%)]" />
         <motion.div
           animate={{ y: [0, -18, 0], scale: [1, 1.05, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"
+          className="absolute -left-16 top-20 h-72 w-72 rounded-full bg-cyan-500/15 blur-3xl"
         />
         <motion.div
           animate={{ y: [0, 20, 0], scale: [1, 1.06, 1] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+          className="absolute -right-16 bottom-20 h-96 w-96 rounded-full bg-violet-500/15 blur-3xl"
         />
       </div>
 
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center relative z-10 gap-8">
-        {/* Text Section */}
-        <div className="flex flex-col justify-center items-center space-y-6 max-w-3xl">
-          {/* Badge */}
-          <motion.div variants={item} className="inline-flex items-center gap-2 self-center px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-full border border-blue-500/30">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-gray-300 text-xs sm:text-sm font-medium">Available for Opportunities</span>
-          </motion.div>
-
-          {/* Main Heading */}
-          <motion.div variants={item}>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 leading-tight">
-              {"Hi, I'm "}
-              <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-500 text-transparent bg-clip-text animate-gradient">
-                Priyanshu
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-3xl p-6 backdrop-blur-xl sm:p-10 lg:p-14">
+        <div className="grid w-full items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="space-y-7 text-center lg:text-left">
+            <motion.div
+              variants={item}
+              className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
-            </h1>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-lg sm:text-2xl text-gray-300 font-semibold mb-2">
-              <p>
-                Software Engineer @
-                <span className="text-cyan-400"> Cognivac</span>
-              </p>
-              <span className="hidden sm:block text-gray-500">•</span>
-              <p>
-                Founder @
+              <span className="text-xs font-medium text-cyan-100 sm:text-sm">Available for Opportunities</span>
+            </motion.div>
+
+            <motion.div variants={item} className="space-y-3">
+              <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl xl:text-7xl">
+                {"Hi, I'm "}
+                <span className="animate-gradient bg-gradient-to-r from-cyan-300 via-violet-300 to-indigo-300 bg-clip-text text-transparent">
+                  Priyanshu
+                </span>
+              </h1>
+              <div className="flex flex-col items-center justify-start gap-1 text-sm text-slate-300 sm:text-lg lg:items-start">
+                <p>
+                  Software Engineer @
+                  <span className="font-semibold text-cyan-300"> Cognivac</span>
+                </p>
+                <p>
+                  Founder @
+                  <a
+                    href="https://krixen.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-cyan-300 transition-colors duration-300 hover:text-cyan-200"
+                  >
+                    {" krixen.com"}
+                  </a>
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.p variants={item} className="mx-auto max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base lg:mx-0 lg:max-w-xl">
+              Crafting scalable web and mobile applications with{" "}
+              <span className="font-semibold text-cyan-300">React</span>,{" "}
+              <span className="font-semibold text-cyan-300">Next.js</span>,{" "}
+              <span className="font-semibold text-emerald-300">Spring Boot</span>, and{" "}
+              <span className="font-semibold text-emerald-300">FastAPI</span>.
+              <br />
+              <span className="font-medium text-amber-300">450+ LeetCode</span> problems solved and{" "}
+              <span className="font-medium text-emerald-300">5-star HackerRank</span> certified.
+            </motion.p>
+
+            <motion.div variants={item} className="flex flex-wrap justify-center gap-2 lg:justify-start">
+              {skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 transition-colors duration-200 hover:border-cyan-300/50 hover:text-cyan-200 sm:text-sm"
+                >
+                  {skill}
+                </span>
+              ))}
+            </motion.div>
+
+            <motion.div variants={item} className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center lg:justify-start">
+              <ScrollLink
+                to="contact"
+                smooth
+                duration={500}
+                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-cyan-500/40"
+              >
+                Contact Me
+                <MdOutlineKeyboardArrowRight className="transition-transform duration-300 group-hover:translate-x-1" size={20} />
+              </ScrollLink>
+
+              <ScrollLink
+                to="projects"
+                smooth
+                duration={500}
+                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-violet-300/40 bg-violet-500/10 px-6 py-3 text-sm font-semibold text-violet-100 transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-500/20"
+              >
+                View Projects
+                <MdOutlineKeyboardArrowRight className="transition-transform duration-300 group-hover:translate-x-1" size={20} />
+              </ScrollLink>
+
+              <a
+                href="/resume.pdf"
+                download="Priyanshu_Resume.pdf"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-400/40 bg-slate-900/50 px-6 py-3 text-sm font-semibold text-slate-100 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/60 hover:text-cyan-200"
+              >
+                Resume
+                <MdFileDownload size={20} />
+              </a>
+            </motion.div>
+
+            <motion.div variants={item} className="flex justify-center gap-3 pt-1 lg:justify-start">
+              {socials.map((social) => (
                 <a
-                  href="https://krixen.com"
+                  key={social.label}
+                  href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
+                  className="rounded-xl border border-white/15 bg-white/5 p-3 text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/50 hover:text-cyan-200"
+                  aria-label={social.label}
                 >
-                  {" krixen.com"}
+                  <social.icon size={20} />
                 </a>
-              </p>
-            </div>
-            <p className="text-sm sm:text-xl text-gray-400">
-              Full Stack Developer | Freelancer | Problem Solver
-            </p>
-          </motion.div>
+              ))}
+            </motion.div>
+          </div>
 
-          {/* Bio */}
-          <motion.p variants={item} className="text-gray-400 max-w-lg leading-relaxed mx-auto text-sm sm:text-base">
-            Crafting scalable web & mobile applications with{" "}
-            <span className="text-blue-400 font-semibold">React</span>,{" "}
-            <span className="text-blue-400 font-semibold">Next.js</span>,{" "}
-            <span className="text-green-400 font-semibold">Spring Boot</span>, and{" "}
-            <span className="text-green-400 font-semibold">FastAPI</span>.
-            <br />
-            <span className="text-yellow-400">450+ LeetCode</span> problems solved •
-            <span className="text-green-400"> 5⭐ HackerRank</span> certified
-          </motion.p>
-
-          {/* Skill Tags */}
-          <motion.div variants={item} className="flex flex-wrap justify-center gap-2">
-            {[
-              { name: "React.js", color: "from-cyan-400 to-blue-500" },
-              { name: "Next.js", color: "from-gray-300 to-gray-500" },
-              { name: "Spring Boot", color: "from-green-400 to-emerald-500" },
-              { name: "FastAPI", color: "from-teal-400 to-cyan-500" },
-              { name: "PostgreSQL", color: "from-blue-400 to-indigo-500" },
-              { name: "MongoDB", color: "from-green-500 to-lime-500" },
-            ].map((skill) => (
-              <div
-                key={skill.name}
-                className="group relative bg-[#0A1929]/50 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-gray-700 hover:border-gray-500 transition-all duration-300 hover:scale-105 overflow-hidden"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-r ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                <span className="relative text-gray-300 text-xs sm:text-sm font-medium">
-                  {skill.name}
-                </span>
+          <motion.div
+            variants={item}
+            className="mx-auto w-full max-w-md rounded-2xl border border-white/15 bg-gradient-to-b from-white/10 to-white/[0.03] p-6 shadow-2xl shadow-cyan-950/40"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">Profile Snapshot</p>
+            <div className="mt-5 space-y-4">
+              <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
+                <p className="text-2xl font-semibold text-white">4+ Years</p>
+                <p className="mt-1 text-sm text-slate-300">Building production-ready full stack products</p>
               </div>
-            ))}
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 justify-center pt-2 w-full sm:w-auto">
-            <ScrollLink
-              to="contact"
-              smooth
-              duration={500}
-              className="group relative w-full sm:w-auto px-6 py-2 flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 text-white font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 transform transition-all duration-300 text-sm sm:text-base overflow-hidden cursor-pointer"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-green-500 via-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-              <span className="relative flex items-center gap-2">
-                Contact Me
-                <MdOutlineKeyboardArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={20} />
-              </span>
-            </ScrollLink>
-
-            <ScrollLink
-              to="projects"
-              smooth
-              duration={500}
-              className="group relative w-full sm:w-auto px-6 py-2 flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white font-semibold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-105 transform transition-all duration-300 text-sm sm:text-base overflow-hidden cursor-pointer"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-red-500 via-pink-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-              <span className="relative flex items-center gap-2">
-                View Projects
-                <MdOutlineKeyboardArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={20} />
-              </span>
-            </ScrollLink>
-
-            <a
-              href="/resume.pdf"
-              download="Priyanshu_Resume.pdf"
-              className="group relative w-full sm:w-auto px-6 py-2 flex items-center justify-center rounded-lg border-2 border-gray-600 text-white font-semibold hover:border-cyan-400 hover:bg-cyan-400/10 transform transition-all duration-300 text-sm sm:text-base"
-            >
-              <span className="flex items-center gap-2">
-                Resume
-                <MdFileDownload className="group-hover:animate-bounce" size={22} />
-              </span>
-            </a>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div variants={item} className="flex gap-4 justify-center pt-2">
-            {[
-              { href: "https://github.com/PriYanahsu", icon: FaGithub, label: "GitHub" },
-              { href: "https://www.linkedin.com/in/priyanshukumar1265/", icon: FaLinkedin, label: "LinkedIn" },
-              { href: "https://leetcode.com/u/PriyAnshu1265/", icon: SiLeetcode, label: "LeetCode" },
-              { href: "https://www.hackerrank.com/profile/priyanshukuma120", icon: SiHackerrank, label: "HackerRank" },
-            ].map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-3 bg-[#0A1929]/50 backdrop-blur-sm rounded-lg border border-gray-700 hover:border-cyan-400 text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:scale-110 hover:-translate-y-1"
-                aria-label={social.label}
-              >
-                <social.icon size={20} />
-              </a>
-            ))}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
+                  <p className="text-xl font-semibold text-cyan-200">450+</p>
+                  <p className="text-xs text-slate-300">LeetCode Problems</p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
+                  <p className="text-xl font-semibold text-emerald-200">5 Star</p>
+                  <p className="text-xs text-slate-300">HackerRank</p>
+                </div>
+              </div>
+              <div className="rounded-xl border border-cyan-300/25 bg-cyan-400/10 p-4">
+                <p className="text-sm text-cyan-100">
+                  I design and ship performant products with clean architecture and measurable business impact.
+                </p>
+              </div>
+            </div>
           </motion.div>
         </div>
-      </div>
+
+        <motion.div variants={item} className="inline-flex items-center gap-2 self-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs text-slate-300 sm:text-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            <span>Full Stack Developer | Freelancer | Problem Solver</span>
+          </motion.div>
+        </div>
 
       <style jsx>{`
         @keyframes gradient {
