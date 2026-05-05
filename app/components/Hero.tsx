@@ -168,7 +168,7 @@ const Hero = () => {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">Profile Snapshot</p>
             <div className="mt-5 space-y-4">
               <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
-                <p className="text-2xl font-semibold text-white">4+ Years</p>
+                <p className="text-2xl font-semibold text-white">2+ Years</p>
                 <p className="mt-1 text-sm text-slate-300">Building production-ready full stack products</p>
               </div>
               <div className="grid grid-cols-2 gap-3">
