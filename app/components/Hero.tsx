@@ -33,7 +33,7 @@ const Hero = () => {
   return (
     <motion.section
       id="hero"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#020817] px-4 py-20 text-white"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#020817] px-3 py-20 text-white sm:px-4"
       initial="hidden"
       animate="visible"
       variants={container}
@@ -54,7 +54,7 @@ const Hero = () => {
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-3xl p-6 backdrop-blur-xl sm:p-10 lg:p-14">
         <div className="grid w-full items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="space-y-7 text-center lg:text-left">
+          <div className="mx-auto w-full max-w-2xl space-y-7 text-center lg:mx-0 lg:max-w-none lg:text-left">
             <motion.div
               variants={item}
               className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2"
@@ -114,12 +114,12 @@ const Hero = () => {
               ))}
             </motion.div>
 
-            <motion.div variants={item} className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center lg:justify-start">
+            <motion.div variants={item} className="flex flex-col items-center gap-3 pt-1 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
               <ScrollLink
                 to="contact"
                 smooth
                 duration={500}
-                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-cyan-500/40"
+                className="group inline-flex h-12 w-full max-w-[220px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-cyan-500/40 sm:h-auto sm:w-auto sm:max-w-none"
               >
                 Contact Me
                 <MdOutlineKeyboardArrowRight className="transition-transform duration-300 group-hover:translate-x-1" size={20} />
@@ -129,7 +129,7 @@ const Hero = () => {
                 to="projects"
                 smooth
                 duration={500}
-                className="group inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-violet-300/40 bg-violet-500/10 px-6 py-3 text-sm font-semibold text-violet-100 transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-500/20"
+                className="group inline-flex h-12 w-full max-w-[220px] cursor-pointer items-center justify-center gap-2 rounded-xl border border-violet-300/40 bg-violet-500/10 px-6 py-3 text-sm font-semibold text-violet-100 transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-500/20 sm:h-auto sm:w-auto sm:max-w-none"
               >
                 View Projects
                 <MdOutlineKeyboardArrowRight className="transition-transform duration-300 group-hover:translate-x-1" size={20} />
@@ -138,14 +138,14 @@ const Hero = () => {
               <a
                 href="/resume.pdf"
                 download="Priyanshu_Resume.pdf"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-400/40 bg-slate-900/50 px-6 py-3 text-sm font-semibold text-slate-100 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/60 hover:text-cyan-200"
+                className="inline-flex h-12 w-full max-w-[220px] items-center justify-center gap-2 rounded-xl border border-slate-400/40 bg-slate-900/50 px-6 py-3 text-sm font-semibold text-slate-100 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/60 hover:text-cyan-200 sm:h-auto sm:w-auto sm:max-w-none"
               >
                 Resume
                 <MdFileDownload size={20} />
               </a>
             </motion.div>
 
-            <motion.div variants={item} className="flex justify-center gap-3 pt-1 lg:justify-start">
+            <motion.div variants={item} className="flex items-center justify-center gap-3 pt-0 lg:justify-start">
               {socials.map((social) => (
                 <a
                   key={social.label}
