@@ -33,6 +33,19 @@ import FileForge3 from "../assets/portfolio/FileForge3.png";
 import FileForge4 from "../assets/portfolio/FileForge4.png";
 import FileForge5 from "../assets/portfolio/FileForge5.png";
 
+import HireCheck1 from "../assets/portfolio/hirecheck1.png";
+import HireCheck2 from "../assets/portfolio/hirecheck2.png";
+import HireCheck3 from "../assets/portfolio/hirecheck3.png";
+import HireCheck4 from "../assets/portfolio/hirecheck4.png";
+import HireCheck5 from "../assets/portfolio/hirecheck5.png";
+import HireCheck6 from "../assets/portfolio/hirecheck6.png";
+import HireCheck7 from "../assets/portfolio/hirecheck7.png";
+import HireCheck8 from "../assets/portfolio/hirecheck8.png";
+import HireCheck9 from "../assets/portfolio/hirecheck9.png";
+import HireCheck10 from "../assets/portfolio/hirecheck10.png";
+import HireCheck11 from "../assets/portfolio/hirecheck11.png";
+import HireCheck12 from "../assets/portfolio/hirecheck12.png";
+
 import fileShare from "../assets/portfolio/fileShare.png";
 import smartCompaint from "../assets/portfolio/smartcomplaint.png";
 
@@ -47,6 +60,33 @@ const Projects = () => {
 
   // ================== Project Data ==================
   const additionalProjects: Project[] = [
+    {
+      title: "Hire Check",
+      description:
+        "Recruiter dashboard to create coding assessments, invite candidates via email, and review scores with a proctored candidate test experience (timer, auto-save, anti-cheat).",
+      longDescription:
+        "Hire Check is a full-stack technical assessment platform for recruiters and candidates. Recruiters sign up, create timed tests with multiple-choice and short-answer questions, invite candidates individually or in bulk, share public test links, and monitor their pipeline through Dashboard, Tests, Candidates, and Analytics views tracking pass rates, completion stats, and per-candidate scores with phone and IP metadata. Candidates register via a public link, review test instructions and anti-cheat rules, then take assessments under fullscreen with a live countdown timer, auto-save, and tab-switch detection that auto-submits after repeated violations. Under the hood, a React + Vite frontend shares Zod validation schemas with a Spring Boot backend on PostgreSQL, secured with JWT auth, EmailJS invitations, and ImageKit uploads shipped as a single Docker image on Railway serving both API and SPA from one process.",
+      image: HireCheck1,
+      gallery: [ HireCheck2, HireCheck3, HireCheck4, HireCheck5, HireCheck6, HireCheck7, HireCheck8, HireCheck9, HireCheck10, HireCheck11, HireCheck12],
+      technologies: [
+        "React",
+        "Spring Boot",
+        "PostgreSQL",
+        "Vite",
+        "JWT",
+        "Zod",
+        "Docker",
+      ],
+      achievements: [
+        "Recruiter Dashboard - Pipeline KPIs, Recent Activity & Active Assessments",
+        "Test & Candidate Management - Search, Invite/Resend, Bulk Invite & Public Links",
+        "Analytics - Pass Rate, Average Score, Completion Rate & Per-Test Charts",
+        "Proctored Test Experience - Timer, Auto-Save, Fullscreen & Tab-Switch Auto-Submit",
+        "Candidate Self-Registration - Public Test Link with Name, Email & Phone Capture",
+      ],
+      Live: "https://codescreen-app-production-41b2.up.railway.app/signup",
+      codeLink: "https://github.com/PriYanahsu/HireCheck-Full-Stack-",
+    },
     {
       title: "FoodCal",
       description:
