@@ -10,7 +10,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: FaGithub, href: "https://github.com/PriYanahsu", label: "GitHub" },
     { icon: FaLinkedin, href: "https://www.linkedin.com/in/priyanshukumar1265/", label: "LinkedIn" },
-    { icon: FaEnvelope, href: "mailto:priyanshu1265656@gmail.com", label: "Email" },
+    { icon: FaEnvelope, href: "mailto:priyanshu.dev.agile@gmail.com", label: "Email" },
     { icon: FaWhatsapp, href: "https://wa.me/916006935523", label: "WhatsApp" },
     { icon: SiLeetcode, href: "https://leetcode.com/u/PriyAnshu1265/", label: "LeetCode" },
     { icon: SiHackerrank, href: "https://www.hackerrank.com/profile/priyanshukuma120", label: "HackerRank" },
@@ -90,11 +90,11 @@ const Footer = () => {
             </h3>
             <div className="space-y-4">
               <a
-                href="mailto:priyanshu1265656@gmail.com"
+                href="mailto:priyanshu.dev.agile@gmail.com"
                 className="block group"
               >
                 <p className="text-[9px] text-gray-600 uppercase font-bold tracking-tighter mb-0.5">Email</p>
-                <p className="text-sm text-gray-300 group-hover:text-white transition-colors">priyanshu1265656@gmail.com</p>
+                <p className="text-sm text-gray-300 group-hover:text-white transition-colors">priyanshu.dev.agile@gmail.com</p>
               </a>
               <a
                 href="tel:+916006935523"
