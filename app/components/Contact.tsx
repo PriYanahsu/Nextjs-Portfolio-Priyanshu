@@ -34,8 +34,8 @@ const Contact = () => {
     {
       icon: <FaEnvelope />,
       label: "Email",
-      value: "priyanshu1265656@gmail.com",
-      href: "mailto:priyanshu1265656@gmail.com",
+      value: "priyanshu.dev.agile@gmail.com",
+      href: "mailto:priyanshu.dev.agile@gmail.com",
       color: "text-emerald-400",
     },
     {

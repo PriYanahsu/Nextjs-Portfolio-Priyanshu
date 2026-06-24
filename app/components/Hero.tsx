@@ -27,7 +27,7 @@ const Hero = () => {
     { href: "https://leetcode.com/u/PriyAnshu1265/", icon: SiLeetcode, label: "LeetCode" },
     { href: "https://www.hackerrank.com/profile/priyanshukuma120", icon: SiHackerrank, label: "HackerRank" },
     { href: "https://wa.me/916006935523", icon: FaWhatsapp, label: "WhatsApp" },
-    { href: "mailto:priyanshu1265656@gmail.com", icon: FaEnvelope, label: "Email" },
+    { href: "mailto:priyanshu.dev.agile@gmail.com", icon: FaEnvelope, label: "Email" },
   ];
 
   return (
