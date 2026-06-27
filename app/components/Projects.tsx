@@ -84,7 +84,7 @@ const Projects = () => {
         "Proctored Test Experience - Timer, Auto-Save, Fullscreen & Tab-Switch Auto-Submit",
         "Candidate Self-Registration - Public Test Link with Name, Email & Phone Capture",
       ],
-      Live: "https://codescreen-app-production-41b2.up.railway.app/signup",
+      Live: "https://hirecheck-full-stack.onrender.com/",
       codeLink: "https://github.com/PriYanahsu/HireCheck-Full-Stack-",
     },
     {

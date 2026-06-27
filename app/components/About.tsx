@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
-import { FaLinkedin, FaGithub, FaBriefcase, FaLaptopCode, FaHandshake } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaBriefcase, FaLaptopCode, FaHandshake, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import { SiLeetcode, SiHackerrank, SiMedium } from "react-icons/si";
 import { MdWorkspacePremium } from "react-icons/md";
 import { motion } from "framer-motion";
@@ -51,18 +51,20 @@ const About = () => {
   ];
 
   const socialLinks = [
-    { href: "https://www.linkedin.com/in/priyanshukumar1265/", icon: <FaLinkedin size={22} />, label: "LinkedIn", color: "text-blue-400 hover:text-blue-300" },
-    { href: "https://topmate.io/dev_priyanshu", icon: <FaHandshake size={22} />, label: "Topmate", color: "text-violet-400 hover:text-violet-300" },
+    { href: "https://wa.me/916006935523", icon: <FaWhatsapp size={22} />, label: "WhatsApp", color: "text-green-500 hover:text-green-400" },
+    { href: "mailto:priyanshu.dev.agile@gmail.com", icon: <FaEnvelope size={22} />, label: "Email", color: "text-emerald-400 hover:text-emerald-300" },
     { href: "https://medium.com/@priyanshu.dev.agile", icon: <SiMedium size={22} />, label: "Medium", color: "text-gray-300 hover:text-white" },
     { href: "https://github.com/PriYanahsu", icon: <FaGithub size={22} />, label: "GitHub", color: "text-gray-400 hover:text-gray-300" },
+    { href: "https://www.linkedin.com/in/priyanshukumar1265/", icon: <FaLinkedin size={22} />, label: "LinkedIn", color: "text-blue-400 hover:text-blue-300" },
+    { href: "https://topmate.io/dev_priyanshu", icon: <FaHandshake size={22} />, label: "Topmate", color: "text-violet-400 hover:text-violet-300" },
     { href: "https://leetcode.com/u/PriyAnshu1265/", icon: <SiLeetcode size={22} />, label: "LeetCode", color: "text-yellow-400 hover:text-yellow-300" },
-    { href: "https://www.hackerrank.com/profile/priyanshukuma120", icon: <SiHackerrank size={22} />, label: "HackerRank", color: "text-green-400 hover:text-green-300" }
+    { href: "https://www.hackerrank.com/profile/priyanshukuma120", icon: <SiHackerrank size={22} />, label: "HackerRank", color: "text-green-400 hover:text-green-300" },
   ];
 
   return (
     <motion.section
       id="about"
-      className="min-h-[60vh] md:min-h-[70vh] w-full flex items-center justify-center bg-gradient-to-b from-[#0A1929] to-[#040D12] text-white px-4 py-16"
+      className="min-h-[60vh] md:min-h-[70vh] w-full flex items-center justify-center bg-gradient-to-b from-[#040D12] to-[#0A1929] text-white px-4 py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
@@ -173,19 +175,19 @@ const About = () => {
           {/* Social Links */}
           <div className="text-center">
             <h3 className="text-xl font-semibold mb-6 text-white">Connect With Me</h3>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={index}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-2 px-5 py-3 bg-[#0A1929]/50 backdrop-blur-sm rounded-lg border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:scale-105 ${link.color}`}
+                  className={`flex h-12 w-full items-center justify-center gap-2 rounded-lg border border-gray-700 bg-[#0A1929]/50 px-3 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-gray-600 ${link.color}`}
                   variants={itemVariants}
                   whileHover={{ y: -2 }}
                 >
                   {link.icon}
-                  <span className="font-medium text-sm">{link.label}</span>
+                  <span className="text-sm font-medium whitespace-nowrap">{link.label}</span>
                 </motion.a>
               ))}
             </div>
