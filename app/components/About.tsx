@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
-import { FaLinkedin, FaGithub, FaBriefcase, FaLaptopCode } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaBriefcase, FaLaptopCode, FaHandshake } from "react-icons/fa";
 import { SiLeetcode, SiHackerrank } from "react-icons/si";
 import { MdWorkspacePremium } from "react-icons/md";
 import { motion } from "framer-motion";
@@ -52,6 +52,7 @@ const About = () => {
 
   const socialLinks = [
     { href: "https://www.linkedin.com/in/priyanshukumar1265/", icon: <FaLinkedin size={22} />, label: "LinkedIn", color: "text-blue-400 hover:text-blue-300" },
+    { href: "https://topmate.io/dev_priyanshu", icon: <FaHandshake size={22} />, label: "Topmate", color: "text-violet-400 hover:text-violet-300" },
     { href: "https://github.com/PriYanahsu", icon: <FaGithub size={22} />, label: "GitHub", color: "text-gray-400 hover:text-gray-300" },
     { href: "https://leetcode.com/u/PriyAnshu1265/", icon: <SiLeetcode size={22} />, label: "LeetCode", color: "text-yellow-400 hover:text-yellow-300" },
     { href: "https://www.hackerrank.com/profile/priyanshukuma120", icon: <SiHackerrank size={22} />, label: "HackerRank", color: "text-green-400 hover:text-green-300" }

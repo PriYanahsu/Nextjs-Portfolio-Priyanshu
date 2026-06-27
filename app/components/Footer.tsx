@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaHandshake } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { SiHackerrank, SiLeetcode } from "react-icons/si";
 
@@ -10,6 +10,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: FaGithub, href: "https://github.com/PriYanahsu", label: "GitHub" },
     { icon: FaLinkedin, href: "https://www.linkedin.com/in/priyanshukumar1265/", label: "LinkedIn" },
+    { icon: FaHandshake, href: "https://topmate.io/dev_priyanshu", label: "Topmate" },
     { icon: FaEnvelope, href: "mailto:priyanshu.dev.agile@gmail.com", label: "Email" },
     { icon: FaWhatsapp, href: "https://wa.me/916006935523", label: "WhatsApp" },
     { icon: SiLeetcode, href: "https://leetcode.com/u/PriyAnshu1265/", label: "LeetCode" },
