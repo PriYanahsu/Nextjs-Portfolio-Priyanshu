@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaHandshake } from "react-icons/fa";
+import { SiMedium } from "react-icons/si";
 
 const Contact = () => {
   const containerVariants = {
@@ -37,6 +38,22 @@ const Contact = () => {
       value: "priyanshu.dev.agile@gmail.com",
       href: "mailto:priyanshu.dev.agile@gmail.com",
       color: "text-emerald-400",
+    },
+    {
+      icon: <FaHandshake />,
+      label: "Topmate",
+      value: "Book a mentorship call",
+      href: "https://topmate.io/dev_priyanshu",
+      color: "text-violet-400",
+      external: true,
+    },
+    {
+      icon: <SiMedium />,
+      label: "Medium",
+      value: "@priyanshu.dev.agile",
+      href: "https://medium.com/@priyanshu.dev.agile",
+      color: "text-gray-300",
+      external: true,
     },
     {
       icon: <FaMapMarkerAlt />,
@@ -87,6 +104,8 @@ const Contact = () => {
                     <motion.a
                       key={idx}
                       href={info.href}
+                      target={"external" in info && info.external ? "_blank" : undefined}
+                      rel={"external" in info && info.external ? "noopener noreferrer" : undefined}
                       whileHover={{ x: 5 }}
                       className="flex items-center gap-4 group/item"
                     >
