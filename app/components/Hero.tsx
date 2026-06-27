@@ -46,22 +46,23 @@ const Hero = () => {
   return (
     <motion.section
       id="hero"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-[#0A1929] to-[#040D12] px-3 py-20 text-white sm:px-4"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-[#061018] via-[#071520] to-[#040D12] px-3 py-20 text-white sm:px-4 md:from-[#0A1929] md:via-[#071018] md:to-[#040D12]"
       initial="hidden"
       animate="visible"
       variants={container}
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.14),_transparent_48%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.14),_transparent_48%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.10),_transparent_48%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.10),_transparent_48%)] md:bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.14),_transparent_48%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.14),_transparent_48%)]" />
+        <div className="absolute inset-0 bg-[#040D12]/30 md:bg-transparent" />
         <motion.div
           animate={{ y: [0, -18, 0], scale: [1, 1.05, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-16 top-20 h-72 w-72 rounded-full bg-cyan-500/15 blur-3xl"
+          className="absolute -left-16 top-20 h-56 w-56 rounded-full bg-cyan-500/11 blur-3xl md:h-72 md:w-72 md:bg-cyan-500/15"
         />
         <motion.div
           animate={{ y: [0, -18, 0], scale: [1, 1.05, 1] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-16 top-20 h-72 w-72 rounded-full bg-violet-500/15 blur-3xl"
+          className="absolute -right-16 top-20 h-56 w-56 rounded-full bg-violet-500/11 blur-3xl md:h-72 md:w-72 md:bg-violet-500/15"
         />
       </div>
 
@@ -220,30 +221,40 @@ const Hero = () => {
                   <span className="text-cyan-300">Developer</span>{" "}
                   <span className="text-slate-400">{"{"}</span>
                 </p>
+                <p className="pl-4 text-slate-500">{"// compiled with ☕ and sheer willpower"}</p>
                 <p className="pl-4 text-slate-300">
                   <span className="text-violet-300">private final</span> String name ={" "}
                   <span className="text-emerald-300">&quot;Priyanshu&quot;</span>;
                 </p>
                 <p className="pl-4 text-slate-300">
-                  <span className="text-violet-300">private final</span> String[] stack ={" "}
-                  <span className="text-cyan-300">{`{"React", "Spring Boot", "FastAPI"}`}</span>;
+                  <span className="text-violet-300">private int</span> leetcodeSolved ={" "}
+                  <span className="text-amber-300">450</span>;{" "}
+                  <span className="text-slate-500">{"// and counting..."}</span>
                 </p>
-                <p className="pl-4 text-slate-500">{"// bugs found: 0 (trust me bro)"}</p>
                 <p className="pl-4 text-slate-300">
-                  <span className="text-violet-300">public void</span>{" "}
-                  <span className="text-amber-300">shipProduct</span>
-                  <span className="text-slate-400">() {"{"}</span>
+                  <span className="text-violet-300">private int</span> coffee ={" "}
+                  <span className="text-amber-300">Integer.MAX_VALUE</span>;
                 </p>
+                <p className="pl-4 text-slate-300">
+                  <span className="text-violet-300">public String</span>{" "}
+                  <span className="text-amber-300">fixBug</span>
+                  <span className="text-slate-400">(Bug bug) {"{"}</span>
+                </p>
+                <p className="pl-8 text-slate-500">{"// classic dev move"}</p>
                 <p className="pl-8 text-slate-300">
-                  <span className="text-violet-300">while</span> (client.isHappy() =={" "}
-                  <span className="text-amber-300">false</span>) {"{"}
+                  <span className="text-violet-300">if</span> (bug == <span className="text-amber-300">null</span>) {"{"}
                 </p>
                 <p className="pl-12 text-slate-300">
-                  refactor(); coffee++;
+                  <span className="text-violet-300">return</span>{" "}
+                  <span className="text-emerald-300">&quot;works on my machine 💻&quot;</span>;
                 </p>
                 <p className="pl-8 text-slate-400">{"}"}</p>
                 <p className="pl-8 text-slate-300">
-                  System.out.println(<span className="text-emerald-300">&quot;Deployed 🚀&quot;</span>);
+                  debug(); coffee--; <span className="text-slate-500">{"// sacrifice accepted"}</span>
+                </p>
+                <p className="pl-8 text-slate-300">
+                  <span className="text-violet-300">return</span>{" "}
+                  <span className="text-emerald-300">&quot;Fixed. Don&apos;t ask how. 🚀&quot;</span>;
                 </p>
                 <p className="pl-4 text-slate-400">{"}"}</p>
                 <p className="text-slate-400">{"}"}</p>
