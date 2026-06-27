@@ -2,7 +2,7 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaHandshake } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { SiHackerrank, SiLeetcode } from "react-icons/si";
+import { SiHackerrank, SiLeetcode, SiMedium } from "react-icons/si";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,6 +11,7 @@ const Footer = () => {
     { icon: FaGithub, href: "https://github.com/PriYanahsu", label: "GitHub" },
     { icon: FaLinkedin, href: "https://www.linkedin.com/in/priyanshukumar1265/", label: "LinkedIn" },
     { icon: FaHandshake, href: "https://topmate.io/dev_priyanshu", label: "Topmate" },
+    { icon: SiMedium, href: "https://medium.com/@priyanshu.dev.agile", label: "Medium" },
     { icon: FaEnvelope, href: "mailto:priyanshu.dev.agile@gmail.com", label: "Email" },
     { icon: FaWhatsapp, href: "https://wa.me/916006935523", label: "WhatsApp" },
     { icon: SiLeetcode, href: "https://leetcode.com/u/PriyAnshu1265/", label: "LeetCode" },

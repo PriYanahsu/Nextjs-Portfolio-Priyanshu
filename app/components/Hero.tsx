@@ -2,7 +2,7 @@
 
 import { MdOutlineKeyboardArrowRight, MdFileDownload } from "react-icons/md";
 import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp, FaHandshake } from "react-icons/fa";
-import { SiLeetcode, SiHackerrank } from "react-icons/si";
+import { SiLeetcode, SiHackerrank, SiMedium } from "react-icons/si";
 import { Link as ScrollLink } from "react-scroll";
 import { motion } from "framer-motion";
 
@@ -25,6 +25,7 @@ const Hero = () => {
     { href: "https://github.com/PriYanahsu", icon: FaGithub, label: "GitHub" },
     { href: "https://www.linkedin.com/in/priyanshukumar1265/", icon: FaLinkedin, label: "LinkedIn" },
     { href: "https://topmate.io/dev_priyanshu", icon: FaHandshake, label: "Topmate" },
+    { href: "https://medium.com/@priyanshu.dev.agile", icon: SiMedium, label: "Medium" },
     { href: "https://leetcode.com/u/PriyAnshu1265/", icon: SiLeetcode, label: "LeetCode" },
     { href: "https://www.hackerrank.com/profile/priyanshukuma120", icon: SiHackerrank, label: "HackerRank" },
     { href: "https://wa.me/916006935523", icon: FaWhatsapp, label: "WhatsApp" },

@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaHandshake } from "react-icons/fa";
+import { SiMedium } from "react-icons/si";
 
 const Contact = () => {
   const containerVariants = {
@@ -44,6 +45,14 @@ const Contact = () => {
       value: "Book a mentorship call",
       href: "https://topmate.io/dev_priyanshu",
       color: "text-violet-400",
+      external: true,
+    },
+    {
+      icon: <SiMedium />,
+      label: "Medium",
+      value: "@priyanshu.dev.agile",
+      href: "https://medium.com/@priyanshu.dev.agile",
+      color: "text-gray-300",
       external: true,
     },
     {
