@@ -1,12 +1,23 @@
 "use client"; // Next.js 13+ app directory
 
+import { useState, useEffect } from "react";
 import { MdOutlineKeyboardArrowRight, MdFileDownload } from "react-icons/md";
 import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp, FaHandshake } from "react-icons/fa";
 import { SiLeetcode, SiHackerrank, SiMedium } from "react-icons/si";
 import { Link as ScrollLink } from "react-scroll";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Hero = () => {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const roles = ["Full Stack Developer", "Freelancer", "Problem Solver"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((i) => (i + 1) % roles.length);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, [roles.length]);
+
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -35,26 +46,26 @@ const Hero = () => {
   return (
     <motion.section
       id="hero"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#020817] px-3 py-20 text-white sm:px-4"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-[#0A1929] to-[#040D12] px-3 py-20 text-white sm:px-4"
       initial="hidden"
       animate="visible"
       variants={container}
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.14),_transparent_48%),radial-gradient(circle_at_75%_75%,_rgba(168,85,247,0.14),_transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.14),_transparent_48%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.14),_transparent_48%)]" />
         <motion.div
           animate={{ y: [0, -18, 0], scale: [1, 1.05, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -left-16 top-20 h-72 w-72 rounded-full bg-cyan-500/15 blur-3xl"
         />
         <motion.div
-          animate={{ y: [0, 20, 0], scale: [1, 1.06, 1] }}
+          animate={{ y: [0, -18, 0], scale: [1, 1.05, 1] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-16 bottom-20 h-96 w-96 rounded-full bg-violet-500/15 blur-3xl"
+          className="absolute -right-16 top-20 h-72 w-72 rounded-full bg-violet-500/15 blur-3xl"
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-3xl p-6 backdrop-blur-xl sm:p-10 lg:p-14">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-3xl p-6 sm:p-10 lg:p-14">
         <div className="grid w-full items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="mx-auto w-full max-w-2xl space-y-7 text-center lg:mx-0 lg:max-w-none lg:text-left">
             <motion.div
@@ -75,6 +86,20 @@ const Hero = () => {
                   Priyanshu
                 </span>
               </h1>
+              <div className="flex h-9 items-center justify-center lg:justify-start sm:h-10">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={roleIndex}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.35 }}
+                    className="bg-gradient-to-r from-cyan-200 to-violet-200 bg-clip-text text-lg font-semibold text-transparent sm:text-xl md:text-2xl"
+                  >
+                    {roles[roleIndex]}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
               <div className="flex flex-col items-center justify-start gap-1 text-sm text-slate-300 sm:text-lg lg:items-start">
                 <p>
                   Software Engineer @
@@ -147,7 +172,7 @@ const Hero = () => {
               </a>
             </motion.div>
 
-            <motion.div variants={item} className="flex items-center justify-center gap-3 pt-0 lg:justify-start">
+            <motion.div variants={item} className="grid max-w-[17rem] grid-cols-4 place-items-center gap-3 pt-0 mx-auto sm:max-w-none sm:flex sm:items-center sm:justify-center lg:mx-0 lg:justify-start">
               {socials.map((social) => (
                 <a
                   key={social.label}
@@ -183,10 +208,45 @@ const Hero = () => {
                   <p className="text-xs text-slate-300">HackerRank</p>
                 </div>
               </div>
-              <div className="rounded-xl border border-cyan-300/25 bg-cyan-400/10 p-4">
-                <p className="text-sm text-cyan-100">
-                  I design and ship performant products with clean architecture and measurable business impact.
+              <div className="overflow-hidden rounded-xl border border-cyan-300/20 bg-slate-950/60 p-4 font-mono text-[11px] leading-relaxed sm:text-xs">
+                <div className="mb-3 flex items-center gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+                  <span className="ml-2 text-slate-500">Developer.java</span>
+                </div>
+                <p>
+                  <span className="text-violet-300">public class</span>{" "}
+                  <span className="text-cyan-300">Developer</span>{" "}
+                  <span className="text-slate-400">{"{"}</span>
                 </p>
+                <p className="pl-4 text-slate-300">
+                  <span className="text-violet-300">private final</span> String name ={" "}
+                  <span className="text-emerald-300">&quot;Priyanshu&quot;</span>;
+                </p>
+                <p className="pl-4 text-slate-300">
+                  <span className="text-violet-300">private final</span> String[] stack ={" "}
+                  <span className="text-cyan-300">{`{"React", "Spring Boot", "FastAPI"}`}</span>;
+                </p>
+                <p className="pl-4 text-slate-500">{"// bugs found: 0 (trust me bro)"}</p>
+                <p className="pl-4 text-slate-300">
+                  <span className="text-violet-300">public void</span>{" "}
+                  <span className="text-amber-300">shipProduct</span>
+                  <span className="text-slate-400">() {"{"}</span>
+                </p>
+                <p className="pl-8 text-slate-300">
+                  <span className="text-violet-300">while</span> (client.isHappy() =={" "}
+                  <span className="text-amber-300">false</span>) {"{"}
+                </p>
+                <p className="pl-12 text-slate-300">
+                  refactor(); coffee++;
+                </p>
+                <p className="pl-8 text-slate-400">{"}"}</p>
+                <p className="pl-8 text-slate-300">
+                  System.out.println(<span className="text-emerald-300">&quot;Deployed 🚀&quot;</span>);
+                </p>
+                <p className="pl-4 text-slate-400">{"}"}</p>
+                <p className="text-slate-400">{"}"}</p>
               </div>
             </div>
           </motion.div>
