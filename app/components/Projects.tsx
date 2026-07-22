@@ -84,7 +84,7 @@ const Projects = () => {
         "Proctored Test Experience - Timer, Auto-Save, Fullscreen & Tab-Switch Auto-Submit",
         "Candidate Self-Registration - Public Test Link with Name, Email & Phone Capture",
       ],
-      Live: "https://hirecheck-full-stack.onrender.com/",
+      Live: "https://hirecheck-beryl.vercel.app",
       codeLink: "https://github.com/PriYanahsu/HireCheck-Full-Stack-",
     },
     {
