@@ -11,7 +11,9 @@ import INNFOODIE2 from "../assets/portfolio/INNFOODIE2.png";
 import INNFOODIE3 from "../assets/portfolio/INNFOODIE3.png";
 import INNFOODIE4 from "../assets/portfolio/INNFOODIE4.png";
 
-import Disease from "../assets/portfolio/disease.png";
+import disease1 from "../assets/portfolio/disease1.png";
+import disease2 from "../assets/portfolio/disease2.png";
+
 import personal from "../assets/portfolio/personal.png";
 import weather from "../assets/portfolio/weather.png";
 import Silk from "../assets/portfolio/SilkBusiness.png";
@@ -139,6 +141,26 @@ const Projects = () => {
     },
 
     {
+      title: "ML Disease Detection",
+      description:
+        "Machine learning-based medical diagnosis system with disease prediction and drug recommendation.",
+      longDescription: "A specialized healthcare project that uses Machine Learning to assist in early disease detection. By processing symptoms and patient history through a trained Random Forest and Logistic Regression model, the system predicts potential conditions with high accuracy. It also includes a pharmaceutical recommendation engine that suggests medications and next steps based on predicted diagnoses. The project showcases the practical application of Data Science in the medical field, prioritizing model interpretability and data privacy.",
+      image: disease1,
+      gallery: [disease2],
+      technologies: ["Python", "Flask", "Scikit-Learn", "Machine Learning"],
+      achievements: [
+        "High-Precision Multi-Disease Prediction Model",
+        "Context-Aware AI Drug Recommendation Engine",
+        "Scalable Flask REST API Integration",
+        "Detailed Accuracy Reporting & Model Validation"
+      ],
+      Live:
+        "https://disease-detection-with-drug.onrender.com",
+      codeLink:
+        "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
+    },
+
+    {
       title: "INNFOODIE",
       description:
         "React-based food ordering platform featuring a dynamic menu system and real-time order tracking.",
@@ -207,25 +229,6 @@ const Projects = () => {
       Live: "https://weatherapp-iota-ecru.vercel.app/",
       codeLink:
         "https://github.com/PriYanahsu/Weather-forecaste-site----predict-5-futurestic-days",
-    },
-
-    {
-      title: "ML Disease Detection",
-      description:
-        "Machine learning-based medical diagnosis system with disease prediction and drug recommendation.",
-      longDescription: "A specialized healthcare project that uses Machine Learning to assist in early disease detection. By processing symptoms and patient history through a trained Random Forest and Logistic Regression model, the system predicts potential conditions with high accuracy. It also includes a pharmaceutical recommendation engine that suggests medications and next steps based on predicted diagnoses. The project showcases the practical application of Data Science in the medical field, prioritizing model interpretability and data privacy.",
-      image: Disease,
-      technologies: ["Python", "Flask", "Scikit-Learn", "Machine Learning"],
-      achievements: [
-        "High-Precision Multi-Disease Prediction Model",
-        "Context-Aware AI Drug Recommendation Engine",
-        "Scalable Flask REST API Integration",
-        "Detailed Accuracy Reporting & Model Validation"
-      ],
-      Live:
-        "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
-      codeLink:
-        "https://github.com/PriYanahsu/Disease-Prediction-with-Drug-Recommendation-Using-ML",
     },
 
     {
