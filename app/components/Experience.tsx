@@ -1,103 +1,113 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { FaBriefcase, FaCode, FaRocket } from "react-icons/fa";
-
-const experiences = [
-  {
-    role: "Software Engineer",
-    company: "Cognivac",
-    period: "2024 - Present",
-    points: [
-      "Built production-grade web apps with modern frontend and backend stacks.",
-      "Improved API performance and reliability for client-facing systems.",
-      "Delivered features end-to-end with agile execution and clean architecture.",
-    ],
-    icon: FaBriefcase,
-  },
-  {
-    role: "Freelance Full Stack Developer",
-    company: "Independent Projects",
-    period: "2023 - Present",
-    points: [
-      "Designed and shipped SaaS/MVP products for startups and local businesses.",
-      "Handled architecture, implementation, deployment, and post-launch support.",
-      "Focused on speed, scalability, and conversion-driven UX.",
-    ],
-    icon: FaCode,
-  },
-  {
-    role: "Founder & Builder",
-    company: "Krixen",
-    period: "2024 - Present",
-    points: [
-      "Built internal product systems and reusable development workflows.",
-      "Led product direction from idea validation to deployment.",
-      "Streamlined development velocity with component-first engineering.",
-    ],
-    icon: FaRocket,
-  },
-];
+import { FiArrowUpRight, FiDownload } from "react-icons/fi";
+import { experience, profile } from "../data/portfolio";
+import SectionHeading from "./ui/SectionHeading";
+import Reveal from "./ui/Reveal";
+import MobileExpandable from "./ui/MobileExpandable";
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 bg-gradient-to-b from-[#040D12] to-[#0A1929]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight"
-          >
-            Work <span className="bg-gradient-to-r from-violet-400 to-indigo-500 bg-clip-text text-transparent">Experience</span>
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="h-1 w-20 bg-gradient-to-r from-violet-600 to-indigo-600 mx-auto rounded-full"
-          />
-        </div>
-
-        <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-5 top-0 bottom-0 w-px bg-white/10" />
-          <div className="space-y-8">
-            {experiences.map((item, idx) => (
-              <motion.div
-                key={item.role}
-                initial={{ opacity: 0, x: -24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="relative pl-14"
+    <section id="experience" aria-labelledby="experience-title" className="border-t border-line py-14 md:py-28">
+      <div className="container-page">
+        <SectionHeading
+          id="experience-title"
+          index="03"
+          label="Experience"
+          title={
+            <>
+              Where I&apos;ve been <span className="text-muted">building.</span>
+            </>
+          }
+          intro={
+            <>
+              Product engineering in a team, alongside my own ventures and client work.{" "}
+              <a
+                href={profile.resume}
+                download="Priyanshu_Kumar_Resume.pdf"
+                className="inline-flex items-center gap-1 text-fg underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
               >
-                <div className="absolute left-0 top-1 h-10 w-10 rounded-xl border border-white/10 bg-[#0A1929]/70 flex items-center justify-center text-indigo-400">
-                  <item.icon size={16} />
-                </div>
-                <div className="bg-[#0A1929]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                    <h3 className="text-white text-xl font-bold">{item.role}</h3>
-                    <span className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">
-                      {item.period}
-                    </span>
-                  </div>
-                  <p className="text-indigo-300 text-sm mb-4">{item.company}</p>
-                  <ul className="space-y-2">
-                    {item.points.map((point) => (
-                      <li key={point} className="text-gray-300 text-sm flex items-start gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-indigo-400" />
-                        <span>{point}</span>
+                Full résumé <FiDownload aria-hidden className="h-3.5 w-3.5" />
+              </a>
+            </>
+          }
+        />
+
+        <ol className="relative space-y-3 md:space-y-0">
+          {experience.map((job, i) => (
+            <Reveal
+              as="li"
+              key={job.role}
+              delay={i * 0.05}
+              className="rounded-[1.4rem] border border-line bg-surface p-5 md:grid md:grid-cols-12 md:gap-10 md:rounded-none md:border-0 md:border-t md:bg-transparent md:px-0 md:py-14"
+            >
+              {/* Phones: company left, period chip right. Desktop: period above company. */}
+              <div className="flex items-center justify-between gap-3 md:col-span-4 md:flex-col md:items-start md:justify-start md:gap-3 lg:col-span-3">
+                <p className="flex items-center gap-2 text-[0.92rem] md:order-2 md:text-[0.95rem]">
+                  <span
+                    aria-hidden
+                    className={`h-2 w-2 shrink-0 rounded-full ${i === 0 ? "bg-accent" : "border border-subtle"}`}
+                  />
+                  {job.companyHref ? (
+                    <a
+                      href={job.companyHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 transition-colors hover:text-accent"
+                    >
+                      {job.company}
+                      <FiArrowUpRight aria-hidden className="h-3.5 w-3.5" />
+                    </a>
+                  ) : (
+                    job.company
+                  )}
+                </p>
+                <p className="label-mono shrink-0 rounded-full bg-white/[0.05] px-2.5 py-1 text-[0.62rem] text-subtle md:order-1 md:bg-transparent md:p-0 md:text-[0.72rem]">
+                  {job.period}
+                </p>
+              </div>
+
+              <div className="mt-4 md:col-span-8 md:mt-0 lg:col-span-9">
+                <h3 className="text-[1.35rem] font-medium leading-tight tracking-[-0.03em] sm:text-3xl">{job.role}</h3>
+                <p className="mt-2 max-w-2xl text-pretty text-[0.92rem] leading-relaxed text-muted md:mt-3 md:text-base">
+                  {job.summary}
+                </p>
+
+                {job.metrics && (
+                  <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-4 md:mt-8">
+                    {job.metrics.map((m) => (
+                      <div key={m.label} className="flex flex-col-reverse bg-surface p-3.5 md:bg-ink md:p-5">
+                        <dt className="mt-1 text-[0.76rem] text-subtle md:text-[0.8rem]">{m.label}</dt>
+                        <dd className="text-xl font-medium tracking-[-0.03em] sm:text-3xl">{m.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+
+                <MobileExpandable label="highlights">
+                  <ul className="mt-4 space-y-3 md:mt-8">
+                    {job.points.map((point) => (
+                      <li key={point} className="flex gap-3 text-[0.9rem] leading-relaxed text-muted md:text-[0.95rem]">
+                        <span aria-hidden className="mt-[0.7em] h-px w-3 shrink-0 bg-subtle" />
+                        {point}
                       </li>
                     ))}
                   </ul>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                </MobileExpandable>
+
+                <ul className="mt-4 flex flex-wrap gap-1.5 md:mt-6 md:gap-x-0">
+                  {job.stack.map((s, si) => (
+                    <li
+                      key={s}
+                      className="rounded-full bg-white/[0.05] px-2.5 py-1 font-mono text-[0.66rem] text-subtle md:rounded-none md:bg-transparent md:p-0 md:text-[0.72rem]"
+                    >
+                      {s}
+                      {si < job.stack.length - 1 && <span className="hidden whitespace-pre md:inline"> · </span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </ol>
       </div>
     </section>
   );

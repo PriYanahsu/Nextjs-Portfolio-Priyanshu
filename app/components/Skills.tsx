@@ -1,126 +1,77 @@
-'use client'
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaReact, FaGitAlt, FaJava, FaPython, FaDocker, FaGithub, FaGitlab } from "react-icons/fa";
-import {
-  SiJavascript,
-  SiTypescript,
-  SiNextdotjs,
-  SiSpringboot,
-  SiMysql,
-  SiTailwindcss,
-  SiRedux,
-  SiMongodb,
-  SiHtml5,
-  SiCss3,
-  SiBootstrap,
-  SiPostgresql,
-  SiSupabase,
-  SiFastapi
-} from "react-icons/si";
-
-interface Skill {
-  name: string;
-  icon: React.ReactElement<{ className?: string }>;
-}
-
-const skills: Skill[] = [
-  // Frontend
-  { name: "JavaScript (ES6+)", icon: <SiJavascript className="text-yellow-400 text-3xl" /> },
-  { name: "TypeScript", icon: <SiTypescript className="text-blue-400 text-3xl" /> },
-  { name: "React.js", icon: <FaReact className="text-cyan-400 text-3xl" /> },
-  { name: "Next.js", icon: <SiNextdotjs className="text-white text-3xl" /> },
-  { name: "HTML5", icon: <SiHtml5 className="text-orange-500 text-3xl" /> },
-  { name: "CSS3", icon: <SiCss3 className="text-blue-500 text-3xl" /> },
-  { name: "Tailwind CSS", icon: <SiTailwindcss className="text-teal-400 text-3xl" /> },
-  { name: "Bootstrap", icon: <SiBootstrap className="text-purple-400 text-3xl" /> },
-  { name: "Redux", icon: <SiRedux className="text-purple-400 text-3xl" /> },
-
-  // Backend
-  { name: "Java", icon: <FaJava className="text-orange-400 text-3xl" /> },
-  { name: "Spring Boot", icon: <SiSpringboot className="text-green-400 text-3xl" /> },
-  { name: "Python", icon: <FaPython className="text-blue-300 text-3xl" /> },
-  { name: "FastAPI", icon: <SiFastapi className="text-teal-400 text-3xl" /> },
-
-  // Databases
-  { name: "MySQL", icon: <SiMysql className="text-blue-500 text-3xl" /> },
-  { name: "PostgreSQL", icon: <SiPostgresql className="text-blue-700 text-3xl" /> },
-  { name: "Supabase (PostgreSQL)", icon: <SiSupabase className="text-emerald-400 text-3xl" /> },
-  { name: "MongoDB", icon: <SiMongodb className="text-green-400 text-3xl" /> },
-
-  // DevOps & Tools
-  { name: "Git", icon: <FaGitAlt className="text-orange-400 text-3xl" /> },
-  { name: "GitHub", icon: <FaGithub className="text-white text-3xl" /> },
-  { name: "GitLab", icon: <FaGitlab className="text-orange-500 text-3xl" /> },
-  { name: "Docker", icon: <FaDocker className="text-blue-300 text-3xl" /> },
-];
+import { coreConcepts, skillGroups } from "../data/portfolio";
+import SectionHeading from "./ui/SectionHeading";
+import Reveal from "./ui/Reveal";
+import StackTabs from "./StackTabs";
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 bg-gradient-to-b from-[#0A1929] to-[#040D12]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight"
-          >
-            Technical <span className="bg-gradient-to-r from-violet-400 to-indigo-500 bg-clip-text text-transparent">Expertise</span>
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="h-1 w-20 bg-gradient-to-r from-violet-600 to-indigo-600 mx-auto rounded-full"
-          />
-        </div>
+    <section id="stack" aria-labelledby="stack-title" className="border-t border-line py-14 md:py-28">
+      <div className="container-page">
+        <SectionHeading
+          id="stack-title"
+          index="04"
+          label="Stack"
+          title={
+            <>
+              The tools I reach for, <span className="text-muted">and the fundamentals behind them.</span>
+            </>
+          }
+          intro="Grouped by where they sit in the stack, from the languages I write in to the platforms I deploy on."
+        />
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
-          {skills.map((skill, idx) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover="active"
-              whileTap="active"
-              transition={{ delay: idx * 0.03, duration: 0.4 }}
-              viewport={{ once: true }}
-              className="group relative bg-[#0A1929]/40 backdrop-blur-md p-6 rounded-2xl text-center border border-white/5 shadow-lg transition-all duration-300 overflow-hidden"
+        <Reveal className="md:hidden">
+          <StackTabs />
+        </Reveal>
+
+        <div className="hidden border-t border-line md:block">
+          {skillGroups.map((group, i) => (
+            <Reveal
+              key={group.title}
+              delay={i * 0.04}
+              y={16}
+              className="grid grid-cols-1 gap-4 border-b border-line py-6 md:grid-cols-12 md:gap-10 md:py-8"
             >
-              <motion.div
-                variants={{
-                  active: { scale: 1.1, y: -4 }
-                }}
-                className="relative z-10 mb-4 flex justify-center transition-all duration-300"
-              >
-                {React.cloneElement(skill.icon, {
-                  className: `${skill.icon.props.className || ''} text-4xl sm:text-5xl opacity-80 group-hover:opacity-100 transition-opacity`
-                })}
-              </motion.div>
-
-              <motion.h3
-                variants={{
-                  active: { color: "#fff" }
-                }}
-                className="relative z-10 font-bold text-gray-400 text-xs sm:text-sm tracking-wide transition-colors"
-              >
-                {skill.name}
-              </motion.h3>
-
-              {/* Background Glow on Active */}
-              <motion.div
-                variants={{
-                  active: { opacity: 1, scale: 1 }
-                }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                className="absolute inset-0 bg-indigo-500/5 pointer-events-none"
-              />
-            </motion.div>
+              <h3 className="flex items-baseline gap-3 md:col-span-3">
+                <span className="text-lg font-medium tracking-[-0.02em]">{group.title}</span>
+                <span className="font-mono text-[0.7rem] text-subtle">{String(group.items.length).padStart(2, "0")}</span>
+              </h3>
+              <ul className="flex flex-wrap gap-2 md:col-span-9">
+                {group.items.map(({ name, icon: Icon }) => (
+                  <li
+                    key={name}
+                    className="group inline-flex items-center gap-2 rounded-full border border-line bg-surface/50 px-3.5 py-2 text-[0.88rem] text-muted transition-colors duration-300 hover:border-line-strong hover:text-fg"
+                  >
+                    {Icon ? (
+                      <Icon aria-hidden className="h-4 w-4 transition-colors duration-300 group-hover:text-accent" />
+                    ) : (
+                      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-subtle transition-colors group-hover:bg-accent" />
+                    )}
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           ))}
         </div>
+
+        <Reveal y={16} className="mt-8 grid grid-cols-1 gap-3 md:mt-0 md:grid-cols-12 md:gap-10 md:py-8">
+          <h3 className="text-base font-medium tracking-[-0.02em] md:col-span-3 md:text-lg">Core concepts</h3>
+          <ul className="flex flex-wrap gap-1.5 md:col-span-9 md:block md:leading-loose">
+            {coreConcepts.map((concept, i) => (
+              <li
+                key={concept}
+                className="rounded-full border border-line px-3 py-1.5 text-[0.8rem] text-muted md:inline md:rounded-none md:border-0 md:p-0 md:text-base"
+              >
+                {concept}
+                {i < coreConcepts.length - 1 && (
+                  <span aria-hidden className="mx-2.5 hidden text-accent/70 md:inline">
+                    /
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,289 +1,189 @@
-"use client"; // Next.js 13+ app directory
+"use client";
 
-import { useState, useEffect } from "react";
-import { MdOutlineKeyboardArrowRight, MdFileDownload } from "react-icons/md";
-import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp, FaHandshake } from "react-icons/fa";
-import { SiLeetcode, SiHackerrank, SiMedium } from "react-icons/si";
-import { Link as ScrollLink } from "react-scroll";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { FiArrowDown, FiDownload } from "react-icons/fi";
+import { profile, stats } from "../data/portfolio";
+import TraceCard from "./TraceCard";
+import Counter from "./ui/Counter";
 
-const Hero = () => {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const roles = ["Full Stack Developer", "Freelancer", "Problem Solver"];
+const EASE = [0.16, 1, 0.3, 1] as const;
 
+const fadeUp = (delay: number) => ({
+  initial: { opacity: 0, y: 18 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, ease: EASE, delay },
+});
+
+const headline: React.ReactNode[] = [
+  "Full-stack engineer",
+  "building products from",
+  <>
+    database to{" "}
+    <em className="font-serif font-normal italic tracking-[-0.01em] text-accent">interface.</em>
+  </>,
+];
+
+export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const spotRef = useRef<HTMLDivElement>(null);
+
+  // Pointer spotlight over the dot grid (fine pointers only; no React re-renders).
   useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((i) => (i + 1) % roles.length);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, [roles.length]);
-
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 18 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-  };
-
-  const skills = ["React.js", "Next.js", "Spring Boot", "FastAPI", "PostgreSQL", "MongoDB"];
-  const socials = [
-    { href: "https://github.com/PriYanahsu", icon: FaGithub, label: "GitHub" },
-    { href: "https://www.linkedin.com/in/priyanshukumar1265/", icon: FaLinkedin, label: "LinkedIn" },
-    { href: "https://topmate.io/dev_priyanshu", icon: FaHandshake, label: "Topmate" },
-    { href: "https://medium.com/@priyanshu.dev.agile", icon: SiMedium, label: "Medium" },
-    { href: "https://leetcode.com/u/PriyAnshu1265/", icon: SiLeetcode, label: "LeetCode" },
-    { href: "https://www.hackerrank.com/profile/priyanshukuma120", icon: SiHackerrank, label: "HackerRank" },
-    { href: "https://wa.me/916006935523", icon: FaWhatsapp, label: "WhatsApp" },
-    { href: "mailto:priyanshu.dev.agile@gmail.com", icon: FaEnvelope, label: "Email" },
-  ];
+    const section = sectionRef.current;
+    const spot = spotRef.current;
+    if (!section || !spot || !window.matchMedia("(pointer: fine)").matches) return;
+    let frame = 0;
+    const onMove = (e: PointerEvent) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const rect = section.getBoundingClientRect();
+        spot.style.setProperty("--spot-x", `${e.clientX - rect.left}px`);
+        spot.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
+      });
+    };
+    section.addEventListener("pointermove", onMove);
+    return () => {
+      cancelAnimationFrame(frame);
+      section.removeEventListener("pointermove", onMove);
+    };
+  }, []);
 
   return (
-    <motion.section
-      id="hero"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-[#061018] via-[#071520] to-[#040D12] px-3 py-20 text-white sm:px-4 md:from-[#0A1929] md:via-[#071018] md:to-[#040D12]"
-      initial="hidden"
-      animate="visible"
-      variants={container}
+    <section
+      id="top"
+      ref={sectionRef}
+      aria-labelledby="hero-title"
+      className="relative isolate overflow-hidden pt-[8.25rem] sm:pt-36 md:pt-32 lg:pt-40"
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.10),_transparent_48%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.10),_transparent_48%)] md:bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.14),_transparent_48%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.14),_transparent_48%)]" />
-        <div className="absolute inset-0 bg-[#040D12]/30 md:bg-transparent" />
-        <motion.div
-          animate={{ y: [0, -18, 0], scale: [1, 1.05, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-16 top-20 h-56 w-56 rounded-full bg-cyan-500/11 blur-3xl md:h-72 md:w-72 md:bg-cyan-500/15"
-        />
-        <motion.div
-          animate={{ y: [0, -18, 0], scale: [1, 1.05, 1] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-16 top-20 h-56 w-56 rounded-full bg-violet-500/11 blur-3xl md:h-72 md:w-72 md:bg-violet-500/15"
-        />
-      </div>
+      <div aria-hidden className="dot-grid absolute inset-0 -z-10" />
+      <div aria-hidden ref={spotRef} className="dot-grid-spot absolute inset-0 -z-10" />
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 -z-10 h-[640px] bg-[radial-gradient(60%_50%_at_70%_0%,rgb(255_122_61/0.08),transparent_70%)]"
+      />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-3xl p-6 sm:p-10 lg:p-14">
-        <div className="grid w-full items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="mx-auto w-full max-w-2xl space-y-7 text-center lg:mx-0 lg:max-w-none lg:text-left">
-            <motion.div
-              variants={item}
-              className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              <span className="text-xs font-medium text-cyan-100 sm:text-sm">Available for Opportunities</span>
-            </motion.div>
-
-            <motion.div variants={item} className="space-y-3">
-              <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl xl:text-7xl">
-                {"Hi, I'm "}
-                <span className="animate-gradient bg-gradient-to-r from-cyan-300 via-violet-300 to-indigo-300 bg-clip-text text-transparent">
-                  Priyanshu
-                </span>
-              </h1>
-              <div className="flex h-9 items-center justify-center lg:justify-start sm:h-10">
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={roleIndex}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.35 }}
-                    className="bg-gradient-to-r from-cyan-200 to-violet-200 bg-clip-text text-lg font-semibold text-transparent sm:text-xl md:text-2xl"
-                  >
-                    {roles[roleIndex]}
-                  </motion.p>
-                </AnimatePresence>
-              </div>
-              <div className="flex flex-col items-center justify-start gap-1 text-sm text-slate-300 sm:text-lg lg:items-start">
-                <p>
-                  Software Engineer @
-                  <span className="font-semibold text-cyan-300"> Cognivac</span>
-                </p>
-                <p>
-                  Founder @
-                  <a
-                    href="https://krixen.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-cyan-300 transition-colors duration-300 hover:text-cyan-200"
-                  >
-                    {" krixen.com"}
-                  </a>
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.p variants={item} className="mx-auto max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base lg:mx-0 lg:max-w-xl">
-              Crafting scalable web and mobile applications with{" "}
-              <span className="font-semibold text-cyan-300">React</span>,{" "}
-              <span className="font-semibold text-cyan-300">Next.js</span>,{" "}
-              <span className="font-semibold text-emerald-300">Spring Boot</span>, and{" "}
-              <span className="font-semibold text-emerald-300">FastAPI</span>.
-              <br />
-              <span className="font-medium text-amber-300">450+ LeetCode</span> problems solved and{" "}
-              <span className="font-medium text-emerald-300">5-star HackerRank</span> certified.
-            </motion.p>
-
-            <motion.div variants={item} className="flex flex-wrap justify-center gap-2 lg:justify-start">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 transition-colors duration-200 hover:border-cyan-300/50 hover:text-cyan-200 sm:text-sm"
-                >
-                  {skill}
-                </span>
-              ))}
-            </motion.div>
-
-            <motion.div variants={item} className="flex flex-col items-center gap-3 pt-1 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
-              <ScrollLink
-                to="contact"
-                smooth
-                duration={500}
-                className="group inline-flex h-12 w-full max-w-[220px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-cyan-500/40 sm:h-auto sm:w-auto sm:max-w-none"
-              >
-                Contact Me
-                <MdOutlineKeyboardArrowRight className="transition-transform duration-300 group-hover:translate-x-1" size={20} />
-              </ScrollLink>
-
-              <ScrollLink
-                to="projects"
-                smooth
-                duration={500}
-                className="group inline-flex h-12 w-full max-w-[220px] cursor-pointer items-center justify-center gap-2 rounded-xl border border-violet-300/40 bg-violet-500/10 px-6 py-3 text-sm font-semibold text-violet-100 transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-500/20 sm:h-auto sm:w-auto sm:max-w-none"
-              >
-                View Projects
-                <MdOutlineKeyboardArrowRight className="transition-transform duration-300 group-hover:translate-x-1" size={20} />
-              </ScrollLink>
-
-              <a
-                href="/resume.pdf"
-                download="Priyanshu_Resume.pdf"
-                className="inline-flex h-12 w-full max-w-[220px] items-center justify-center gap-2 rounded-xl border border-slate-400/40 bg-slate-900/50 px-6 py-3 text-sm font-semibold text-slate-100 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/60 hover:text-cyan-200 sm:h-auto sm:w-auto sm:max-w-none"
-              >
-                Resume
-                <MdFileDownload size={20} />
-              </a>
-            </motion.div>
-
-            <motion.div variants={item} className="grid max-w-[17rem] grid-cols-4 place-items-center gap-3 pt-0 mx-auto sm:max-w-none sm:flex sm:items-center sm:justify-center lg:mx-0 lg:justify-start">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-xl border border-white/15 bg-white/5 p-3 text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/50 hover:text-cyan-200"
-                  aria-label={social.label}
-                >
-                  <social.icon size={20} />
-                </a>
-              ))}
-            </motion.div>
+      <div className="container-page">
+        {/* Identity row */}
+        <motion.div {...fadeUp(0.05)} className="mb-10 flex flex-wrap items-center justify-between gap-4 lg:mb-14">
+          <div className="flex items-center gap-3">
+            <Image
+              src={profile.portrait}
+              alt=""
+              width={44}
+              height={44}
+              priority
+              className="h-11 w-11 rounded-full object-cover object-top ring-1 ring-line-strong"
+            />
+            <div className="leading-tight">
+              <p className="text-[0.95rem] font-medium">{profile.name}</p>
+              <p className="font-mono text-[0.72rem] text-subtle">
+                {profile.company.role} @ {profile.company.name}
+              </p>
+            </div>
           </div>
+          <p className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-[0.78rem] text-muted">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            Open to new opportunities
+          </p>
+        </motion.div>
 
-          <motion.div
-            variants={item}
-            className="mx-auto w-full max-w-md rounded-2xl border border-white/15 bg-gradient-to-b from-white/10 to-white/[0.03] p-6 shadow-2xl shadow-cyan-950/40"
-          >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200/80">Profile Snapshot</p>
-            <div className="mt-5 space-y-4">
-              <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
-                <p className="text-2xl font-semibold text-white">2+ Years</p>
-                <p className="mt-1 text-sm text-slate-300">Building production-ready full stack products</p>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
-                  <p className="text-xl font-semibold text-cyan-200">450+</p>
-                  <p className="text-xs text-slate-300">LeetCode Problems</p>
-                </div>
-                <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
-                  <p className="text-xl font-semibold text-emerald-200">5 Star</p>
-                  <p className="text-xs text-slate-300">HackerRank</p>
-                </div>
-              </div>
-              <div className="overflow-hidden rounded-xl border border-cyan-300/20 bg-slate-950/60 p-4 font-mono text-[11px] leading-relaxed sm:text-xs">
-                <div className="mb-3 flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-                  <span className="ml-2 text-slate-500">Developer.java</span>
-                </div>
-                <p>
-                  <span className="text-violet-300">public class</span>{" "}
-                  <span className="text-cyan-300">Developer</span>{" "}
-                  <span className="text-slate-400">{"{"}</span>
-                </p>
-                <p className="pl-4 text-slate-500">{"// compiled with ☕ and sheer willpower"}</p>
-                <p className="pl-4 text-slate-300">
-                  <span className="text-violet-300">private final</span> String name ={" "}
-                  <span className="text-emerald-300">&quot;Priyanshu&quot;</span>;
-                </p>
-                <p className="pl-4 text-slate-300">
-                  <span className="text-violet-300">private int</span> leetcodeSolved ={" "}
-                  <span className="text-amber-300">450</span>;{" "}
-                  <span className="text-slate-500">{"// and counting..."}</span>
-                </p>
-                <p className="pl-4 text-slate-300">
-                  <span className="text-violet-300">private int</span> coffee ={" "}
-                  <span className="text-amber-300">Integer.MAX_VALUE</span>;
-                </p>
-                <p className="pl-4 text-slate-300">
-                  <span className="text-violet-300">public String</span>{" "}
-                  <span className="text-amber-300">fixBug</span>
-                  <span className="text-slate-400">(Bug bug) {"{"}</span>
-                </p>
-                <p className="pl-8 text-slate-500">{"// classic dev move"}</p>
-                <p className="pl-8 text-slate-300">
-                  <span className="text-violet-300">if</span> (bug == <span className="text-amber-300">null</span>) {"{"}
-                </p>
-                <p className="pl-12 text-slate-300">
-                  <span className="text-violet-300">return</span>{" "}
-                  <span className="text-emerald-300">&quot;works on my machine 💻&quot;</span>;
-                </p>
-                <p className="pl-8 text-slate-400">{"}"}</p>
-                <p className="pl-8 text-slate-300">
-                  debug(); coffee--; <span className="text-slate-500">{"// sacrifice accepted"}</span>
-                </p>
-                <p className="pl-8 text-slate-300">
-                  <span className="text-violet-300">return</span>{" "}
-                  <span className="text-emerald-300">&quot;Fixed. Don&apos;t ask how. 🚀&quot;</span>;
-                </p>
-                <p className="pl-4 text-slate-400">{"}"}</p>
-                <p className="text-slate-400">{"}"}</p>
-              </div>
+        {/* Headline with line-mask reveal */}
+        <h1
+          id="hero-title"
+          className="text-[clamp(1.75rem,8.6vw,5.6rem)] font-medium leading-[0.98] tracking-[-0.045em]"
+        >
+          {headline.map((line, i) => (
+            <span key={i} className="block overflow-hidden pb-[0.08em]">
+              <motion.span
+                className="block"
+                initial={{ y: "105%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, ease: EASE, delay: 0.15 + i * 0.09 }}
+              >
+                {line}
+              </motion.span>
+            </span>
+          ))}
+        </h1>
+
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-12">
+          <motion.div {...fadeUp(0.5)} className="lg:col-span-6 xl:col-span-5">
+            <p className="max-w-xl text-pretty text-[1.02rem] leading-relaxed text-muted sm:text-lg">
+              I design and ship web and mobile applications with{" "}
+              <span className="text-fg">React, Next.js, Spring Boot</span> and{" "}
+              <span className="text-fg">FastAPI</span>, owning features end to end from the schema and
+              API to the interface people use. I also build products at{" "}
+              <a
+                href={profile.venture.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-fg underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+              >
+                {profile.venture.name}
+              </a>
+              .
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a
+                href="#work"
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 text-[0.92rem] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                See selected work
+                <FiArrowDown aria-hidden className="transition-transform duration-300 group-hover:translate-y-0.5" />
+              </a>
+              <a
+                href={profile.resume}
+                download="Priyanshu_Kumar_Resume.pdf"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line-strong px-6 text-[0.92rem] font-medium transition-colors duration-300 hover:border-fg"
+              >
+                Download résumé
+                <FiDownload aria-hidden />
+              </a>
             </div>
           </motion.div>
-        </div>
 
-        <motion.div variants={item} className="inline-flex items-center gap-2 self-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs text-slate-300 sm:text-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
-            <span>Full Stack Developer | Freelancer | Problem Solver</span>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: EASE, delay: 0.65 }}
+            className="lg:col-span-6 xl:col-span-5 xl:col-start-8"
+          >
+            <TraceCard />
           </motion.div>
         </div>
 
-      <style jsx>{`
-        @keyframes gradient {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient {
-          background-size: 200% auto;
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
-    </motion.section>
+        {/* Proof strip */}
+        <motion.dl
+          {...fadeUp(0.8)}
+          className="mt-16 grid grid-cols-2 border-t border-line md:mt-24 md:grid-cols-4"
+        >
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`py-6 pr-4 md:py-8 ${i % 2 === 1 ? "border-l border-line pl-4" : ""} ${
+                i >= 2 ? "border-t border-line md:border-t-0" : ""
+              } ${i === 2 ? "md:border-l" : ""} ${i > 0 ? "md:pl-6" : ""}`}
+            >
+              <dt className="sr-only">{stat.label}</dt>
+              <dd>
+                <span className="block text-3xl font-medium tracking-[-0.03em] sm:text-4xl">
+                  <Counter to={stat.value} />
+                  <span className="text-accent">{stat.suffix}</span>
+                </span>
+                <span aria-hidden className="mt-2 block max-w-[14rem] text-[0.82rem] leading-snug text-subtle">
+                  {stat.label}
+                </span>
+              </dd>
+            </div>
+          ))}
+        </motion.dl>
+      </div>
+    </section>
   );
-};
-
-export default Hero;
+}

@@ -1,289 +1,283 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import Image, { StaticImageData } from "next/image";
-import { FaGithub, FaExternalLinkAlt, FaTimes, FaChevronLeft, FaChevronRight, FaCode, FaRocket, FaLightbulb } from "react-icons/fa";
-import { useState, useEffect, useCallback } from "react";
 
-export interface Project {
-    title: string;
-    description: string;
-    longDescription?: string;
-    image: StaticImageData;
-    gallery?: StaticImageData[];
-    technologies: string[];
-    achievements: string[];
-    Live: string;
-    codeLink: string;
-}
+import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion, type PanInfo } from "framer-motion";
+import { FiArrowUpRight, FiChevronLeft, FiChevronRight, FiGithub, FiX } from "react-icons/fi";
+import type { Project } from "../data/portfolio";
+import Dialog from "./ui/Dialog";
 
 interface ProjectDetailProps {
-    project: Project | null;
-    isOpen: boolean;
-    onClose: () => void;
+  project: Project | null;
+  onClose: () => void;
 }
 
-const ProjectDetail = ({ project, isOpen, onClose }: ProjectDetailProps) => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+/**
+ * Case-study sheet: swipeable gallery (arrow keys on desktop), key features,
+ * problem / solution, overview and stack. On phones the actions are pinned
+ * to the bottom like a native detail screen.
+ */
+export default function ProjectDetail({ project, onClose }: ProjectDetailProps) {
+  // Keep the last project rendered while the exit animation plays.
+  const [shown, setShown] = useState<Project | null>(project);
+  const [[index, direction], setPage] = useState<[number, number]>([0, 0]);
+  const thumbsRef = useRef<HTMLDivElement>(null);
 
-    const isValidImage = (img: unknown): img is StaticImageData => {
-        return (
-            typeof img === "object" &&
-            img !== null &&
-            "src" in img &&
-            typeof (img as { src?: unknown }).src === "string" &&
-            (img as { src: string }).src.length > 0
-        );
+  useEffect(() => {
+    if (project) {
+      setShown(project);
+      setPage([0, 0]);
+    }
+  }, [project]);
+
+  const images = shown ? [shown.image, ...(shown.gallery ?? [])] : [];
+  const count = images.length;
+
+  const go = useCallback(
+    (delta: number) => setPage(([i]) => [(i + delta + count) % count, delta]),
+    [count]
+  );
+
+  useEffect(() => {
+    if (!project || count < 2) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") go(1);
+      if (e.key === "ArrowLeft") go(-1);
     };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [project, count, go]);
 
-    // Combine and sanitize images so Next/Image never receives invalid src values.
-    const allImages = project
-        ? [project.image, ...(project.gallery || [])].filter(isValidImage)
-        : [];
+  // Keep the active thumbnail in view without scrolling the page.
+  useEffect(() => {
+    const rail = thumbsRef.current;
+    const el = rail?.querySelector<HTMLElement>(`[data-thumb="${index}"]`);
+    if (rail && el) {
+      rail.scrollTo({ left: el.offsetLeft - rail.clientWidth / 2 + el.clientWidth / 2, behavior: "smooth" });
+    }
+  }, [index]);
 
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = "hidden";
-            setCurrentImageIndex(0); // Reset to first image
-        } else {
-            document.body.style.overflow = "unset";
-        }
-        return () => {
-            document.body.style.overflow = "unset";
-        };
-    }, [isOpen]);
+  const onSwipe = (_: unknown, info: PanInfo) => {
+    if (info.offset.x < -50 || info.velocity.x < -400) go(1);
+    else if (info.offset.x > 50 || info.velocity.x > 400) go(-1);
+  };
 
-    const nextImage = useCallback((e?: React.MouseEvent) => {
-        e?.stopPropagation();
-        if (!allImages.length) return;
-        setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
-    }, [allImages.length]);
-
-    const prevImage = useCallback((e?: React.MouseEvent) => {
-        e?.stopPropagation();
-        if (!allImages.length) return;
-        setCurrentImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
-    }, [allImages.length]);
-
-    const activeImage = allImages[currentImageIndex] ?? allImages[0] ?? null;
-
-    if (!project) return null;
-
-    return (
+  return (
+    <Dialog
+      open={Boolean(project)}
+      onClose={onClose}
+      labelledBy="project-dialog-title"
+      historyKey="project"
+      historyUrl={project ? `#project-${project.slug}` : undefined}
+      panelClassName="h-[92dvh] max-w-6xl sm:h-[90dvh]"
+    >
+      {shown && (
         <>
-            <AnimatePresence>
-                {isOpen && (
-                    <div key="project-detail-modal-overlay" className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
-                        {/* Immersive Backdrop */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={onClose}
-                            className="absolute inset-0 bg-[#040D12]/95 backdrop-blur-2xl"
-                        >
-                            {/* Animated Glow Particles */}
-                            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px] animate-pulse" />
-                            <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[150px] animate-pulse delay-1000" />
-                        </motion.div>
+          <header className="flex shrink-0 items-center gap-3 border-b border-line px-5 pb-3 pt-1 sm:gap-4 sm:px-8 sm:py-4">
+            <div className="min-w-0 flex-1">
+              <p className="label-mono text-[0.64rem] text-subtle sm:text-[0.72rem]">{shown.category}</p>
+              <h2 id="project-dialog-title" className="truncate text-lg font-medium tracking-[-0.02em] sm:text-2xl">
+                {shown.title}
+              </h2>
+            </div>
+            <a
+              href={shown.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden h-10 items-center gap-1.5 rounded-full bg-fg px-4 text-sm font-medium text-ink transition-colors hover:bg-accent sm:inline-flex"
+            >
+              Live site <FiArrowUpRight aria-hidden />
+            </a>
+            <a
+              href={shown.code}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden h-10 items-center gap-1.5 rounded-full border border-line-strong px-4 text-sm transition-colors hover:border-fg sm:inline-flex"
+            >
+              <FiGithub aria-hidden /> Code
+            </a>
+            <button
+              type="button"
+              data-autofocus
+              onClick={onClose}
+              aria-label="Close"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/[0.06] text-muted transition-colors hover:text-fg sm:h-10 sm:w-10 sm:border sm:border-line-strong sm:bg-transparent"
+            >
+              <FiX aria-hidden />
+            </button>
+          </header>
 
-                        {/* Modal Container */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95, y: 30 }}
-                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="relative w-full max-w-6xl h-full lg:h-auto lg:max-h-[90vh] overflow-hidden bg-[#0A1929]/80 border border-white/10 rounded-3xl lg:rounded-[2.5rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row glass-effect"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            {/* Close Button - More accessible on all devices */}
-                            <button
-                                onClick={onClose}
-                                className="absolute top-4 right-4 lg:top-8 lg:right-8 z-[120] p-3 lg:p-4 bg-white/10 hover:bg-white/20 text-white rounded-xl lg:rounded-2xl border border-white/20 backdrop-blur-xl transition-all duration-300 hover:scale-110 active:scale-95 group"
-                                aria-label="Close modal"
-                            >
-                                <FaTimes size={18} className="group-hover:rotate-90 transition-transform duration-300" />
-                            </button>
+          <div className="thin-scrollbar min-h-0 flex-1 overflow-y-auto overscroll-contain">
+            {/* Gallery */}
+            <div className="border-b border-line bg-ink/60 px-4 py-4 sm:p-8">
+              <div className="relative mx-auto aspect-[16/10] w-full max-w-5xl overflow-hidden rounded-xl border border-line bg-surface-2 sm:aspect-[2/1] sm:rounded-lg">
+                <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                  <motion.div
+                    key={index}
+                    custom={direction}
+                    className="absolute inset-0 touch-pan-y"
+                    initial={{ opacity: 0, x: direction * 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: direction * -40 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    drag={count > 1 ? "x" : false}
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.35}
+                    onDragEnd={onSwipe}
+                  >
+                    <Image
+                      src={images[index]}
+                      alt={`${shown.title} screenshot ${index + 1} of ${count}`}
+                      fill
+                      draggable={false}
+                      placeholder="blur"
+                      sizes="(min-width: 1152px) 1024px, 100vw"
+                      className="pointer-events-none select-none object-contain"
+                    />
+                  </motion.div>
+                </AnimatePresence>
 
-                            {/* Left Section: Visuals */}
-                            <div className="lg:w-[55%] relative flex flex-col h-[35vh] sm:h-[45vh] lg:h-auto bg-black/20 overflow-hidden">
-                                <div className="flex-grow relative flex items-center justify-center p-6 lg:p-10">
-                                    <AnimatePresence mode="wait">
-                                        <motion.div
-                                            key={currentImageIndex}
-                                            initial={{ opacity: 0, scale: 1.05 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.95 }}
-                                            transition={{ duration: 0.4, ease: "easeOut" }}
-                                            className="relative w-full h-full shadow-2xl rounded-2xl lg:rounded-3xl overflow-hidden"
-                                        >
-                                            {activeImage ? (
-                                                <Image
-                                                    src={activeImage}
-                                                    alt={`${project.title} - Preview ${currentImageIndex + 1}`}
-                                                    fill
-                                                    className="object-cover lg:object-contain"
-                                                    priority
-                                                />
-                                            ) : null}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1929]/20 to-transparent pointer-events-none" />
-                                        </motion.div>
-                                    </AnimatePresence>
-
-                                    {/* Navigation Controls */}
-                                    {allImages.length > 1 && (
-                                        <div className="absolute inset-x-4 lg:inset-x-8 top-1/2 -translate-y-1/2 flex justify-between z-10 pointer-events-none">
-                                            <button
-                                                onClick={prevImage}
-                                                className="p-3 lg:p-4 bg-black/40 hover:bg-black/60 text-white rounded-xl lg:rounded-2xl border border-white/10 backdrop-blur-xl pointer-events-auto transition-all"
-                                            >
-                                                <FaChevronLeft size={16} />
-                                            </button>
-                                            <button
-                                                onClick={nextImage}
-                                                className="p-3 lg:p-4 bg-black/40 hover:bg-black/60 text-white rounded-xl lg:rounded-2xl border border-white/10 backdrop-blur-xl pointer-events-auto transition-all"
-                                            >
-                                                <FaChevronRight size={16} />
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Thumbnail Bar - Hidden on small mobile for space */}
-                                {allImages.length > 1 && (
-                                    <div className="hidden sm:flex h-20 px-6 pb-6 items-center justify-center gap-3 z-10">
-                                        {allImages.map((img, idx) => (
-                                            <button
-                                                key={idx}
-                                                onClick={() => setCurrentImageIndex(idx)}
-                                                className={`relative h-10 w-16 rounded-lg overflow-hidden border-2 transition-all ${currentImageIndex === idx ? "border-violet-500 scale-105" : "border-white/5 opacity-40 hover:opacity-100"
-                                                    }`}
-                                            >
-                                                <Image src={img} alt="Thumbnail" fill className="object-cover" />
-                                            </button>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Right Section: Information */}
-                            <div className="lg:w-[45%] flex flex-col flex-grow bg-[#0A1929]/60 backdrop-blur-lg border-t lg:border-t-0 lg:border-l border-white/5 overflow-y-auto custom-scrollbar">
-                                <div className="p-6 sm:p-8 lg:p-10 space-y-8 lg:space-y-10">
-                                    {/* Header */}
-                                    <motion.div
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: 0.1 }}
-                                    >
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <span className="h-[1px] w-6 bg-violet-500" />
-                                            <span className="text-violet-400 font-bold text-[10px] uppercase tracking-[0.2em]">Featured Project</span>
-                                        </div>
-                                        <h2 className="text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-5">
-                                            {project.title}
-                                        </h2>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {project.technologies.map((tech, i) => (
-                                                <span
-                                                    key={`${tech}-${i}`}
-                                                    className="px-3 py-1 bg-white/5 text-gray-300 border border-white/10 rounded-lg text-[10px] font-bold uppercase tracking-wider"
-                                                >
-                                                    {tech}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </motion.div>
-
-                                    {/* Description */}
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 15 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.2 }}
-                                        className="space-y-4"
-                                    >
-                                        <div className="flex items-center gap-2 text-white/40 text-[10px] font-bold uppercase tracking-widest">
-                                            <FaLightbulb className="text-yellow-500/50" />
-                                            Overview
-                                        </div>
-                                        <p className="text-gray-400 text-sm lg:text-base leading-relaxed">
-                                            {project.longDescription || project.description}
-                                        </p>
-                                    </motion.div>
-
-                                    {/* Features */}
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 15 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.3 }}
-                                        className="space-y-4"
-                                    >
-                                        <div className="flex items-center gap-2 text-white/40 text-[10px] font-bold uppercase tracking-widest">
-                                            <FaRocket className="text-indigo-500/50" />
-                                            Key Highlights
-                                        </div>
-                                        <ul className="grid gap-3">
-                                            {project.achievements.map((item, idx) => (
-                                                <li key={idx} className="flex items-start gap-3 text-gray-400">
-                                                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-600/50 shrink-0" />
-                                                    <span className="text-xs sm:text-sm leading-snug">{item}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </motion.div>
-
-                                    {/* Action Buttons - Compact and balanced */}
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 15 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.4 }}
-                                        className="pt-6 border-t border-white/5 flex flex-wrap gap-3"
-                                    >
-                                        <a
-                                            href={project.Live}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-xl text-xs sm:text-sm font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] transition-all active:scale-95"
-                                        >
-                                            <FaExternalLinkAlt size={14} />
-                                            Live Demo
-                                        </a>
-                                        <a
-                                            href={project.codeLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/5 text-white/80 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-widest border border-white/10 hover:bg-white/10 transition-all active:scale-95"
-                                        >
-                                            <FaGithub size={16} />
-                                            View Code
-                                        </a>
-                                    </motion.div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
+                {count > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => go(-1)}
+                      aria-label="Previous screenshot"
+                      className="absolute left-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-ink/80 backdrop-blur-md transition-colors hover:border-fg sm:grid"
+                    >
+                      <FiChevronLeft aria-hidden />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => go(1)}
+                      aria-label="Next screenshot"
+                      className="absolute right-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-ink/80 backdrop-blur-md transition-colors hover:border-fg sm:grid"
+                    >
+                      <FiChevronRight aria-hidden />
+                    </button>
+                    <span className="absolute bottom-2.5 right-2.5 rounded-full bg-ink/80 px-2 py-0.5 font-mono text-[0.64rem] tabular-nums text-muted backdrop-blur-md sm:bottom-3 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:px-2.5 sm:py-1 sm:text-[0.68rem]">
+                      {index + 1} / {count}
+                    </span>
+                  </>
                 )}
-            </AnimatePresence>
-            <style jsx>{`
-                .glass-effect {
-                    background: rgba(10, 25, 41, 0.4);
-                    backdrop-filter: blur(20px);
-                    -webkit-backdrop-filter: blur(20px);
-                }
-                .custom-scrollbar::-webkit-scrollbar {
-                    width: 5px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-track {
-                    background: rgba(255, 255, 255, 0.05);
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: rgba(139, 92, 246, 0.3);
-                    border-radius: 10px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: rgba(139, 92, 246, 0.5);
-                }
-            `}</style>
-        </>
-    );
-};
+              </div>
 
-export default ProjectDetail;
+              {count > 1 && (
+                <>
+                  {/* Phones: page dots */}
+                  <div className="mt-3 flex justify-center gap-1.5 sm:hidden" aria-hidden>
+                    {images.map((_, i) => (
+                      <span
+                        key={i}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          i === index ? "w-4 bg-fg" : "w-1.5 bg-white/20"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <p className="mt-2 text-center text-[0.72rem] text-subtle sm:hidden">Swipe to browse screens</p>
+
+                  <div
+                    ref={thumbsRef}
+                    className="no-scrollbar relative mx-auto mt-4 hidden max-w-5xl gap-2 overflow-x-auto pb-1 sm:flex"
+                  >
+                    {images.map((img, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        data-thumb={i}
+                        onClick={() => setPage([i, i > index ? 1 : -1])}
+                        aria-label={`Show screenshot ${i + 1}`}
+                        aria-current={i === index ? "true" : undefined}
+                        className={`relative aspect-[16/9] w-24 shrink-0 overflow-hidden rounded-md border transition-all duration-300 ${
+                          i === index ? "border-accent opacity-100" : "border-line opacity-50 hover:opacity-90"
+                        }`}
+                      >
+                        <Image src={img} alt="" fill sizes="96px" className="object-cover object-top" />
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Details */}
+            <div className="grid grid-cols-1 gap-8 px-5 py-6 sm:px-8 sm:py-10 lg:grid-cols-12 lg:gap-14">
+              <div className="space-y-8 lg:order-2 lg:col-span-5 lg:space-y-10">
+                <p className="text-pretty text-[1rem] leading-relaxed text-fg/90 lg:hidden">{shown.description}</p>
+                <div>
+                  <h3 className="label-mono mb-4 text-subtle">Key features</h3>
+                  <ul className="space-y-3">
+                    {shown.achievements.map((item) => (
+                      <li key={item} className="flex gap-3 text-[0.92rem] leading-snug text-fg/90">
+                        <span aria-hidden className="mt-[0.55em] h-1 w-3 shrink-0 bg-accent" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="label-mono mb-4 text-subtle">Stack</h3>
+                  <ul className="flex flex-wrap gap-1.5">
+                    {shown.technologies.map((tech) => (
+                      <li
+                        key={tech}
+                        className="rounded-full border border-line px-2.5 py-1 font-mono text-[0.72rem] text-muted"
+                      >
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7">
+                {(shown.problem || shown.built) && (
+                  <dl className="mb-8 grid gap-3 sm:grid-cols-2 sm:gap-6">
+                    {shown.problem && (
+                      <div className="rounded-2xl border border-line bg-ink/40 p-4 sm:p-5">
+                        <dt className="label-mono mb-2 text-subtle">Problem</dt>
+                        <dd className="text-[0.92rem] leading-relaxed text-muted">{shown.problem}</dd>
+                      </div>
+                    )}
+                    {shown.built && (
+                      <div className="rounded-2xl border border-line bg-ink/40 p-4 sm:p-5">
+                        <dt className="label-mono mb-2 text-subtle">What I built</dt>
+                        <dd className="text-[0.92rem] leading-relaxed text-muted">{shown.built}</dd>
+                      </div>
+                    )}
+                  </dl>
+                )}
+                <h3 className="label-mono mb-4 text-subtle">Overview</h3>
+                <p className="text-pretty text-[0.95rem] leading-relaxed text-muted">
+                  {shown.longDescription ?? shown.description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Phones: pinned actions */}
+          <div className="flex shrink-0 gap-2.5 border-t border-line bg-surface px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:hidden">
+            <a
+              href={shown.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-12 flex-1 items-center justify-center gap-1.5 rounded-full bg-fg text-[0.92rem] font-medium text-ink active:scale-[0.98]"
+            >
+              Open live site <FiArrowUpRight aria-hidden />
+            </a>
+            <a
+              href={shown.code}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Source code (opens in a new tab)"
+              className="inline-flex h-12 items-center justify-center gap-1.5 rounded-full border border-line-strong px-5 text-[0.92rem]"
+            >
+              <FiGithub aria-hidden /> Code
+            </a>
+          </div>
+        </>
+      )}
+    </Dialog>
+  );
+}
