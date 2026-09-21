@@ -1,31 +1,174 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------
+   Design tokens
+   A neutral ink canvas lets project screenshots carry the color;
+   a single ember accent is reserved for emphasis and interaction.
+---------------------------------------------------------------- */
+@theme {
+  --color-ink: #0a0a0b;
+  --color-surface: #111113;
+  --color-surface-2: #18181b;
+  --color-line: #ffffff14;
+  --color-line-strong: #ffffff26;
+  --color-fg: #ededef;
+  --color-muted: #a1a1aa;
+  --color-subtle: #8a8a93;
+  --color-accent: #ff7a3d;
+  --color-accent-soft: #ff7a3d1f;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1240px;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2.5rem;
   }
 }
 
+/* Small uppercase mono label used for all metadata */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+html {
+  /* The page itself never scrolls sideways; only purpose-built rails do */
+  overflow-x: hidden;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+  /* Keeps pinch-zoom but drops double-tap zoom, so taps never jolt the page */
+  touch-action: manipulation;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  overflow-x: hidden; /* fallback for Safari < 16 */
+  overflow-x: clip;
+}
+
+/* Clears the fixed header (taller on phones, where it carries the section tabs) */
+section[id] {
+  scroll-margin-top: 6.75rem;
+  @media (width >= 48rem) {
+    scroll-margin-top: 5rem;
+  }
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Focus rings are for keyboard users; hide them after a tap or click */
+:root[data-input="pointer"] :focus-visible {
+  outline: none;
+}
+
+/* Form fields show their own focus state (accent border) instead of a ring */
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
+/* No grey flash box on tap (Android / iOS) */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Film-grain texture: static, GPU-cheap, adds depth to flat black */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hero dot grid; the pointer spotlight brightens dots locally */
+.dot-grid {
+  background-image: radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 40%, transparent 100%);
+}
+
+.dot-grid-spot {
+  background-image: radial-gradient(rgb(255 122 61 / 0.55) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(
+    260px circle at var(--spot-x, -999px) var(--spot-y, -999px),
+    #000 0%,
+    transparent 100%
+  );
+}
+
+/* Request-trace pulses in the hero diagram */
+@keyframes travel-y {
+  0% { transform: translateY(-100%); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(420%); opacity: 0; }
+}
+
+@keyframes travel-x {
+  0% { transform: translateX(-100%); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(420%); opacity: 0; }
+}
+
+@keyframes node-ping {
+  0%, 100% { border-color: var(--color-line-strong); }
+  50% { border-color: rgb(255 122 61 / 0.6); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.pulse-y { animation: travel-y 2.4s var(--ease-out-expo) infinite; }
+.pulse-x { animation: travel-x 2.4s var(--ease-out-expo) infinite; }
+.node-ping { animation: node-ping 2.4s ease-in-out infinite; }
+.caret { animation: blink 1.1s steps(1) infinite; }
+
+/* Hide scrollbars on horizontal rails while keeping them scrollable */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+.thin-scrollbar { scrollbar-width: thin; scrollbar-color: var(--color-line-strong) transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

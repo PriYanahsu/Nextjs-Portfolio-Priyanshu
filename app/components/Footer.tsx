@@ -1,127 +1,64 @@
-"use client";
-import React from "react";
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaHandshake } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { SiHackerrank, SiLeetcode, SiMedium } from "react-icons/si";
+import { FiArrowUp } from "react-icons/fi";
+import { navLinks, profile, socials } from "../data/portfolio";
+import LocalTime from "./ui/LocalTime";
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { icon: FaGithub, href: "https://github.com/PriYanahsu", label: "GitHub" },
-    { icon: FaLinkedin, href: "https://www.linkedin.com/in/priyanshukumar1265/", label: "LinkedIn" },
-    { icon: FaHandshake, href: "https://topmate.io/dev_priyanshu", label: "Topmate" },
-    { icon: SiMedium, href: "https://medium.com/@priyanshu.dev.agile", label: "Medium" },
-    { icon: FaEnvelope, href: "mailto:priyanshu.dev.agile@gmail.com", label: "Email" },
-    { icon: FaWhatsapp, href: "https://wa.me/916006935523", label: "WhatsApp" },
-    { icon: SiLeetcode, href: "https://leetcode.com/u/PriyAnshu1265/", label: "LeetCode" },
-    { icon: SiHackerrank, href: "https://www.hackerrank.com/profile/priyanshukuma120", label: "HackerRank" },
-  ];
-
+export default function Footer() {
   return (
-    <motion.footer
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative bg-[#040D12] pt-16 pb-8 overflow-hidden"
-    >
-      {/* Top Border with Gradient glow effect */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
-
-          {/* Column 1: Branding */}
-          <div className="md:col-span-5 space-y-6">
-            <div>
-              <h2 className="text-2xl font-black text-white tracking-tighter mb-2">
-                <span className="bg-gradient-to-r from-violet-400 to-indigo-500 bg-clip-text text-transparent">
-                  Priyanshu Kumar
-                </span>
-              </h2>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
-                Software Engineer & Full Stack Product Engineer focused on building high-performance
-                digital solutions with a premium design aesthetic.
-              </p>
-            </div>
-
-            {/* Social Links - Glassmorphic Style */}
-            <div className="flex flex-wrap gap-3">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-white/5 border border-white/10 rounded-xl text-gray-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-300 shadow-lg"
-                  aria-label={social.label}
-                  whileHover={{ y: -3, scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <social.icon size={18} />
-                </motion.a>
-              ))}
-            </div>
+    <footer className="border-t border-line">
+      <div className="container-page py-12 md:py-16">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <p className="text-lg font-medium tracking-[-0.02em]">{profile.name}</p>
+            <p className="mt-1 text-[0.92rem] text-muted">
+              {profile.role} · {profile.location}
+            </p>
+            <p className="mt-4 font-mono text-[0.72rem] text-subtle">
+              Local time <LocalTime timeZone={profile.timezone} /> IST
+            </p>
           </div>
 
-          {/* Column 2: Navigation */}
-          <div className="md:col-span-3 space-y-6">
-            <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-              Quick Navigation
-            </h3>
-            <ul className="grid grid-cols-2 md:grid-cols-1 gap-3">
-              {["Home", "About", "Projects", "Skills", "Contact"].map((item) => (
-                <li key={item}>
-                  <a
-                    href={item === "Home" ? "#" : `#${item.toLowerCase()}`}
-                    className="text-sm text-gray-400 hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2 group"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-indigo-400 transition-colors" />
-                    {item}
+          <nav aria-label="Footer" className="md:col-span-3">
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 md:grid-cols-1">
+              {[...navLinks, { label: "Contact", id: "contact" }].map((link) => (
+                <li key={link.id}>
+                  <a href={`#${link.id}`} className="text-[0.92rem] text-muted transition-colors hover:text-fg">
+                    {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Column 3: Contact Info */}
-          <div className="md:col-span-4 space-y-6">
-            <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-              Get in touch
-            </h3>
-            <div className="space-y-4">
-              <a
-                href="mailto:priyanshu.dev.agile@gmail.com"
-                className="block group"
-              >
-                <p className="text-[9px] text-gray-600 uppercase font-bold tracking-tighter mb-0.5">Email</p>
-                <p className="text-sm text-gray-300 group-hover:text-white transition-colors">priyanshu.dev.agile@gmail.com</p>
-              </a>
-              <a
-                href="tel:+916006935523"
-                className="block group"
-              >
-                <p className="text-[9px] text-gray-600 uppercase font-bold tracking-tighter mb-0.5">Phone</p>
-                <p className="text-sm text-gray-300 group-hover:text-white transition-colors">+91 6006935523</p>
-              </a>
-            </div>
-          </div>
+          <ul className="flex flex-wrap content-start gap-1.5 md:col-span-4 md:justify-end">
+            {socials.map((s) => (
+              <li key={s.label}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="grid h-9 w-9 place-items-center rounded-full border border-line text-muted transition-colors hover:border-line-strong hover:text-accent"
+                >
+                  <s.icon aria-hidden className="h-4 w-4" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[11px] text-gray-600 font-medium">
-            &copy; {currentYear} Priyanshu Kumar. Architected with passion.
+        <div className="mt-12 flex flex-col-reverse gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono text-[0.72rem] text-subtle">
+            © {new Date().getFullYear()} {profile.name}. Designed and built with Next.js.
           </p>
-          <div className="flex gap-6 text-[11px] text-gray-600 font-medium">
-            <span className="hover:text-gray-400 transition-colors cursor-default">Privacy Policy</span>
-            <span className="hover:text-gray-400 transition-colors cursor-default">Terms of Service</span>
-          </div>
+          <a
+            href="#top"
+            className="group inline-flex items-center gap-2 self-start font-mono text-[0.72rem] uppercase tracking-[0.08em] text-subtle transition-colors hover:text-fg sm:self-auto"
+          >
+            Back to top
+            <FiArrowUp aria-hidden className="transition-transform duration-300 group-hover:-translate-y-0.5" />
+          </a>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
-};
-
-export default Footer;
+}

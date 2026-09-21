@@ -1,201 +1,148 @@
-/* eslint-disable react/no-unescaped-entities */
-'use client';
-import { FaLinkedin, FaGithub, FaBriefcase, FaLaptopCode, FaHandshake, FaWhatsapp, FaEnvelope } from "react-icons/fa";
-import { SiLeetcode, SiHackerrank, SiMedium } from "react-icons/si";
-import { MdWorkspacePremium } from "react-icons/md";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { aboutFacts, profile, services } from "../data/portfolio";
+import SectionHeading from "./ui/SectionHeading";
+import Reveal from "./ui/Reveal";
 
-const About = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
-  const stats = [
-    { icon: <SiLeetcode className="text-yellow-400" size={28} />, value: "450+", label: "LeetCode Problems" },
-    { icon: <SiHackerrank className="text-green-400" size={28} />, value: "5⭐", label: "HackerRank Java" },
-    { icon: <MdWorkspacePremium className="text-purple-400" size={28} />, value: "5⭐", label: "HackerRank MySQL" },
-    { icon: <FaBriefcase className="text-blue-400" size={28} />, value: "2+", label: "Years Experience" }
-  ];
-
-  const expertise = [
-    {
-      title: "Frontend Development",
-      skills: ["React.js", "Next.js", "React Native", "Tailwind CSS"],
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "Backend Development",
-      skills: ["Spring Boot (Java)", "FastAPI (Python)", "RESTful APIs"],
-      color: "from-green-500 to-emerald-500"
-    },
-    {
-      title: "Database & Cloud",
-      skills: ["PostgreSQL", "MySQL", "MongoDB", "Supabase", "Firebase"],
-      color: "from-purple-500 to-pink-500"
-    }
-  ];
-
-  const socialLinks = [
-    { href: "https://wa.me/916006935523", icon: <FaWhatsapp size={22} />, label: "WhatsApp", color: "text-green-500 hover:text-green-400" },
-    { href: "mailto:priyanshu.dev.agile@gmail.com", icon: <FaEnvelope size={22} />, label: "Email", color: "text-emerald-400 hover:text-emerald-300" },
-    { href: "https://medium.com/@priyanshu.dev.agile", icon: <SiMedium size={22} />, label: "Medium", color: "text-gray-300 hover:text-white" },
-    { href: "https://github.com/PriYanahsu", icon: <FaGithub size={22} />, label: "GitHub", color: "text-gray-400 hover:text-gray-300" },
-    { href: "https://www.linkedin.com/in/priyanshukumar1265/", icon: <FaLinkedin size={22} />, label: "LinkedIn", color: "text-blue-400 hover:text-blue-300" },
-    { href: "https://topmate.io/dev_priyanshu", icon: <FaHandshake size={22} />, label: "Topmate", color: "text-violet-400 hover:text-violet-300" },
-    { href: "https://leetcode.com/u/PriyAnshu1265/", icon: <SiLeetcode size={22} />, label: "LeetCode", color: "text-yellow-400 hover:text-yellow-300" },
-    { href: "https://www.hackerrank.com/profile/priyanshukuma120", icon: <SiHackerrank size={22} />, label: "HackerRank", color: "text-green-400 hover:text-green-300" },
-  ];
-
+export default function About() {
   return (
-    <motion.section
-      id="about"
-      className="min-h-[60vh] md:min-h-[70vh] w-full flex items-center justify-center bg-gradient-to-b from-[#040D12] to-[#0A1929] text-white px-4 py-16"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
-      variants={containerVariants}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        {/* Section Title */}
-        <div className="text-center mb-12">
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-white mb-3">
-            About
-            <span className="bg-gradient-to-r from-violet-400 to-indigo-500 text-transparent bg-clip-text"> Me</span>
-          </motion.h2>
-          <motion.div
-            variants={itemVariants}
-            className="h-1 w-20 bg-gradient-to-r from-violet-600 to-indigo-600 mx-auto rounded-full"
-          />
-        </div>
+    <section id="about" aria-labelledby="about-title" className="border-t border-line py-14 md:py-28">
+      <div className="container-page">
+        <SectionHeading
+          id="about-title"
+          index="02"
+          label="About"
+          title={
+            <>
+              I care about the whole product,{" "}
+              <span className="font-serif font-normal italic tracking-[-0.01em] text-muted">
+                not just my layer of it.
+              </span>
+            </>
+          }
+        />
 
-        {/* Main Content Container */}
-        <div className="max-w-5xl mx-auto">
-          {/* Introduction */}
-          <div className="text-center mb-12">
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-[#0A1929]/50 backdrop-blur-sm rounded-full border border-gray-700">
-              <FaLaptopCode className="text-cyan-400" size={20} />
-              <span className="text-gray-300 text-sm">Software Engineer @ Cognivac</span>
-            </motion.div>
-
-            <motion.p variants={itemVariants} className="text-gray-300 text-base md:text-lg leading-relaxed mb-4">
-              I'm an <span className="text-white font-semibold">MCA graduate</span> and{" "}
-              <span className="text-white font-semibold">Full Stack Developer</span> specializing in building
-              scalable, production-grade web and mobile applications. Currently working at{" "}
-              <span className="text-cyan-400 font-semibold">Cognivac</span>, I also collaborate with clients
-              as a <span className="text-white font-semibold">freelance developer</span>, delivering reliable,
-              business-driven software solutions.
-            </motion.p>
-
-            <motion.p variants={itemVariants} className="text-gray-300 text-base md:text-lg leading-relaxed">
-              I'm passionate about solving complex problems with clean, efficient code and delivering
-              impactful digital solutions that combine <span className="text-white font-semibold">performance</span>,{" "}
-              <span className="text-white font-semibold">scalability</span>, and exceptional{" "}
-              <span className="text-white font-semibold">user experience</span>.
-            </motion.p>
-          </div>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                className="bg-[#0A1929]/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:scale-105"
-                variants={itemVariants}
-                whileHover={{ y: -4 }}
-              >
-                <div className="flex justify-center mb-3">{stat.icon}</div>
-                <p className="text-2xl md:text-3xl font-bold text-white text-center mb-1">
-                  {stat.value}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-12 lg:gap-16">
+          {/* Phones: compact profile card */}
+          <Reveal className="md:hidden">
+            <div className="flex items-center gap-4 rounded-[1.4rem] border border-line bg-surface p-3">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl">
+                <Image
+                  src={profile.portrait}
+                  alt={`Portrait of ${profile.name}`}
+                  fill
+                  placeholder="blur"
+                  sizes="80px"
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[1.05rem] font-medium tracking-[-0.01em]">{profile.name}</p>
+                <p className="mt-0.5 text-[0.82rem] text-muted">{profile.company.role}</p>
+                <p className="mt-1.5 inline-flex items-center gap-1.5 font-mono text-[0.68rem] text-subtle">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  {profile.location}
                 </p>
-                <p className="text-xs md:text-sm text-gray-400 text-center">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Expertise Areas */}
-          <div className="mb-12">
-            <div className="grid md:grid-cols-3 gap-6">
-              {expertise.map((area, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-[#0A1929]/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all duration-300"
-                  variants={itemVariants}
-                  whileHover={{ y: -4 }}
-                >
-                  <div className={`inline-block px-4 py-2 rounded-lg bg-gradient-to-r ${area.color} mb-4`}>
-                    <h4 className="text-white font-semibold text-sm">{area.title}</h4>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {area.skills.map((skill, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs px-3 py-1.5 bg-[#040D12] rounded-md text-gray-300 border border-gray-700"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          {/* Engineering Practices */}
-          <motion.div variants={itemVariants} className="bg-gradient-to-r from-[#0A1929]/80 to-[#040D12]/80 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-gray-700 mb-12">
-            <h3 className="text-xl md:text-2xl font-bold text-center mb-4 text-white">
-              Engineering Practices
-            </h3>
-            <p className="text-gray-300 text-center text-sm md:text-base leading-relaxed">
-              I follow solid engineering principles including{" "}
-              <span className="text-cyan-400 font-semibold">Low-Level Design</span>,{" "}
-              <span className="text-cyan-400 font-semibold">Object-Oriented Programming</span>,{" "}
-              <span className="text-cyan-400 font-semibold">MVC Architecture</span>, and{" "}
-              <span className="text-cyan-400 font-semibold">Clean Code Standards</span>.
-              I collaborate in Agile environments using Jira, ClickUp, and Slack, managing codebases with Git, GitHub, and GitLab.
-            </p>
-          </motion.div>
+          {/* Tablet & desktop portrait */}
+          <Reveal className="hidden md:col-span-5 md:block lg:col-span-4" y={32}>
+            <figure className="md:sticky md:top-28">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface">
+                <Image
+                  src={profile.portrait}
+                  alt={`Portrait of ${profile.name}`}
+                  fill
+                  placeholder="blur"
+                  sizes="(min-width: 1024px) 360px, 40vw"
+                  className="object-cover object-top grayscale-[35%] transition-[filter] duration-700 hover:grayscale-0"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/70 to-transparent"
+                />
+              </div>
+              <figcaption className="mt-4 flex items-center justify-between font-mono text-[0.72rem] text-subtle">
+                <span>{profile.name}</span>
+                <span>{profile.location}</span>
+              </figcaption>
+            </figure>
+          </Reveal>
 
-          {/* Social Links */}
-          <div className="text-center">
-            <h3 className="text-xl font-semibold mb-6 text-white">Connect With Me</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
-              {socialLinks.map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={link.href}
+          <div className="md:col-span-7 lg:col-span-7 lg:col-start-6">
+            <Reveal>
+              <p className="text-pretty text-[1.08rem] leading-[1.55] tracking-[-0.01em] sm:text-2xl sm:leading-[1.5]">
+                I&apos;m an MCA graduate and full-stack developer who builds scalable, production-grade web and
+                mobile applications. I work as an engineer at{" "}
+                <span className="text-accent">{profile.company.name}</span>, run{" "}
+                <a
+                  href={profile.venture.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex h-12 w-full items-center justify-center gap-2 rounded-lg border border-gray-700 bg-[#0A1929]/50 px-3 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-gray-600 ${link.color}`}
-                  variants={itemVariants}
-                  whileHover={{ y: -2 }}
+                  className="underline decoration-line-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
                 >
-                  {link.icon}
-                  <span className="text-sm font-medium whitespace-nowrap">{link.label}</span>
-                </motion.a>
-              ))}
-            </div>
+                  {profile.venture.name}
+                </a>
+                , and build business-driven software for freelance clients.
+              </p>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mt-4 text-pretty text-[0.94rem] leading-relaxed text-muted md:mt-6 md:text-base">
+                I enjoy solving complex problems with clean, efficient code: turning requirements into sound data
+                models, secure APIs and interfaces that feel fast. I work in Agile teams with Jira, ClickUp and
+                Slack, and keep codebases healthy with Git, GitHub and GitLab. Outside of shipping, I keep my
+                fundamentals sharp, with 450+ data-structure and algorithm problems solved so far.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.12}>
+              <dl className="mt-8 overflow-hidden rounded-[1.4rem] border border-line bg-surface px-4 md:mt-12 md:rounded-none md:border-0 md:border-t md:bg-transparent md:px-0">
+                {aboutFacts.map((fact) => (
+                  <div
+                    key={fact.label}
+                    className="grid grid-cols-1 gap-1 border-b border-line py-3.5 last:border-b-0 sm:grid-cols-[9rem_1fr] sm:gap-6 md:py-4 md:last:border-b"
+                  >
+                    <dt className="label-mono pt-0.5 text-[0.66rem] text-subtle sm:text-[0.72rem]">{fact.label}</dt>
+                    <dd className="space-y-1 text-[0.92rem] sm:text-[0.95rem]">
+                      {fact.value.map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
           </div>
         </div>
-      </div>
-    </motion.section>
-  );
-};
 
-export default About;
+        {/* Services */}
+        <div className="mt-14 md:mt-32">
+          <Reveal className="mb-4 flex items-end justify-between gap-4 md:mb-8">
+            <h3 className="text-xl font-medium tracking-[-0.03em] sm:text-3xl">How I can help</h3>
+            <a href="#contact" className="label-mono text-subtle transition-colors hover:text-accent">
+              Start a project →
+            </a>
+          </Reveal>
+          <ol className="grid grid-cols-1 gap-2.5 md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-2xl md:border md:border-line md:bg-line">
+            {services.map((service, i) => (
+              <li
+                key={service.title}
+                className="group flex flex-col rounded-[1.3rem] border border-line bg-surface p-4 transition-colors duration-500 md:rounded-none md:border-0 md:bg-ink md:p-8 md:hover:bg-surface"
+              >
+                <span className="label-mono text-accent">0{i + 1}</span>
+                <h4 className="mt-2 text-[1.05rem] font-medium tracking-[-0.02em] md:mt-16 md:text-xl">{service.title}</h4>
+                <p className="mt-1 flex-1 text-[0.86rem] leading-relaxed text-muted md:mt-3 md:text-[0.92rem]">
+                  {service.description}
+                </p>
+                <p className="mt-3 font-mono text-[0.68rem] text-subtle md:mt-6 md:text-[0.72rem]">
+                  {service.stack.join(" · ")}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+  );
+}
