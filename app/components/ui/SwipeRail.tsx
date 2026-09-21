@@ -12,7 +12,9 @@ interface SwipeRailProps {
 }
 
 /**
- * Horizontal, snap-scrolling list for phones. Swipes stay inside the rail
+ * Horizontal, snap-scrolling list for phones. The list is `relative` so absolutely
+ * positioned descendants (e.g. sr-only labels) are clipped by the rail instead of
+ * escaping it and widening the page. Swipes stay inside the rail
  * (overscroll is contained, so the page never shifts) and a slim progress
  * bar shows where you are in the collection.
  */
@@ -49,7 +51,7 @@ export default function SwipeRail({ children, className = "", indicatorClassName
       <ul
         ref={ref}
         aria-label={label}
-        className={`no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain ${className}`}
+        className={`no-scrollbar relative flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain ${className}`}
       >
         {children}
       </ul>
