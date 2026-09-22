@@ -60,8 +60,12 @@ export default function RootLayout({
         <MotionProvider>
           <ScrollProgress />
           <Navbar />
-          <main id="main">{children}</main>
-          <Footer />
+          {/* Mobile browsers ignore overflow-x on html/body when sizing the page, so
+              clip on a real wrapper: nothing inside can widen the page (and the fixed navbar). */}
+          <div className="overflow-x-hidden supports-[overflow:clip]:overflow-x-clip">
+            <main id="main">{children}</main>
+            <Footer />
+          </div>
         </MotionProvider>
       </body>
     </html>

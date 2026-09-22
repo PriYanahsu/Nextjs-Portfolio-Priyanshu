@@ -35,19 +35,14 @@ export default function Certificates() {
       </div>
 
       {/* Phones: contained swipe rail. From sm up: grid. */}
+      <Reveal y={20}>
       <SwipeRail
         label="Certificates"
         indicatorClassName="sm:hidden"
         className="scroll-px-5 gap-3 px-5 pb-1 sm:container-page sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:pb-0 md:gap-5 lg:grid-cols-4 xl:grid-cols-5"
       >
-        {certificates.map((cert, i) => (
-          <Reveal
-            as="li"
-            key={cert.title}
-            delay={(i % 5) * 0.05}
-            y={20}
-            className="w-[62%] min-w-0 max-w-[15rem] shrink-0 snap-start sm:w-auto sm:max-w-none"
-          >
+        {certificates.map((cert) => (
+          <li key={cert.title} className="w-[62%] min-w-0 max-w-[15rem] shrink-0 snap-start sm:w-auto sm:max-w-none">
             <article className="group flex h-full flex-col rounded-[1.2rem] border border-line bg-surface p-2 md:rounded-none md:border-0 md:bg-transparent md:p-0">
               <button
                 type="button"
@@ -80,9 +75,10 @@ export default function Certificates() {
                 </a>
               </div>
             </article>
-          </Reveal>
+          </li>
         ))}
       </SwipeRail>
+      </Reveal>
 
       <Dialog
         open={Boolean(selected)}
