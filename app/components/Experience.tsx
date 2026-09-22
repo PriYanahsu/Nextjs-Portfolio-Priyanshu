@@ -82,7 +82,7 @@ export default function Experience() {
                   </dl>
                 )}
 
-                <MobileExpandable label="highlights">
+                <MobileExpandable label="highlights" id={`highlights-${job.company}`}>
                   <ul className="mt-4 space-y-3 md:mt-8">
                     {job.points.map((point) => (
                       <li key={point} className="flex gap-3 text-[0.9rem] leading-relaxed text-muted md:text-[0.95rem]">
