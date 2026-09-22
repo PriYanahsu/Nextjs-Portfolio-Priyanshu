@@ -37,7 +37,7 @@ import {
   SiReddit,
 } from "react-icons/si";
 
-import portrait from "../assets/HeroImg.jpg";
+import portrait from "../assets/HeroPortrait.png";
 
 import HireCheck1 from "../assets/portfolio/hirecheck1.png";
 import HireCheck2 from "../assets/portfolio/hirecheck2.png";
@@ -62,6 +62,19 @@ import FoodCal6 from "../assets/portfolio/FoodCal6.png";
 import FoodCal7 from "../assets/portfolio/FoodCal7.png";
 import FoodCal8 from "../assets/portfolio/FoodCal8.png";
 import FoodCal9 from "../assets/portfolio/FoodCal9.png";
+import FoodCalMobileLanding from "../assets/portfolio/FoodCalMobile-landing.png";
+import FoodCalMobileSignin from "../assets/portfolio/FoodCalMobile-signin.png";
+import FoodCalMobileNutrition from "../assets/portfolio/FoodCalMobile-nutrition.png";
+import FoodCalMobileScan from "../assets/portfolio/FoodCalMobile-scan.png";
+import FoodCalMobileHistory from "../assets/portfolio/FoodCalMobile-history.png";
+import FoodCalMobilePlan from "../assets/portfolio/FoodCalMobile-plan.png";
+import FoodCalMobileMeals from "../assets/portfolio/FoodCalMobile-meals.png";
+import FoodCalMobileMeal from "../assets/portfolio/FoodCalMobile-meal.png";
+import FoodCalMobileToday from "../assets/portfolio/FoodCalMobile-today.png";
+import FoodCalMobileWater from "../assets/portfolio/FoodCalMobile-water.png";
+import FoodCalMobileWeight from "../assets/portfolio/FoodCalMobile-weight.png";
+import FoodCalMobileCoach from "../assets/portfolio/FoodCalMobile-coach.png";
+import FoodCalMobileMenu from "../assets/portfolio/FoodCalMobile-menu.png";
 
 import FileForge1 from "../assets/portfolio/FileForge1.png";
 import FileForge2 from "../assets/portfolio/FileForge2.png";
@@ -252,6 +265,10 @@ export interface Project {
   longDescription?: string;
   image: StaticImageData;
   gallery?: StaticImageData[];
+  /** Short names for `image` followed by each `gallery` screen, shown as captions. */
+  captions?: string[];
+  /** Captioned portrait screens. When set, the case study splits into Desktop / Mobile. */
+  mobileGallery?: { src: StaticImageData; label: string }[];
   technologies: string[];
   achievements: string[];
   live: string;
@@ -292,7 +309,7 @@ export const projects: Project[] = [
   },
   {
     slug: "foodcal",
-    tint: "#00e676",
+    tint: "#a3e635",
     title: "FoodCal",
     category: "AI · Health & Fitness",
     year: "2025",
@@ -307,6 +324,33 @@ export const projects: Project[] = [
       "FoodCal is a health and fitness application that uses AI and computer vision to make nutrition tracking effortless. Users take a photo or use a live camera feed; the app identifies food items, estimates portions and calculates nutritional values in real time. It includes persistent data tracking, personalized recommendations based on BMI and activity level, and step counting with anti-cheat validation. Next.js powers a fast frontend while Supabase handles authentication and real-time data.",
     image: FoodCal,
     gallery: [FoodCal1, FoodCal2, FoodCal3, FoodCal4, FoodCal5, FoodCal6, FoodCal7, FoodCal8, FoodCal9],
+    captions: [
+      "Landing",
+      "Sign in",
+      "Create account",
+      "First-day dashboard",
+      "Daily dashboard",
+      "Snap a meal",
+      "History calendar",
+      "My plan",
+      "Notifications",
+      "Profile & goals",
+    ],
+    mobileGallery: [
+      { src: FoodCalMobileLanding, label: "Landing" },
+      { src: FoodCalMobileSignin, label: "Sign in" },
+      { src: FoodCalMobileNutrition, label: "Daily dashboard" },
+      { src: FoodCalMobileScan, label: "Snap a meal" },
+      { src: FoodCalMobileMeal, label: "AI meal breakdown" },
+      { src: FoodCalMobileMeals, label: "Today's meals" },
+      { src: FoodCalMobileToday, label: "Macro summary" },
+      { src: FoodCalMobileHistory, label: "History calendar" },
+      { src: FoodCalMobileWater, label: "Water tracker" },
+      { src: FoodCalMobileWeight, label: "Weight log" },
+      { src: FoodCalMobilePlan, label: "My plan" },
+      { src: FoodCalMobileCoach, label: "AI coach" },
+      { src: FoodCalMobileMenu, label: "Account menu" },
+    ],
     technologies: ["Next.js", "Supabase", "Python", "OpenCV", "Gemini", "OpenAI", "PWA"],
     achievements: [
       "Real-time food calorie detection from the camera",
