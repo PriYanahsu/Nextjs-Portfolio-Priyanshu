@@ -1,10 +1,13 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.001 });
+  // Clamp to 0–1: iOS rubber-band overscroll pushes progress past 1, which would
+  // stretch this fixed bar beyond the screen and widen the page.
+  const progress = useTransform(scrollYProgress, [0, 1], [0, 1], { clamp: true });
+  const scaleX = useSpring(progress, { stiffness: 140, damping: 30, restDelta: 0.001 });
 
   return (
     <motion.div

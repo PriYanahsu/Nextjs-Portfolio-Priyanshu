@@ -47,7 +47,8 @@ export default function SwipeRail({ children, className = "", indicatorClassName
   }, []);
 
   return (
-    <div>
+    // Clip here too, so a swipe can never spill the rail's content onto the page.
+    <div className="min-w-0 overflow-x-hidden supports-[overflow:clip]:overflow-x-clip">
       <ul
         ref={ref}
         aria-label={label}
