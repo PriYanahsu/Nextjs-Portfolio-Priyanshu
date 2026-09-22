@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { aboutFacts, profile, services } from "../data/portfolio";
 import SectionHeading from "./ui/SectionHeading";
 import Reveal from "./ui/Reveal";
+import Portrait from "./ui/Portrait";
 
 export default function About() {
   return (
@@ -26,14 +26,7 @@ export default function About() {
           <Reveal className="md:hidden">
             <div className="flex items-center gap-4 rounded-[1.4rem] border border-line bg-surface p-3">
               <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl">
-                <Image
-                  src={profile.portrait}
-                  alt={`Portrait of ${profile.name}`}
-                  fill
-                  placeholder="blur"
-                  sizes="80px"
-                  className="object-cover object-top"
-                />
+                <Portrait alt={`Portrait of ${profile.name}`} sizes="80px" />
               </div>
               <div className="min-w-0">
                 <p className="text-[1.05rem] font-medium tracking-[-0.01em]">{profile.name}</p>
@@ -50,17 +43,13 @@ export default function About() {
           <Reveal className="hidden md:col-span-5 md:block lg:col-span-4" y={32}>
             <figure className="md:sticky md:top-28">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface">
-                <Image
-                  src={profile.portrait}
+                <Portrait
                   alt={`Portrait of ${profile.name}`}
-                  fill
-                  placeholder="blur"
                   sizes="(min-width: 1024px) 360px, 40vw"
-                  className="object-cover object-top grayscale-[35%] transition-[filter] duration-700 hover:grayscale-0"
                 />
                 <div
                   aria-hidden
-                  className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/70 to-transparent"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/80 to-transparent"
                 />
               </div>
               <figcaption className="mt-4 flex items-center justify-between font-mono text-[0.72rem] text-subtle">

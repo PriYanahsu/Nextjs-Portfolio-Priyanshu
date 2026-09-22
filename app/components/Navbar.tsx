@@ -82,8 +82,8 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -24, opacity: 0 }}
-        animate={{ y: hidden ? -96 : 0, opacity: 1 }}
+        initial={false}
+        animate={{ y: hidden ? -96 : 0 }}
         transition={{ duration: 0.5, ease: EASE }}
         className="fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)]"
       >

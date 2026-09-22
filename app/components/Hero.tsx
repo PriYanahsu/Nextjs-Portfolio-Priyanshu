@@ -2,19 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { FiArrowDown, FiDownload } from "react-icons/fi";
 import { profile, stats } from "../data/portfolio";
 import TraceCard from "./TraceCard";
 import Counter from "./ui/Counter";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 18 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, ease: EASE, delay },
-});
+// Entrances are CSS (see .enter-* in globals.css) so they start with the HTML,
+// not after hydration; framer-motion here kept the hero invisible until JS ran.
+const delay = (seconds: number) => ({ "--d": `${seconds}s` }) as React.CSSProperties;
 
 const headline: React.ReactNode[] = [
   "Full-stack engineer",
@@ -66,16 +61,21 @@ export default function Hero() {
 
       <div className="container-page">
         {/* Identity row */}
-        <motion.div {...fadeUp(0.05)} className="mb-10 flex flex-wrap items-center justify-between gap-4 lg:mb-14">
+        <div
+          style={delay(0.05)}
+          className="enter-fade mb-10 flex flex-wrap items-center justify-between gap-4 lg:mb-14"
+        >
           <div className="flex items-center gap-3">
-            <Image
-              src={profile.portrait}
-              alt=""
-              width={44}
-              height={44}
-              priority
-              className="h-11 w-11 rounded-full object-cover object-top ring-1 ring-line-strong"
-            />
+            <span className="relative h-11 w-11 overflow-hidden rounded-full ring-1 ring-line-strong">
+              <Image
+                src={profile.portrait}
+                alt=""
+                fill
+                priority
+                sizes="44px"
+                className="object-cover object-top"
+              />
+            </span>
             <div className="leading-tight">
               <p className="text-[0.95rem] font-medium">{profile.name}</p>
               <p className="font-mono text-[0.72rem] text-subtle">
@@ -90,7 +90,7 @@ export default function Hero() {
             </span>
             Open to new opportunities
           </p>
-        </motion.div>
+        </div>
 
         {/* Headline with line-mask reveal */}
         <h1
@@ -99,20 +99,15 @@ export default function Hero() {
         >
           {headline.map((line, i) => (
             <span key={i} className="block overflow-hidden pb-[0.08em]">
-              <motion.span
-                className="block"
-                initial={{ y: "105%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, ease: EASE, delay: 0.15 + i * 0.09 }}
-              >
+              <span className="enter-line block" style={delay(0.1 + i * 0.08)}>
                 {line}
-              </motion.span>
+              </span>
             </span>
           ))}
         </h1>
 
         <div className="mt-10 grid grid-cols-1 gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-12">
-          <motion.div {...fadeUp(0.5)} className="lg:col-span-6 xl:col-span-5">
+          <div style={delay(0.3)} className="enter-fade lg:col-span-6 xl:col-span-5">
             <p className="max-w-xl text-pretty text-[1.02rem] leading-relaxed text-muted sm:text-lg">
               I design and ship web and mobile applications with{" "}
               <span className="text-fg">React, Next.js, Spring Boot</span> and{" "}
@@ -146,22 +141,17 @@ export default function Hero() {
                 <FiDownload aria-hidden />
               </a>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.65 }}
-            className="lg:col-span-6 xl:col-span-5 xl:col-start-8"
-          >
+          <div style={delay(0.4)} className="enter-fade lg:col-span-6 xl:col-span-5 xl:col-start-8">
             <TraceCard />
-          </motion.div>
+          </div>
         </div>
 
         {/* Proof strip */}
-        <motion.dl
-          {...fadeUp(0.8)}
-          className="mt-16 grid grid-cols-2 border-t border-line md:mt-24 md:grid-cols-4"
+        <dl
+          style={delay(0.5)}
+          className="enter-fade mt-16 grid grid-cols-2 border-t border-line md:mt-24 md:grid-cols-4"
         >
           {stats.map((stat, i) => (
             <div
@@ -182,7 +172,7 @@ export default function Hero() {
               </dd>
             </div>
           ))}
-        </motion.dl>
+        </dl>
       </div>
     </section>
   );
