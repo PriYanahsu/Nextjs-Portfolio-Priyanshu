@@ -37,7 +37,7 @@ import {
   SiReddit,
 } from "react-icons/si";
 
-import portrait from "../assets/HeroPortrait.png";
+import portrait from "../assets/HeroPortraitLit.png";
 
 import HireCheck1 from "../assets/portfolio/hirecheck1.png";
 import HireCheck2 from "../assets/portfolio/hirecheck2.png";

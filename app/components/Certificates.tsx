@@ -18,6 +18,7 @@ export default function Certificates() {
     setSelected(cert);
   };
 
+  
   return (
     <section id="credentials" aria-labelledby="credentials-title" className="border-t border-line py-14 md:py-28">
       <div className="container-page">
