@@ -359,7 +359,7 @@ export const projects: Project[] = [
       "Step counting with anti-cheat validation and goal tracking",
       "Health dashboards and fitness notifications",
     ],
-    live: "https://food-cal-fe-ewy4.vercel.app/login?redirectedFrom=%2F",
+    live: "https://foodcal-fn-three.vercel.app/",
     code: "https://github.com/krixen-org/foodCal_fe",
   },
   {
