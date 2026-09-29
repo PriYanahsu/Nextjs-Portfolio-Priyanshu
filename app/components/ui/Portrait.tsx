@@ -1,5 +1,5 @@
 import Image from "next/image";
-import portrait from "../../assets/HeroPortraitLit.png";
+import portrait from "../../assets/Priyanshu_Profile.png";
 
 interface PortraitProps {
   alt: string;
