@@ -5,7 +5,7 @@ import Portrait from "./ui/Portrait";
 
 export default function About() {
   return (
-    <section id="about" aria-labelledby="about-title" className="border-t border-line py-14 md:py-28">
+    <section id="about" aria-labelledby="about-title" className="section-band border-t border-line py-14 md:py-28">
       <div className="container-page">
         <SectionHeading
           id="about-title"
@@ -24,7 +24,7 @@ export default function About() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-12 lg:gap-16">
           {/* Phones: compact profile card */}
           <Reveal className="md:hidden">
-            <div className="flex items-center gap-4 rounded-[1.4rem] border border-line bg-surface p-3">
+            <div className="lift-card flex items-center gap-4 rounded-[1.4rem] border border-line bg-surface p-3">
               <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl">
                 <Portrait alt={`Portrait of ${profile.name}`} sizes="80px" />
               </div>
@@ -42,7 +42,7 @@ export default function About() {
           {/* Tablet & desktop portrait */}
           <Reveal className="hidden md:col-span-5 md:block lg:col-span-4" y={32}>
             <figure className="md:sticky md:top-28">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface">
+              <div className="portrait-card relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface">
                 <Portrait
                   alt={`Portrait of ${profile.name}`}
                   sizes="(min-width: 1024px) 360px, 40vw"
@@ -86,7 +86,7 @@ export default function About() {
             </Reveal>
 
             <Reveal delay={0.12}>
-              <dl className="mt-8 overflow-hidden rounded-[1.4rem] border border-line bg-surface px-4 md:mt-12 md:rounded-none md:border-0 md:border-t md:bg-transparent md:px-0">
+              <dl className="lift-card mt-8 overflow-hidden rounded-[1.4rem] border border-line bg-surface px-4 md:mt-12 md:rounded-none md:border-0 md:border-t md:bg-transparent md:px-0">
                 {aboutFacts.map((fact) => (
                   <div
                     key={fact.label}
@@ -113,11 +113,11 @@ export default function About() {
               Start a project →
             </a>
           </Reveal>
-          <ol className="grid grid-cols-1 gap-2.5 md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-2xl md:border md:border-line md:bg-line">
+          <ol className="services grid grid-cols-1 gap-2.5 md:grid-cols-3 md:gap-px md:overflow-hidden md:rounded-2xl md:border md:border-line md:bg-line">
             {services.map((service, i) => (
               <li
                 key={service.title}
-                className="group flex flex-col rounded-[1.3rem] border border-line bg-surface p-4 transition-colors duration-500 md:rounded-none md:border-0 md:bg-ink md:p-8 md:hover:bg-surface"
+                className="service group flex flex-col rounded-[1.3rem] border border-line bg-surface p-4 transition-colors duration-500 md:rounded-none md:border-0 md:bg-ink md:p-8 md:hover:bg-surface"
               >
                 <span className="label-mono text-accent">0{i + 1}</span>
                 <h4 className="mt-2 text-[1.05rem] font-medium tracking-[-0.02em] md:mt-16 md:text-xl">{service.title}</h4>

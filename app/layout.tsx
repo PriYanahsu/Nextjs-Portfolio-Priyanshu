@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import MotionProvider from "./components/ui/MotionProvider";
 import ScrollProgress from "./components/ui/ScrollProgress";
+import { THEME_COLORS, themeInitScript } from "./components/ui/theme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0b",
+  themeColor: THEME_COLORS.dark,
   viewportFit: "cover",
 };
 
@@ -49,7 +50,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+      // data-theme is set by themeInitScript before hydration
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="grain antialiased">
         <a
           href="#main"

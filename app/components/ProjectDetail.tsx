@@ -124,7 +124,7 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
               data-autofocus
               onClick={onClose}
               aria-label="Close"
-              className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/[0.06] text-muted transition-colors hover:text-fg sm:h-10 sm:w-10 sm:border sm:border-line-strong sm:bg-transparent"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-fg/[0.06] text-muted transition-colors hover:text-fg sm:h-10 sm:w-10 sm:border sm:border-line-strong sm:bg-transparent"
             >
               <FiX aria-hidden />
             </button>
@@ -253,7 +253,7 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
                         type="button"
                         onClick={() => go(-1)}
                         aria-label="Previous screenshot"
-                        className="absolute left-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-ink/80 backdrop-blur-md transition-colors hover:border-fg sm:grid"
+                        className="absolute left-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-fg/10 bg-ink/80 backdrop-blur-md transition-colors hover:border-fg sm:grid"
                       >
                         <FiChevronLeft aria-hidden />
                       </button>
@@ -261,7 +261,7 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
                         type="button"
                         onClick={() => go(1)}
                         aria-label="Next screenshot"
-                        className="absolute right-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-ink/80 backdrop-blur-md transition-colors hover:border-fg sm:grid"
+                        className="absolute right-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-fg/10 bg-ink/80 backdrop-blur-md transition-colors hover:border-fg sm:grid"
                       >
                         <FiChevronRight aria-hidden />
                       </button>
@@ -288,7 +288,7 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
                         <span
                           key={i}
                           className={`h-1.5 rounded-full transition-all duration-300 ${
-                            i === index ? "w-4 bg-fg" : "w-1.5 bg-white/20"
+                            i === index ? "w-4 bg-fg" : "w-1.5 bg-fg/20"
                           }`}
                         />
                       ))}

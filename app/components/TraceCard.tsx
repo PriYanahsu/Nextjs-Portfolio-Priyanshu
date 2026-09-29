@@ -15,11 +15,11 @@ export default function TraceCard() {
   return (
     <figure
       aria-label="Request lifecycle across interface, API and data layers"
-      className="relative rounded-2xl border border-line bg-surface/80 p-4 backdrop-blur-sm sm:p-5"
+      className="trace-card relative rounded-2xl border border-line bg-surface/80 p-4 shadow-float backdrop-blur-sm sm:p-5"
     >
       <figcaption className="mb-4 flex items-center justify-between gap-3">
         <span className="label-mono text-subtle">trace · request lifecycle</span>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 font-mono text-[0.68rem] text-emerald-300">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 font-mono text-[0.68rem] text-emerald-300 light:border-emerald-600/25 light:bg-emerald-600/10 light:text-emerald-700">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
           200 OK
         </span>
@@ -29,10 +29,10 @@ export default function TraceCard() {
         {layers.map((layer, i) => (
           <li key={layer.name} className="flex flex-1 items-stretch lg:flex-col">
             <div
-              className="node-ping flex min-w-0 flex-1 flex-col items-center gap-2 rounded-xl border border-line-strong bg-ink/60 px-2 py-3 text-center sm:px-3 lg:flex-row lg:gap-4 lg:px-4 lg:py-3.5 lg:text-left"
+              className="node-ping trace-node flex min-w-0 flex-1 flex-col items-center gap-2 rounded-xl border border-line-strong bg-ink/60 px-2 py-3 text-center sm:px-3 lg:flex-row lg:gap-4 lg:px-4 lg:py-3.5 lg:text-left"
               style={{ animationDelay: `${i * 0.8}s` }}
             >
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/[0.05] text-fg">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-fg/[0.05] text-fg trace-icon">
                 <layer.icon aria-hidden className="h-4 w-4" />
               </span>
               <span className="min-w-0">

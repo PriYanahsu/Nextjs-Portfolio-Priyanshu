@@ -37,7 +37,7 @@ export default function Experience() {
               as="li"
               key={job.role}
               delay={i * 0.05}
-              className="rounded-[1.4rem] border border-line bg-surface p-5 md:grid md:grid-cols-12 md:gap-10 md:rounded-none md:border-0 md:border-t md:bg-transparent md:px-0 md:py-14"
+              className="lift-card rounded-[1.4rem] border border-line bg-surface p-5 md:grid md:grid-cols-12 md:gap-10 md:rounded-none md:border-0 md:border-t md:bg-transparent md:px-0 md:py-14"
             >
               {/* Phones: company left, period chip right. Desktop: period above company. */}
               <div className="flex items-center justify-between gap-3 md:col-span-4 md:flex-col md:items-start md:justify-start md:gap-3 lg:col-span-3">
@@ -60,7 +60,7 @@ export default function Experience() {
                     job.company
                   )}
                 </p>
-                <p className="label-mono shrink-0 rounded-full bg-white/[0.05] px-2.5 py-1 text-[0.62rem] text-subtle md:order-1 md:bg-transparent md:p-0 md:text-[0.72rem]">
+                <p className="label-mono shrink-0 rounded-full bg-fg/[0.05] px-2.5 py-1 text-[0.62rem] text-subtle md:order-1 md:bg-transparent md:p-0 md:text-[0.72rem]">
                   {job.period}
                 </p>
               </div>
@@ -72,9 +72,9 @@ export default function Experience() {
                 </p>
 
                 {job.metrics && (
-                  <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-4 md:mt-8">
+                  <dl className="metrics mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-4 md:mt-8">
                     {job.metrics.map((m) => (
-                      <div key={m.label} className="flex flex-col-reverse bg-surface p-3.5 md:bg-ink md:p-5">
+                      <div key={m.label} className="metric flex flex-col-reverse bg-surface p-3.5 md:bg-ink md:p-5">
                         <dt className="mt-1 text-[0.76rem] text-subtle md:text-[0.8rem]">{m.label}</dt>
                         <dd className="text-xl font-medium tracking-[-0.03em] sm:text-3xl">{m.value}</dd>
                       </div>
@@ -97,7 +97,7 @@ export default function Experience() {
                   {job.stack.map((s, si) => (
                     <li
                       key={s}
-                      className="rounded-full bg-white/[0.05] px-2.5 py-1 font-mono text-[0.66rem] text-subtle md:rounded-none md:bg-transparent md:p-0 md:text-[0.72rem]"
+                      className="rounded-full bg-fg/[0.05] px-2.5 py-1 font-mono text-[0.66rem] text-subtle md:rounded-none md:bg-transparent md:p-0 md:text-[0.72rem]"
                     >
                       {s}
                       {si < job.stack.length - 1 && <span className="hidden whitespace-pre md:inline"> · </span>}

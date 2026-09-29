@@ -22,7 +22,7 @@ export default function FeaturedProject({ project, index, onOpen }: FeaturedProj
     <Reveal
       as="article"
       y={32}
-      className="group/project mb-5 overflow-hidden rounded-[1.6rem] border border-line bg-surface last:mb-0 md:mb-0 md:grid md:items-center md:gap-10 md:overflow-visible md:rounded-none md:border-0 md:border-t md:bg-transparent md:py-16 md:first:border-t-0 md:first:pt-0 lg:grid-cols-12 lg:gap-14 lg:py-20"
+      className="lift-card group/project mb-5 overflow-hidden rounded-[1.6rem] border border-line bg-surface last:mb-0 md:mb-0 md:grid md:items-center md:gap-10 md:overflow-visible md:rounded-none md:border-0 md:border-t md:bg-transparent md:py-16 md:first:border-t-0 md:first:pt-0 lg:grid-cols-12 lg:gap-14 lg:py-20"
     >
       <div className={`lg:col-span-7 ${reverse ? "lg:order-2" : ""}`}>
         <ProjectShowcase project={project} onOpen={onOpen} />
@@ -48,12 +48,12 @@ export default function FeaturedProject({ project, index, onOpen }: FeaturedProj
         {/* Phones: compact chips; full case detail lives in the sheet */}
         <ul className="mt-4 flex flex-wrap gap-1.5 md:hidden">
           {project.technologies.slice(0, MOBILE_CHIPS).map((tech) => (
-            <li key={tech} className="rounded-full bg-white/[0.06] px-2.5 py-1 font-mono text-[0.68rem] text-muted">
+            <li key={tech} className="rounded-full bg-fg/[0.06] px-2.5 py-1 font-mono text-[0.68rem] text-muted">
               {tech}
             </li>
           ))}
           {extra > 0 && (
-            <li className="rounded-full bg-white/[0.06] px-2.5 py-1 font-mono text-[0.68rem] text-subtle">+{extra}</li>
+            <li className="rounded-full bg-fg/[0.06] px-2.5 py-1 font-mono text-[0.68rem] text-subtle">+{extra}</li>
           )}
         </ul>
 
@@ -77,7 +77,7 @@ export default function FeaturedProject({ project, index, onOpen }: FeaturedProj
                 {project.technologies.map((tech) => (
                   <li
                     key={tech}
-                    className="rounded-full border border-line px-2.5 py-1 font-mono text-[0.7rem] text-muted"
+                    className="chip rounded-full border border-line px-2.5 py-1 font-mono text-[0.7rem] text-muted"
                   >
                     {tech}
                   </li>
@@ -101,7 +101,7 @@ export default function FeaturedProject({ project, index, onOpen }: FeaturedProj
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${project.title} live site (opens in a new tab)`}
-            className="grid h-11 w-11 place-items-center rounded-full border border-line-strong text-fg active:bg-white/[0.06]"
+            className="grid h-11 w-11 place-items-center rounded-full border border-line-strong text-fg active:bg-fg/[0.06]"
           >
             <FiArrowUpRight aria-hidden className="h-[1.1rem] w-[1.1rem]" />
           </a>
@@ -110,7 +110,7 @@ export default function FeaturedProject({ project, index, onOpen }: FeaturedProj
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${project.title} source code (opens in a new tab)`}
-            className="grid h-11 w-11 place-items-center rounded-full border border-line-strong text-fg active:bg-white/[0.06]"
+            className="grid h-11 w-11 place-items-center rounded-full border border-line-strong text-fg active:bg-fg/[0.06]"
           >
             <FiGithub aria-hidden className="h-[1.05rem] w-[1.05rem]" />
           </a>
