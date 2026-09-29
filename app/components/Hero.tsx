@@ -134,7 +134,7 @@ export default function Hero() {
               </a>
               <a
                 href={profile.resume}
-                download="Priyanshu_Kumar_Resume.pdf"
+                download="Priyanshu_Kumar_FullStack_Engineer.pdf"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line-strong px-6 text-[0.92rem] font-medium transition-colors duration-300 hover:border-fg"
               >
                 Download résumé
