@@ -5,7 +5,7 @@ import StackTabs from "./StackTabs";
 
 export default function Skills() {
   return (
-    <section id="stack" aria-labelledby="stack-title" className="border-t border-line py-14 md:py-28">
+    <section id="stack" aria-labelledby="stack-title" className="section-band border-t border-line py-14 md:py-28">
       <div className="container-page">
         <SectionHeading
           id="stack-title"
@@ -39,7 +39,7 @@ export default function Skills() {
                 {group.items.map(({ name, icon: Icon }) => (
                   <li
                     key={name}
-                    className="group inline-flex items-center gap-2 rounded-full border border-line bg-surface/50 px-3.5 py-2 text-[0.88rem] text-muted transition-colors duration-300 hover:border-line-strong hover:text-fg"
+                    className="chip group inline-flex items-center gap-2 rounded-full border border-line bg-surface/50 px-3.5 py-2 text-[0.88rem] text-muted transition-colors duration-300 hover:border-line-strong hover:text-fg"
                   >
                     {Icon ? (
                       <Icon aria-hidden className="h-4 w-4 transition-colors duration-300 group-hover:text-accent" />

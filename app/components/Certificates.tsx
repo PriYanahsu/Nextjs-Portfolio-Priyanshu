@@ -44,7 +44,7 @@ export default function Certificates() {
       >
         {certificates.map((cert) => (
           <li key={cert.title} className="w-[62%] min-w-0 max-w-[15rem] shrink-0 snap-start sm:w-auto sm:max-w-none">
-            <article className="group flex h-full flex-col rounded-[1.2rem] border border-line bg-surface p-2 md:rounded-none md:border-0 md:bg-transparent md:p-0">
+            <article className="cert-card group flex h-full flex-col rounded-[1.2rem] border border-line bg-surface p-2 md:rounded-none md:border-0 md:bg-transparent md:p-0">
               <button
                 type="button"
                 onClick={() => open(cert)}
@@ -57,7 +57,7 @@ export default function Certificates() {
                   fill
                   placeholder="blur"
                   sizes="(min-width: 1280px) 230px, (min-width: 640px) 30vw, 62vw"
-                  className="object-cover object-top opacity-80 transition-all duration-700 ease-out-expo group-hover:scale-[1.04] group-hover:opacity-100"
+                  className="cert-img object-cover object-top opacity-80 transition-all duration-700 ease-out-expo group-hover:scale-[1.04] group-hover:opacity-100"
                 />
               </button>
               <div className="mt-2.5 flex flex-1 flex-col px-1 pb-1 md:mt-4 md:p-0">
@@ -69,7 +69,7 @@ export default function Certificates() {
                   href={cert.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-1 self-start text-[0.78rem] text-muted transition-colors hover:text-accent md:mt-3 md:text-[0.82rem]"
+                  className="cert-verify mt-2 inline-flex items-center gap-1 self-start text-[0.78rem] text-muted transition-colors hover:text-accent md:mt-3 md:text-[0.82rem]"
                 >
                   Verify <FiArrowUpRight aria-hidden />
                   <span className="sr-only">{cert.title} (opens in a new tab)</span>

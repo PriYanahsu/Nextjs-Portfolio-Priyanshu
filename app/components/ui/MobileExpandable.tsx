@@ -27,7 +27,7 @@ export default function MobileExpandable({ children, label, id }: MobileExpandab
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls={id}
-          className="mt-4 flex w-full items-center justify-between rounded-xl bg-white/[0.04] px-4 py-3 text-[0.86rem] text-fg active:bg-white/[0.07]"
+          className="mt-4 flex w-full items-center justify-between rounded-xl bg-fg/[0.04] px-4 py-3 text-[0.86rem] text-fg active:bg-fg/[0.07]"
         >
           {open ? "Hide" : "Show"} {label}
           <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.3 }}>

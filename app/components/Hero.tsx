@@ -16,7 +16,7 @@ const headline: React.ReactNode[] = [
   "building products from",
   <>
     database to{" "}
-    <em className="font-serif font-normal italic tracking-[-0.01em] text-accent">interface.</em>
+    <em className="accent-swash font-serif font-normal italic tracking-[-0.01em] text-accent">interface.</em>
   </>,
 ];
 
@@ -50,13 +50,13 @@ export default function Hero() {
       id="top"
       ref={sectionRef}
       aria-labelledby="hero-title"
-      className="relative isolate overflow-hidden pt-[8.25rem] sm:pt-36 md:pt-32 lg:pt-40"
+      className="hero-canvas relative isolate overflow-hidden pt-[8.25rem] sm:pt-36 md:pt-32 lg:pt-40"
     >
       <div aria-hidden className="dot-grid absolute inset-0 -z-10" />
       <div aria-hidden ref={spotRef} className="dot-grid-spot absolute inset-0 -z-10" />
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-[640px] bg-[radial-gradient(60%_50%_at_70%_0%,rgb(255_122_61/0.08),transparent_70%)]"
+        className="hero-glow absolute inset-x-0 top-0 -z-10 h-[640px] bg-[radial-gradient(60%_50%_at_70%_0%,rgb(255_122_61/0.08),transparent_70%)]"
       />
 
       <div className="container-page">
@@ -66,7 +66,7 @@ export default function Hero() {
           className="enter-fade mb-10 flex flex-wrap items-center justify-between gap-4 lg:mb-14"
         >
           <div className="flex items-center gap-3">
-            <span className="relative h-11 w-11 overflow-hidden rounded-full ring-1 ring-line-strong">
+            <span className="portrait-ring relative h-11 w-11 overflow-hidden rounded-full ring-1 ring-line-strong">
               <Image
                 src={profile.portrait}
                 alt=""
@@ -83,7 +83,7 @@ export default function Hero() {
               </p>
             </div>
           </div>
-          <p className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-[0.78rem] text-muted">
+          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-raised px-3 py-1.5 text-[0.78rem] text-muted shadow-card light:text-fg">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
@@ -95,7 +95,7 @@ export default function Hero() {
         {/* Headline with line-mask reveal */}
         <h1
           id="hero-title"
-          className="text-[clamp(1.75rem,8.6vw,5.6rem)] font-medium leading-[0.98] tracking-[-0.045em]"
+          className="text-[clamp(1.75rem,8.6vw,5.6rem)] font-medium leading-[0.98] tracking-[-0.045em] light:font-semibold light:tracking-[-0.05em]"
         >
           {headline.map((line, i) => (
             <span key={i} className="block overflow-hidden pb-[0.08em]">
@@ -127,7 +127,7 @@ export default function Hero() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href="#work"
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 text-[0.92rem] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5"
+                className="cta group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 text-[0.92rem] font-medium text-ink shadow-glow transition-transform duration-300 hover:-translate-y-0.5"
               >
                 See selected work
                 <FiArrowDown aria-hidden className="transition-transform duration-300 group-hover:translate-y-0.5" />
@@ -135,7 +135,7 @@ export default function Hero() {
               <a
                 href={profile.resume}
                 download="Priyanshu_Kumar_FullStack_Engineer.pdf"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line-strong px-6 text-[0.92rem] font-medium transition-colors duration-300 hover:border-fg"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line-strong bg-raised px-6 text-[0.92rem] font-medium shadow-card transition-colors duration-300 hover:border-fg light:border-line"
               >
                 Download résumé
                 <FiDownload aria-hidden />
@@ -151,12 +151,12 @@ export default function Hero() {
         {/* Proof strip */}
         <dl
           style={delay(0.5)}
-          className="enter-fade mt-16 grid grid-cols-2 border-t border-line md:mt-24 md:grid-cols-4"
+          className="stat-grid enter-fade mt-16 grid grid-cols-2 border-t border-line md:mt-24 md:grid-cols-4"
         >
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className={`py-6 pr-4 md:py-8 ${i % 2 === 1 ? "border-l border-line pl-4" : ""} ${
+              className={`stat-card py-6 pr-4 md:py-8 ${i % 2 === 1 ? "border-l border-line pl-4" : ""} ${
                 i >= 2 ? "border-t border-line md:border-t-0" : ""
               } ${i === 2 ? "md:border-l" : ""} ${i > 0 ? "md:pl-6" : ""}`}
             >

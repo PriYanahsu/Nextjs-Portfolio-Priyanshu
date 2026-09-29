@@ -40,7 +40,7 @@ export default function ProjectIndex({ projects, startIndex, onOpen }: ProjectIn
         <SwipeRail label="More projects" className="-mx-5 scroll-px-5 gap-3 px-5 pb-1 sm:-mx-8 sm:scroll-px-8 sm:px-8">
           {projects.map((project, i) => (
             <li key={project.slug} className="w-[80%] min-w-0 max-w-[20rem] shrink-0 snap-start sm:w-[46%]">
-              <article className="flex h-full flex-col overflow-hidden rounded-[1.4rem] border border-line bg-surface">
+              <article className="lift-card flex h-full flex-col overflow-hidden rounded-[1.4rem] border border-line bg-surface">
                 <button
                   type="button"
                   onClick={() => onOpen(project)}
@@ -68,7 +68,7 @@ export default function ProjectIndex({ projects, startIndex, onOpen }: ProjectIn
                     <button
                       type="button"
                       onClick={() => onOpen(project)}
-                      className="h-9 min-w-0 flex-1 rounded-full bg-white/[0.07] text-[0.8rem] font-medium text-fg active:bg-white/[0.12]"
+                      className="h-9 min-w-0 flex-1 rounded-full bg-fg/[0.07] text-[0.8rem] font-medium text-fg active:bg-fg/[0.12]"
                     >
                       Details
                     </button>
@@ -108,7 +108,7 @@ export default function ProjectIndex({ projects, startIndex, onOpen }: ProjectIn
           <Reveal as="li" key={project.slug} delay={i * 0.04} y={16} className="relative border-b border-line">
             <div
               onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(i)}
-              className="group relative grid grid-cols-12 items-center gap-6 py-7"
+              className="index-row group relative grid grid-cols-12 items-center gap-6 py-7"
             >
               {/* Whole-row hit area opens the case study */}
               <button
@@ -143,7 +143,7 @@ export default function ProjectIndex({ projects, startIndex, onOpen }: ProjectIn
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${project.title} source code (opens in a new tab)`}
-                    className="grid h-9 w-9 place-items-center rounded-full text-muted transition-colors hover:bg-white/5 hover:text-fg"
+                    className="grid h-9 w-9 place-items-center rounded-full text-muted transition-colors hover:bg-fg/5 hover:text-fg"
                   >
                     <FiGithub aria-hidden />
                   </a>
@@ -152,7 +152,7 @@ export default function ProjectIndex({ projects, startIndex, onOpen }: ProjectIn
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${project.title} live site (opens in a new tab)`}
-                    className="grid h-9 w-9 place-items-center rounded-full text-muted transition-colors hover:bg-white/5 hover:text-accent"
+                    className="grid h-9 w-9 place-items-center rounded-full text-muted transition-colors hover:bg-fg/5 hover:text-accent"
                   >
                     <FiArrowUpRight aria-hidden className="h-[1.1rem] w-[1.1rem]" />
                   </a>

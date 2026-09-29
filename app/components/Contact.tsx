@@ -97,7 +97,7 @@ export default function Contact() {
                       target={a.href.startsWith("http") ? "_blank" : undefined}
                       rel={a.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className={`flex h-full flex-col gap-4 rounded-[1.3rem] border p-4 active:scale-[0.98] ${
-                        a.accent ? "border-transparent bg-accent text-ink" : "border-line bg-surface text-fg"
+                        a.accent ? "border-transparent bg-accent text-ink shadow-glow" : "lift-card border-line bg-surface text-fg"
                       }`}
                     >
                       <a.icon aria-hidden className="h-5 w-5" />
@@ -114,12 +114,12 @@ export default function Contact() {
               <button
                 type="button"
                 onClick={copyEmail}
-                className="mt-2.5 flex w-full items-center justify-between rounded-[1.1rem] border border-line bg-surface px-4 py-3 text-left"
+                className="lift-card mt-2.5 flex w-full items-center justify-between rounded-[1.1rem] border border-line bg-surface px-4 py-3 text-left"
                 aria-live="polite"
               >
                 <span className="min-w-0 truncate text-[0.86rem]">{profile.email}</span>
                 <span className="ml-3 inline-flex shrink-0 items-center gap-1.5 text-[0.76rem] text-muted">
-                  {copied ? <FiCheck aria-hidden className="text-emerald-400" /> : <FiCopy aria-hidden />}
+                  {copied ? <FiCheck aria-hidden className="text-emerald-400 light:text-emerald-600" /> : <FiCopy aria-hidden />}
                   {copied ? "Copied" : "Copy"}
                 </span>
               </button>
@@ -139,7 +139,7 @@ export default function Contact() {
                   className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line-strong px-3 text-[0.78rem] text-muted transition-colors hover:border-fg hover:text-fg"
                   aria-live="polite"
                 >
-                  {copied ? <FiCheck aria-hidden className="text-emerald-400" /> : <FiCopy aria-hidden />}
+                  {copied ? <FiCheck aria-hidden className="text-emerald-400 light:text-emerald-600" /> : <FiCopy aria-hidden />}
                   {copied ? "Copied" : "Copy"}
                 </button>
               </div>
@@ -153,7 +153,7 @@ export default function Contact() {
 
             <Reveal delay={0.16}>
               <p className="label-mono mb-2 mt-7 text-subtle md:hidden">Profiles</p>
-              <ul className="grid grid-cols-1 overflow-hidden rounded-[1.3rem] border border-line bg-surface px-4 md:mt-12 md:grid-cols-2 md:gap-x-8 md:rounded-none md:border-0 md:border-t md:bg-transparent md:px-0">
+              <ul className="lift-card grid grid-cols-1 overflow-hidden rounded-[1.3rem] border border-line bg-surface px-4 md:mt-12 md:grid-cols-2 md:gap-x-8 md:rounded-none md:border-0 md:border-t md:bg-transparent md:px-0">
                 {socials
                   .filter((s) => s.label !== "Email")
                   .map((s) => (
@@ -187,7 +187,7 @@ export default function Contact() {
           </div>
 
           <Reveal className="lg:col-span-6" delay={0.1} y={32}>
-            <div className="relative rounded-[1.4rem] border border-line bg-surface p-4 sm:p-8 md:rounded-2xl">
+            <div className="form-card relative rounded-[1.4rem] border border-line bg-surface p-4 sm:p-8 md:rounded-2xl">
               <AnimatePresence mode="wait" initial={false}>
                 {status === "sent" ? (
                   <motion.div
@@ -237,7 +237,7 @@ export default function Contact() {
                               onChange={() => setTopic(t)}
                               className="peer sr-only"
                             />
-                            <span className="inline-block rounded-full border border-line px-3.5 py-2 text-[0.84rem] text-muted transition-colors peer-checked:border-accent peer-checked:bg-accent-soft peer-checked:text-fg peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent hover:text-fg">
+                            <span className="chip inline-block rounded-full border border-line px-3.5 py-2 text-[0.84rem] text-muted transition-colors peer-checked:border-accent peer-checked:bg-accent-soft peer-checked:text-fg peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent hover:text-fg">
                               {t}
                             </span>
                           </label>
@@ -270,7 +270,7 @@ export default function Contact() {
                     <div className="flex flex-col-reverse items-stretch gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
                       <p className="text-[0.82rem] text-subtle" role={status === "error" ? "alert" : undefined}>
                         {status === "error" ? (
-                          <span className="text-red-300">
+                          <span className="text-red-300 light:text-red-600">
                             Something went wrong. Please email me directly instead.
                           </span>
                         ) : (
@@ -280,7 +280,7 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={status === "sending"}
-                        className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 text-[0.92rem] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-70"
+                        className="cta group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 text-[0.92rem] font-medium text-ink shadow-glow transition-transform duration-300 hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-70"
                       >
                         {status === "sending" ? "Sending…" : "Send message"}
                         <FiSend aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

@@ -57,7 +57,7 @@ export default function SwipeRail({ children, className = "", indicatorClassName
         {children}
       </ul>
       {thumb.width < 100 && (
-        <div aria-hidden className={`mx-auto mt-4 h-[3px] w-24 overflow-hidden rounded-full bg-white/10 ${indicatorClassName}`}>
+        <div aria-hidden className={`mx-auto mt-4 h-[3px] w-24 overflow-hidden rounded-full bg-fg/10 ${indicatorClassName}`}>
           <div
             className="h-full rounded-full bg-fg transition-[margin] duration-150 ease-out"
             style={{ width: `${thumb.width}%`, marginLeft: `${thumb.left}%` }}

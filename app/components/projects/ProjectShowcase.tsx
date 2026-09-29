@@ -47,7 +47,7 @@ export default function ProjectShowcase({ project, onOpen }: ProjectShowcaseProp
 
   return (
     <div
-      className="relative overflow-hidden bg-ink/40 p-3 pb-0 sm:p-5 sm:pb-0 md:rounded-2xl md:border md:border-line md:bg-surface md:p-6 lg:p-5 xl:p-6"
+      className="showcase relative overflow-hidden bg-ink/40 p-3 pb-0 sm:p-5 sm:pb-0 md:rounded-2xl md:border md:border-line md:bg-surface md:p-6 lg:p-5 xl:p-6"
       onPointerEnter={(e) => e.pointerType === "mouse" && setHovering(true)}
       onPointerLeave={() => {
         setHovering(false);
@@ -66,14 +66,14 @@ export default function ProjectShowcase({ project, onOpen }: ProjectShowcaseProp
         type="button"
         onClick={onOpen}
         aria-label={`Open ${project.title} case study with ${count} screenshots`}
-        className="group/frame relative block w-full overflow-hidden rounded-t-xl border border-b-0 border-line-strong bg-ink text-left md:rounded-lg md:border-b shadow-[0_30px_80px_-30px_rgb(0_0_0/0.8)] transition-transform duration-700 ease-out-expo hover:-translate-y-1"
+        className="group/frame relative block w-full overflow-hidden rounded-t-xl border border-b-0 border-line-strong bg-ink text-left md:rounded-lg md:border-b shadow-frame transition-transform duration-700 ease-out-expo hover:-translate-y-1"
       >
         {/* Browser chrome */}
         <span className="flex h-8 items-center gap-3 border-b border-line bg-surface-2 px-3">
-          <span className="flex gap-1.5" aria-hidden>
-            <span className="h-2 w-2 rounded-full bg-white/15" />
-            <span className="h-2 w-2 rounded-full bg-white/15" />
-            <span className="h-2 w-2 rounded-full bg-white/15" />
+          <span className="chrome-dots flex gap-1.5" aria-hidden>
+            <span className="h-2 w-2 rounded-full bg-fg/15" />
+            <span className="h-2 w-2 rounded-full bg-fg/15" />
+            <span className="h-2 w-2 rounded-full bg-fg/15" />
           </span>
           <span className="mx-auto flex min-w-0 items-center gap-1.5 truncate rounded-md bg-ink/60 px-3 py-0.5 font-mono text-[0.66rem] text-subtle">
             <FiLock aria-hidden className="h-2.5 w-2.5 shrink-0" />
@@ -104,7 +104,7 @@ export default function ProjectShowcase({ project, onOpen }: ProjectShowcaseProp
             ) : null
           )}
 
-          <span className="absolute bottom-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-ink/80 px-2.5 py-1 text-[0.68rem] text-fg opacity-100 backdrop-blur-md transition-opacity duration-300 md:bottom-3 md:right-3 md:px-3 md:py-1.5 md:text-[0.72rem] md:opacity-0 md:group-hover/frame:opacity-100 md:group-focus-visible/frame:opacity-100">
+          <span className="absolute bottom-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border border-fg/10 bg-ink/80 px-2.5 py-1 text-[0.68rem] text-fg opacity-100 backdrop-blur-md transition-opacity duration-300 md:bottom-3 md:right-3 md:px-3 md:py-1.5 md:text-[0.72rem] md:opacity-0 md:group-hover/frame:opacity-100 md:group-focus-visible/frame:opacity-100">
             <FiMaximize2 aria-hidden className="h-3 w-3" />
             {count > 1 ? `View ${count} screens` : "View details"}
           </span>
@@ -117,7 +117,7 @@ export default function ProjectShowcase({ project, onOpen }: ProjectShowcaseProp
             <span
               key={i}
               className={`h-0.5 flex-1 rounded-full transition-colors duration-500 ${
-                i === index ? "bg-fg" : "bg-white/10"
+                i === index ? "bg-fg" : "bg-fg/10"
               }`}
             />
           ))}

@@ -4,7 +4,7 @@ import LocalTime from "./ui/LocalTime";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line">
+    <footer className="site-footer border-t border-line">
       <div className="container-page py-12 md:py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
@@ -37,7 +37,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="grid h-9 w-9 place-items-center rounded-full border border-line text-muted transition-colors hover:border-line-strong hover:text-accent"
+                  className="social-dot grid h-9 w-9 place-items-center rounded-full border border-line text-muted transition-colors hover:border-line-strong hover:text-accent"
                 >
                   <s.icon aria-hidden className="h-4 w-4" />
                 </a>

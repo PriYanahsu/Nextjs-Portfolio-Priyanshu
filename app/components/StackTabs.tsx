@@ -67,7 +67,7 @@ export default function StackTabs() {
             {group.items.map(({ name, icon: Icon }) => (
               <li
                 key={name}
-                className="flex aspect-[1/0.9] flex-col items-center justify-center gap-2 rounded-2xl border border-line bg-surface px-2 text-center"
+                className="chip flex aspect-[1/0.9] flex-col items-center justify-center gap-2 rounded-2xl border border-line bg-surface px-2 text-center"
               >
                 {Icon ? (
                   <Icon aria-hidden className="h-6 w-6 text-fg" />

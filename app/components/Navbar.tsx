@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import { FiArrowUpRight, FiDownload } from "react-icons/fi";
 import { navLinks, profile, socials } from "../data/portfolio";
 import useActiveSection, { scrollToSection } from "./ui/useActiveSection";
+import ThemeToggle from "./ui/ThemeToggle";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const sections = [...navLinks, { label: "Contact", id: "contact" }];
@@ -96,14 +97,14 @@ export default function Navbar() {
         >
           <nav aria-label="Primary" className="container-page flex h-14 items-center justify-between gap-4 md:h-16">
             <a href="#top" className="group flex min-w-0 items-center gap-3" aria-label={`${profile.name}, back to top`}>
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line-strong font-mono text-[0.7rem] font-medium tracking-tight transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
+              <span className="brand-mark grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line-strong font-mono text-[0.7rem] font-medium tracking-tight transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
                 PK
               </span>
               <span className="truncate text-sm font-medium tracking-tight">{profile.name}</span>
             </a>
 
             {/* Desktop pill nav */}
-            <ul className="hidden items-center gap-1 rounded-full border border-line bg-surface/60 p-1 md:flex">
+            <ul className="hidden items-center gap-1 rounded-full border border-line bg-surface/60 p-1 shadow-card md:flex light:bg-raised">
               {navLinks.map((link) => {
                 const isActive = active === link.id;
                 return (
@@ -111,7 +112,7 @@ export default function Navbar() {
                     {isActive && (
                       <motion.span
                         layoutId="nav-active"
-                        className="absolute inset-0 rounded-full bg-white/[0.08]"
+                        className="absolute inset-0 rounded-full bg-fg/[0.08]"
                         transition={{ type: "spring", stiffness: 380, damping: 32 }}
                       />
                     )}
@@ -137,6 +138,7 @@ export default function Navbar() {
               >
                 Résumé <FiDownload aria-hidden className="h-3.5 w-3.5" />
               </a>
+              <ThemeToggle />
               <a
                 href="#contact"
                 className="inline-flex h-9 items-center gap-1.5 rounded-full bg-fg px-3.5 text-[0.8rem] font-medium text-ink transition-colors duration-300 hover:bg-accent md:h-auto md:px-4 md:py-2 md:text-[0.84rem]"
@@ -208,7 +210,7 @@ export default function Navbar() {
           <>
             <motion.div
               aria-hidden
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden light:bg-black/30"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -277,7 +279,7 @@ export default function Navbar() {
                           href={s.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex flex-col items-center gap-1.5 rounded-2xl border border-line bg-ink/50 px-1 py-3 text-[0.66rem] text-muted active:bg-white/[0.05]"
+                          className="flex flex-col items-center gap-1.5 rounded-2xl border border-line bg-ink/50 px-1 py-3 text-[0.66rem] text-muted active:bg-fg/[0.05]"
                         >
                           <s.icon aria-hidden className="h-[1.1rem] w-[1.1rem] text-fg" />
                           {s.label}

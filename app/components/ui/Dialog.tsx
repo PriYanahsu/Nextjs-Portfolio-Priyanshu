@@ -120,7 +120,7 @@ export default function Dialog({
         <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-6 lg:p-10">
           <motion.div
             aria-hidden
-            className="absolute inset-0 bg-black/75 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/75 backdrop-blur-sm light:bg-black/40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -151,7 +151,7 @@ export default function Dialog({
               className="flex shrink-0 cursor-grab touch-none justify-center pb-1 pt-2.5 sm:hidden"
               aria-hidden
             >
-              <span className="h-1 w-10 rounded-full bg-white/20" />
+              <span className="h-1 w-10 rounded-full bg-fg/20" />
             </div>
             {children}
           </motion.div>
