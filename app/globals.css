@@ -232,10 +232,6 @@ textarea:focus-visible {
 [data-theme="light"] .grain::before { opacity: 0.03; }
 
 /* Hero: same light-from-above ember glow as dark, tuned to read on paper */
-[data-theme="light"] .hero-canvas {
-  /* Room under the stat cards so their shadows don't meet the next section */
-  padding-bottom: 3.5rem;
-}
 [data-theme="light"] .hero-glow {
   background: radial-gradient(60% 50% at 70% 0%, rgb(255 122 61 / 0.18), transparent 70%);
 }
@@ -288,22 +284,6 @@ textarea:focus-visible {
 [data-theme="light"] .trace-card { background: var(--color-surface); }
 [data-theme="light"] .trace-node { background: #fdfcfa; }
 [data-theme="light"] .trace-icon { background: #fff; color: var(--color-accent); box-shadow: 0 1px 3px rgb(40 25 10 / 0.12); }
-
-/* Proof strip becomes a row of cards */
-[data-theme="light"] .stat-grid { gap: 0.875rem; border: 0; }
-[data-theme="light"] .stat-card {
-  padding: 1.5rem;
-  border: 1px solid var(--color-line);
-  border-radius: 20px;
-  background: rgb(255 255 255 / 0.8);
-  box-shadow: var(--shadow-card);
-}
-[data-theme="light"] .stat-card .text-accent {
-  background: linear-gradient(95deg, #e0541c, #f0833f);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
 
 [data-theme="light"] .brand-mark {
   border-color: var(--color-fg);
