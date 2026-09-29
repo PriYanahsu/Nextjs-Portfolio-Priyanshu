@@ -50,7 +50,7 @@ export default function Hero() {
       id="top"
       ref={sectionRef}
       aria-labelledby="hero-title"
-      className="hero-canvas relative isolate overflow-hidden pt-[8.25rem] sm:pt-36 md:pt-32 lg:pt-40"
+      className="relative isolate overflow-hidden pt-[8.25rem] sm:pt-36 md:pt-32 lg:pt-40"
     >
       <div aria-hidden className="dot-grid absolute inset-0 -z-10" />
       <div aria-hidden ref={spotRef} className="dot-grid-spot absolute inset-0 -z-10" />
@@ -151,12 +151,12 @@ export default function Hero() {
         {/* Proof strip */}
         <dl
           style={delay(0.5)}
-          className="stat-grid enter-fade mt-16 grid grid-cols-2 border-t border-line md:mt-24 md:grid-cols-4"
+          className="enter-fade mt-16 grid grid-cols-2 border-t border-line md:mt-24 md:grid-cols-4"
         >
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className={`stat-card py-6 pr-4 md:py-8 ${i % 2 === 1 ? "border-l border-line pl-4" : ""} ${
+              className={`py-6 pr-4 md:py-8 ${i % 2 === 1 ? "border-l border-line pl-4" : ""} ${
                 i >= 2 ? "border-t border-line md:border-t-0" : ""
               } ${i === 2 ? "md:border-l" : ""} ${i > 0 ? "md:pl-6" : ""}`}
             >
