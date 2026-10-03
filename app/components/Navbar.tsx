@@ -133,7 +133,7 @@ export default function Navbar() {
             <div className="flex shrink-0 items-center gap-2">
               <a
                 href={profile.resume}
-                download="Priyanshu_Kumar_FullStack_Engineer.pdf"
+                download="Priyanshu Kumar - Full Stack Engineer Resume.pdf"
                 className="hidden items-center gap-1.5 rounded-full px-3 py-2 text-[0.84rem] text-muted transition-colors hover:text-fg lg:inline-flex"
               >
                 Résumé <FiDownload aria-hidden className="h-3.5 w-3.5" />
@@ -267,7 +267,7 @@ export default function Navbar() {
                 >
                   <a
                     href={profile.resume}
-                    download="Priyanshu_Kumar_FullStack_Engineer.pdf"
+                    download="Priyanshu Kumar - Full Stack Engineer Resume.pdf"
                     className="mt-6 flex h-12 items-center justify-center gap-2 rounded-full bg-fg text-[0.92rem] font-medium text-ink active:scale-[0.98]"
                   >
                     <FiDownload aria-hidden /> Download résumé

@@ -120,7 +120,7 @@ export const profile = {
   email: "priyanshu.dev.agile@gmail.com",
   phone: "+91 6006935523",
   phoneHref: "tel:+916006935523",
-  resume: "/Priyanshu_Kumar_FullStack_Engineer.pdf",
+  resume: "/Priyanshu Kumar - Full Stack Engineer Resume.pdf",
   portrait,
   company: { name: "Cognivac", role: "Associate Software Engineer" },
   venture: { name: "Krixen", href: "https://krixen.com" },
