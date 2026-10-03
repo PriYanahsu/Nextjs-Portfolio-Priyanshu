@@ -22,7 +22,7 @@ export default function Experience() {
               Product engineering in a team, alongside my own ventures and client work.{" "}
               <a
                 href={profile.resume}
-                download="Priyanshu_Kumar_FullStack_Engineer.pdf"
+                download="Priyanshu Kumar - Full Stack Engineer Resume.pdf"
                 className="inline-flex items-center gap-1 text-fg underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
               >
                 Full résumé <FiDownload aria-hidden className="h-3.5 w-3.5" />
